@@ -54,7 +54,7 @@ epa_ecoregions <-
 
 hexes <-
   st_read(
-    here::here('data-raw/Hex_All_4StudyArea_Full.shp'),
+    here::here('data-raw/hexes_elev_xy.shp'),
     quiet = TRUE
   ) |>
   clean_names() |>
