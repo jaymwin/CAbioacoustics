@@ -76,4 +76,4 @@ cb_boundary_layers <-
   )
 
 # this updates the /data folder
-use_data(cb_boundary_layers, overwrite = TRUE)
+usethis::use_data(cb_boundary_layers, overwrite = TRUE)
