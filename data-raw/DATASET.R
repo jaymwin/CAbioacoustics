@@ -56,12 +56,7 @@ hexes <-
   st_read(
     here::here('data-raw/hexes_elev_xy.shp'),
     quiet = TRUE
-  ) |>
-  clean_names() |>
-  select(cell_id) |>
-  distinct() |>
-  arrange(cell_id) |>
-  st_transform(crs = 4326)
+  )
 
 
 # save raw spatial data ---------------------------------------------------
