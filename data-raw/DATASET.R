@@ -1,0 +1,79 @@
+## code to prepare `DATASET` dataset goes here
+
+
+library(arcpullr)
+library(tidyverse)
+library(sf)
+library(janitor)
+
+
+# california boundary -----------------------------------------------------
+
+ca_boundary <-
+  arcpullr::get_spatial_layer('https://services1.arcgis.com/qr14biwnHA6Vis6l/arcgis/rest/services/California_State_Boundary/FeatureServer/0') |>
+  select(NAME) |>
+  clean_names()
+
+
+# nps boundaries ----------------------------------------------------------
+
+nps_boundaries <-
+  arcpullr::get_spatial_layer(
+    url = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2',
+    where = "STATE = 'CA'"
+  ) |>
+  select(UNIT_CODE, UNIT_NAME, PARKNAME, UNIT_TYPE) |>
+  clean_names() |>
+  rename(park_name = parkname)
+
+
+# usfs boundaries ---------------------------------------------------------
+
+usfs_boundaries <-
+  arcpullr::get_spatial_layer(
+    url = 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0',
+    where = "Region = '05'"
+  ) |>
+  select(ADMINFORESTID:FORESTNAME) |>
+  clean_names() |>
+  rename(admin_forest_id = adminforestid, forest_number = forestnumber, forest_org_code = forestorgcode, forest_name = forestname)
+
+
+# epa ecoregions ----------------------------------------------------------
+
+epa_ecoregions <-
+  arcpullr::get_spatial_layer(
+    url = 'https://edits.nationalmap.gov/arcgis/rest/services/landforms/landforms_epa_eco_regions/MapServer/0',
+    where = "NA_L3NAME IN ('Sierra Nevada', 'Cascades')"
+  ) |>
+  select(NA_L3NAME) |>
+  clean_names()
+
+
+# hexes -------------------------------------------------------------------
+
+hexes <-
+  st_read(
+    here::here('Hex_All_4StudyArea_Full.shp'),
+    quiet = TRUE
+  ) |>
+  clean_names() |>
+  select(cell_id) |>
+  distinct() |>
+  arrange(cell_id) |>
+  st_transform(crs = 4326)
+
+
+# save raw spatial data ---------------------------------------------------
+
+cb_boundary_layers <-
+  list(
+    hexes = hexes,
+    epa_ecoregions = epa_ecoregions,
+    usfs_boundaries = usfs_boundaries,
+    nps_boundaries = nps_boundaries,
+    ca_boundary = ca_boundary
+  )
+
+# this updates the /data folder
+use_data(cb_boundary_layers, overwrite = TRUE)
