@@ -64,7 +64,7 @@ hexes <-
 # fire perimeters ---------------------------------------------------------
 
 # 2020-onward
-recent_fire_perimeters <-
+fire_perimeters <-
   arcpullr::get_spatial_layer(
     url = 'https://services1.arcgis.com/jUJYIo9tSA7EHvfZ/ArcGIS/rest/services/California_Fire_Perimeters/FeatureServer/2',
     where = "YEAR_ >= 2020",
@@ -82,7 +82,7 @@ cb_boundary_layers <-
     usfs_boundaries = usfs_boundaries,
     nps_boundaries = nps_boundaries,
     ca_boundary = ca_boundary,
-    recent_fire_perimeters = recent_fire_perimeters
+    fire_perimeters = fire_perimeters
   )
 
 # this updates the /data folder

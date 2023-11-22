@@ -30,6 +30,10 @@ cb_get_spatial <- function(layer_name = NULL) {
 
     layer <- cb_boundary_layers$usfs_boundaries
 
+  } else if (layer_name == 'fire_perimeters') {
+
+    layer <- cb_boundary_layers$fire_perimeters
+
   }
 
 }
