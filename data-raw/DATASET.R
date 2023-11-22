@@ -46,7 +46,7 @@ usfs_boundaries <-
 epa_ecoregions <-
   arcpullr::get_spatial_layer(
     url = 'https://edits.nationalmap.gov/arcgis/rest/services/landforms/landforms_epa_eco_regions/MapServer/0',
-    where = "NA_L3NAME IN ('Sierra Nevada', 'Cascades')"
+    where = "US_L3NAME IN ('Sierra Nevada', 'Cascades')"
   ) |>
   select(NA_L3NAME) |>
   clean_names()
@@ -80,8 +80,10 @@ hexes_dissolved <-
   hexes |>
   summarise()
 
+# years of burn severity data to have
 years <- 2020:2022
 
+# loop through years to create rasters
 for(i in seq_along(years)) {
 
   # read in raster (CBI from RAVG)
@@ -91,15 +93,16 @@ for(i in seq_along(years)) {
 
   # crop/mask raster
   r_mask <- terra::crop(r, hexes_dissolved |> st_transform(st_crs(r)), mask = TRUE)
-  plot(r_mask, main = paste0(years[i]))
+  # plot(r_mask, main = paste0(years[i]))
   # save raster object to memory
   assign(r_name, r_mask)
 
 }
 
-# combine in a raster stack
+# combine annual rasters in a raster stack
 annual_rasters <- list(burn_severity_2020, burn_severity_2021, burn_severity_2022)
 burn_severity_rasters <- terra::rast(annual_rasters)
+# plot(burn_severity_rasters)
 
 # save raster stack
 # terra::writeRaster(burn_severity_rasters, "Data/IA_cdl_stack.tif", filetype = "GTiff", overwrite = TRUE)
