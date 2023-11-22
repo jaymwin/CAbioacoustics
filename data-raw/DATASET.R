@@ -73,41 +73,6 @@ recent_fire_perimeters <-
   clean_names()
 
 
-# burn severity -----------------------------------------------------------
-
-# crop to boundary of all hexes
-hexes_dissolved <-
-  hexes |>
-  summarise()
-
-# years of burn severity data to have
-years <- 2020:2022
-
-# loop through years to create rasters
-for(i in seq_along(years)) {
-
-  # read in raster (CBI from RAVG)
-  r <- terra::rast(str_c('https://data.fs.usda.gov/geodata/rastergateway/ravg/ravg_', years[i], '_cbi4.tif'))
-  # create name to save raster object by year
-  r_name <- str_c('burn_severity_', years[i])
-
-  # crop/mask raster
-  r_mask <- terra::crop(r, hexes_dissolved |> st_transform(st_crs(r)), mask = TRUE)
-  # plot(r_mask, main = paste0(years[i]))
-  # save raster object to memory
-  assign(r_name, r_mask)
-
-}
-
-# combine annual rasters in a raster stack
-annual_rasters <- list(burn_severity_2020, burn_severity_2021, burn_severity_2022)
-burn_severity_rasters <- terra::rast(annual_rasters)
-# plot(burn_severity_rasters)
-
-# save raster stack
-# terra::writeRaster(burn_severity_rasters, "Data/IA_cdl_stack.tif", filetype = "GTiff", overwrite = TRUE)
-
-
 # save raw spatial data ---------------------------------------------------
 
 cb_boundary_layers <-
@@ -117,8 +82,7 @@ cb_boundary_layers <-
     usfs_boundaries = usfs_boundaries,
     nps_boundaries = nps_boundaries,
     ca_boundary = ca_boundary,
-    recent_fire_perimeters = recent_fire_perimeters,
-    burn_severity_rasters = burn_severity_rasters
+    recent_fire_perimeters = recent_fire_perimeters
   )
 
 # this updates the /data folder

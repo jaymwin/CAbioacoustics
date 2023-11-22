@@ -30,10 +30,6 @@ cb_get_spatial <- function(layer_name = NULL) {
 
     layer <- cb_boundary_layers$usfs_boundaries
 
-  } else if (layer_name == 'ravg_cbi') {
-
-    layer <- cb_boundary_layers$burn_severity_rasters
-
   }
 
 }

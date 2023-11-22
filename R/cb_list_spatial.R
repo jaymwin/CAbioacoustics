@@ -14,8 +14,7 @@ cb_list_spatial <- function() {
     'epa_ecoregions', 'EPA ecoregions (level III)', 'shapefile',
     'usfs_boundaries', 'USFS national forest boundaries', 'shapefile',
     'nps_boundaries', 'NPS boundaries', 'shapefile',
-    'ca_boundary', 'California border', 'shapefile',
-    'ravg_cbi', 'RAVG composite burn index', 'raster'
+    'ca_boundary', 'California border', 'shapefile'
   ) %>%
     dplyr::arrange(type, layer_name) %>%
     print(n = Inf)
