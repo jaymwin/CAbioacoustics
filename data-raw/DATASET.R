@@ -70,7 +70,8 @@ fire_perimeters <-
     where = "YEAR_ >= 2020",
     out_fields = c('YEAR_', 'FIRE_NAME', 'CAUSE', 'C_METHOD')
   ) |>
-  clean_names()
+  clean_names() |>
+  st_make_valid()
 
 
 # save raw spatial data ---------------------------------------------------
