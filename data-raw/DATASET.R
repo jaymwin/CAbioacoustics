@@ -1,6 +1,5 @@
 ## code to prepare `DATASET` dataset goes here
 
-
 library(arcpullr)
 library(tidyverse)
 library(sf)
@@ -74,6 +73,53 @@ fire_perimeters <-
   st_make_valid()
 
 
+# demographic study areas -------------------------------------------------
+
+# eldorado <-
+#   st_read("Y:/Data-GIS/Boundaries/Owl_demography/DSA_boundary_utm83/DSA_boundary_utm83.shp") |>
+#   st_transform(4326) |>
+#   summarise() |>
+#   transmute(name = 'Eldorado') |>
+#   nngeo::st_remove_holes()
+#
+# lassen <-
+#   st_read("Y:/Data-GIS/Boundaries/Owl_demography/LNF_demo_utm27/Lassen_quints.shp") |>
+#   st_transform(4326) |>
+#   summarise() |>
+#   transmute(name = 'Lassen') |>
+#   nngeo::st_remove_holes()
+#
+# seki <-
+#   st_read("Y:/Data-GIS/Boundaries/Owl_demography/SKC_subsites_utm83/SKC_subsites_utm83.shp") |>
+#   st_transform(4326) |>
+#   st_make_valid() |>
+#   summarise() |>
+#   transmute(name = 'Sequoia-Kings Canyon') |>
+#   nngeo::st_remove_holes()
+#
+# snf <-
+#   st_read("Y:/Data-GIS/Boundaries/Owl_demography/SNF_Demo_utm83/SNF_Demo_utm83.shp") |>
+#   st_transform(4326) |>
+#   summarise() |>
+#   transmute(name = 'Sierra') |>
+#   nngeo::st_remove_holes()
+#
+# demography_study_areas <-
+#   bind_rows(eldorado, lassen, seki, snf)
+#
+# demography_study_areas |>
+#   mapview::mapview()
+#
+# demography_study_areas |>
+#   st_write(here::here('data-raw/demography_areas.shp'))
+
+demography_study_areas <-
+  st_read(
+    here::here('data-raw/demography_areas.shp'),
+    quiet = TRUE
+  )
+
+
 # save raw spatial data ---------------------------------------------------
 
 cb_boundary_layers <-
@@ -83,7 +129,8 @@ cb_boundary_layers <-
     usfs_boundaries = usfs_boundaries,
     nps_boundaries = nps_boundaries,
     ca_boundary = ca_boundary,
-    fire_perimeters = fire_perimeters
+    fire_perimeters = fire_perimeters,
+    demography_study_areas = demography_study_areas
   )
 
 # this updates the /data folder
