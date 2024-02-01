@@ -72,14 +72,14 @@ sierra_study_area <-
 # fire perimeters ---------------------------------------------------------
 
 # 2020-onward
-fire_perimeters <-
-  arcpullr::get_spatial_layer(
-    url = 'https://services1.arcgis.com/jUJYIo9tSA7EHvfZ/ArcGIS/rest/services/California_Fire_Perimeters/FeatureServer/2',
-    where = "YEAR_ >= 2020",
-    out_fields = c('YEAR_', 'FIRE_NAME', 'CAUSE', 'C_METHOD')
-  ) |>
-  clean_names() |>
-  st_make_valid()
+# fire_perimeters <-
+#   arcpullr::get_spatial_layer(
+#     url = 'https://services1.arcgis.com/jUJYIo9tSA7EHvfZ/ArcGIS/rest/services/California_Fire_Perimeters/FeatureServer/2',
+#     where = "YEAR_ >= 2020",
+#     out_fields = c('YEAR_', 'FIRE_NAME', 'CAUSE', 'C_METHOD')
+#   ) |>
+#   clean_names() |>
+#   st_make_valid()
 
 
 # demographic study areas -------------------------------------------------
@@ -138,7 +138,7 @@ cb_boundary_layers <-
     usfs_boundaries = usfs_boundaries,
     nps_boundaries = nps_boundaries,
     ca_boundary = ca_boundary,
-    fire_perimeters = fire_perimeters,
+    # fire_perimeters = fire_perimeters,
     demography_study_areas = demography_study_areas,
     sierra_study_area = sierra_study_area
   )
