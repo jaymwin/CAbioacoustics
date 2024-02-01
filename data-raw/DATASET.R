@@ -57,7 +57,16 @@ hexes <-
   st_read(
     here::here('data-raw/hexes_elev_xy.shp'),
     quiet = TRUE
-  )
+  ) |>
+  st_make_valid()
+
+
+# sierra study area (based off of hexes) ----------------------------------
+
+sierra_study_area <-
+  hexes |>
+  summarise() |>
+  nngeo::st_remove_holes()
 
 
 # fire perimeters ---------------------------------------------------------
@@ -130,7 +139,8 @@ cb_boundary_layers <-
     nps_boundaries = nps_boundaries,
     ca_boundary = ca_boundary,
     fire_perimeters = fire_perimeters,
-    demography_study_areas = demography_study_areas
+    demography_study_areas = demography_study_areas,
+    sierra_study_area = sierra_study_area
   )
 
 # this updates the /data folder

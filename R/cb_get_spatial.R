@@ -38,6 +38,10 @@ cb_get_spatial <- function(layer_name = NULL) {
 
     layers <- cb_boundary_layers$demography_study_areas
 
+  } else if (layer_name == 'sierra_study_area') {
+
+    layers <- cb_boundary_layers$sierra_study_area
+
   }
 
 }
