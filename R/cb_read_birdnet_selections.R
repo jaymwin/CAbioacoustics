@@ -8,7 +8,7 @@
 #'
 #' @examples
 
-read_birdnet_selections <- function(df) {
+cb_read_birdnet_selections <- function(df) {
 
   data.table::fread(df) |>
     tibble::as_tibble() |>

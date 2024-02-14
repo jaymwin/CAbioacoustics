@@ -8,7 +8,7 @@
 #'
 #' @examples
 
-read_surveyor_data <- function(df) {
+cb_read_surveyor_data <- function(df) {
 
   file_type <- df |> stringr::str_extract('.csv|.xlsx')
 
