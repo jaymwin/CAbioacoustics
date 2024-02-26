@@ -29,15 +29,21 @@ nps_boundaries <-
 
 # usfs boundaries ---------------------------------------------------------
 
+# usfs_boundaries <-
+#   arcpullr::get_spatial_layer(
+#     url = 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0',
+#     where = "Region = '05'"
+#   ) |>
+#   select(ADMINFORESTID:FORESTNAME) |>
+#   clean_names() |>
+#   rename(admin_forest_id = adminforestid, forest_number = forestnumber, forest_org_code = forestorgcode, forest_name = forestname) |>
+#   st_make_valid()
+
 usfs_boundaries <-
-  arcpullr::get_spatial_layer(
-    url = 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0',
-    where = "Region = '05'"
-  ) |>
-  select(ADMINFORESTID:FORESTNAME) |>
-  clean_names() |>
-  rename(admin_forest_id = adminforestid, forest_number = forestnumber, forest_org_code = forestorgcode, forest_name = forestname) |>
-  st_make_valid()
+  st_read(
+    here::here('data-raw/usfs_boundaries.shp'),
+    quiet = TRUE
+  )
 
 
 # epa ecoregions ----------------------------------------------------------
