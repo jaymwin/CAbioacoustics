@@ -48,13 +48,13 @@ usfs_boundaries <-
 
 # epa ecoregions ----------------------------------------------------------
 
-epa_ecoregions <-
-  arcpullr::get_spatial_layer(
-    url = 'https://edits.nationalmap.gov/arcgis/rest/services/landforms/landforms_epa_eco_regions/MapServer/0',
-    where = "US_L3NAME IN ('Sierra Nevada', 'Cascades')"
-  ) |>
-  select(NA_L3NAME) |>
-  clean_names()
+# epa_ecoregions <-
+#   arcpullr::get_spatial_layer(
+#     url = 'https://edits.nationalmap.gov/arcgis/rest/services/landforms/landforms_epa_eco_regions/MapServer/0',
+#     where = "US_L3NAME IN ('Sierra Nevada', 'Cascades')"
+#   ) |>
+#   select(NA_L3NAME) |>
+#   clean_names()
 
 
 # hexes -------------------------------------------------------------------
@@ -140,7 +140,7 @@ demography_study_areas <-
 cb_boundary_layers <-
   list(
     hexes = hexes,
-    epa_ecoregions = epa_ecoregions,
+    # epa_ecoregions = epa_ecoregions,
     usfs_boundaries = usfs_boundaries,
     nps_boundaries = nps_boundaries,
     ca_boundary = ca_boundary,

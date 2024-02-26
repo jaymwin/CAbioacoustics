@@ -14,10 +14,6 @@ cb_get_spatial <- function(layer_name = NULL) {
 
     layer <- cb_boundary_layers$ca_boundary
 
-  } else if (layer_name == 'epa_ecoregions') {
-
-    layer <- cb_boundary_layers$epa_ecoregions
-
   } else if (layer_name == 'hexes') {
 
     layer <- cb_boundary_layers$hexes
