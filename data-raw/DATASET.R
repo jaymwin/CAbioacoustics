@@ -43,7 +43,8 @@ usfs_boundaries <-
   st_read(
     here::here('data-raw/usfs_boundaries.shp'),
     quiet = TRUE
-  )
+  ) |>
+  st_transform(4326)
 
 
 # epa ecoregions ----------------------------------------------------------
