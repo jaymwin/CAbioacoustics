@@ -24,7 +24,8 @@ nps_boundaries <-
   ) |>
   select(UNIT_CODE, UNIT_NAME, PARKNAME, UNIT_TYPE) |>
   clean_names() |>
-  rename(park_name = parkname)
+  rename(park_name = parkname) |>
+  st_make_valid()
 
 
 # usfs boundaries ---------------------------------------------------------
