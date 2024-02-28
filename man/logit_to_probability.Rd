@@ -4,7 +4,7 @@
 \alias{logit_to_probability}
 \title{Title}
 \usage{
-logit_to_probability(x)
+logit_to_probability(x, reverse = FALSE)
 }
 \arguments{
 \item{x}{}
