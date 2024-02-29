@@ -25,7 +25,8 @@ nps_boundaries <-
   select(UNIT_CODE, UNIT_NAME, PARKNAME, UNIT_TYPE) |>
   clean_names() |>
   rename(park_name = parkname) |>
-  st_make_valid()
+  st_make_valid() |>
+  nngeo::st_remove_holes()
 
 
 # usfs boundaries ---------------------------------------------------------
@@ -45,6 +46,7 @@ usfs_boundaries <-
     here::here('data-raw/usfs_boundaries.shp'),
     quiet = TRUE
   ) |>
+  st_make_valid() |>
   st_transform(4326)
 
 
@@ -63,7 +65,7 @@ usfs_boundaries <-
 
 hexes <-
   st_read(
-    here::here('data-raw/hexes_elev_xy.shp'),
+    here::here('data-raw/sierra_nevada_hexes.shp'),
     quiet = TRUE
   ) |>
   st_make_valid()
