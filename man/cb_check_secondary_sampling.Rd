@@ -4,7 +4,7 @@
 \alias{cb_check_secondary_sampling}
 \title{Title}
 \usage{
-cb_check_secondary_sampling(start_date, end_date, occasion_length)
+cb_check_secondary_sampling(aru_dates_df, occasion_length)
 }
 \arguments{
 \item{occasion_length}{}
