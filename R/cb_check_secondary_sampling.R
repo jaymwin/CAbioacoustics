@@ -38,7 +38,7 @@ cb_check_secondary_sampling <- function(aru_dates_df, occasion_length) {
   while (check_integer(num_occasions) == FALSE) {
 
     i <- i + 1
-    end_date <- as.Date(season_dates_df |> filter(date_type == 'max_date') |> pull(date) |> str_replace(pattern = '[0-9]{4}', '2021')) + i
+    end_date <- as.Date(aru_dates_df |> filter(date_type == 'max_date') |> pull(date) |> str_replace(pattern = '[0-9]{4}', '2021')) + i
     num_occasions <- length(seq.Date(start_date, end_date, by = 'days')) / occasion_length
 
     if (check_integer(num_occasions) == TRUE) {
