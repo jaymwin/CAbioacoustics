@@ -11,7 +11,7 @@
 #'
 #' @examples
 
-cb_secondary_sampling_dates <- function(study_type, cell_ids, start_year, end_year) {
+cb_season_dates <- function(study_type, cell_ids, start_year, end_year) {
 
   study <- study_type
 
