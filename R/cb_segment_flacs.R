@@ -10,16 +10,16 @@
 #'
 #' @examples
 
-cb_segment_flacs <- function(selections_df, output_path, sox_path) {
+cb_segment_flacs <- function(begin_file, begin_time, end_time) {
 
   # start/end of 3-second segment (begin/end time from BirdNET selection table)
-  start_time <- hms::as_hms(selections_df$begin_time)
-  end_time <- hms::as_hms(selections_df$end_time)
+  begin <- hms::as_hms(begin_time)
+  end <- hms::as_hms(end_time)
+
+  input_flac <- str_c(here::here('raw_flacs'), begin_file, sep = '/')
+  output_flac <- str_c(here::here('processed_flacs'), '/', str_remove(begin_file, '.flac'), '_', begin_time, '_', end_time, '.flac')
 
   # now trim flac
-  seewave::sox(str_glue("{selections_df$begin_file} hoot.flac trim {start_time} ={end_time}"), path2exe = sox_path)
-
-  # play trimmed, 3-second flac
-  seewave::sox("hoot.flac -t waveaudio", path2exe = sox_path)
+  seewave::sox(str_glue("{input_flac} {output_flac} trim {begin} ={end}"), path2exe = sox_path)
 
 }

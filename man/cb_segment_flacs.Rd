@@ -4,7 +4,7 @@
 \alias{cb_segment_flacs}
 \title{Title}
 \usage{
-cb_segment_flacs(selections_df, output_path, sox_path)
+cb_segment_flacs(begin_file, begin_time, end_time)
 }
 \arguments{
 \item{sox_path}{}
