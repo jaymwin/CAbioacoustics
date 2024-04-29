@@ -4,7 +4,7 @@ complete_survey_nights <- function(df) {
 
   df |>
     # complete list of dates for each cell_unit by year
-    complete(
+    tidyr::complete(
       group_id,
       cell_id,
       unit_number,
@@ -39,7 +39,7 @@ date_sequence <- function(df) {
 create_season_dates <- function(start_year, end_year, start_date, end_date) {
 
   df <-
-    tibble(
+    tibble::tibble(
       survey_year = start_year:end_year,
       start_date = as.Date(str_c(survey_year, start_date)),
       end_date = as.Date(str_c(survey_year, end_date))
@@ -47,12 +47,12 @@ create_season_dates <- function(start_year, end_year, start_date, end_date) {
 
   df <-
     df %>%
-    group_by(survey_year) %>%
-    nest() %>%
-    mutate(survey_night = map(data, date_sequence)) %>%
-    unnest(survey_night) %>%
-    ungroup() %>%
-    select(-data)
+    dplyr::group_by(survey_year) %>%
+    tidyr::nest() %>%
+    dplyr::mutate(survey_night = purrr::map(data, date_sequence)) %>%
+    tidyr::unnest(survey_night) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(-data)
 
 }
 

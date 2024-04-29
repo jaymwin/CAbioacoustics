@@ -7,7 +7,7 @@
 cb_segment_flacs(begin_file, begin_time, end_time)
 }
 \arguments{
-\item{sox_path}{}
+\item{end_time}{}
 }
 \description{
 Title
