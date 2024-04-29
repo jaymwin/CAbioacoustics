@@ -1,9 +1,9 @@
 
 #' Title
 #'
-#' @param selections_df
-#' @param output_path
-#' @param sox_path
+#' @param begin_file
+#' @param begin_time
+#' @param end_time
 #'
 #' @return
 #' @export
