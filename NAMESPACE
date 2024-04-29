@@ -2,12 +2,12 @@
 
 export(cb_cells_by_ownership)
 export(cb_check_s3)
-export(cb_check_secondary_sampling)
 export(cb_connect_db)
 export(cb_disconnect_db)
 export(cb_get_s3_df)
 export(cb_get_spatial)
 export(cb_list_spatial)
+export(cb_occ_start_end_dates)
 export(cb_read_birdnet_json)
 export(cb_read_birdnet_selections)
 export(cb_read_surveyor_data)

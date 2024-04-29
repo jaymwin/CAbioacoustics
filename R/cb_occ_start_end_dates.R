@@ -10,7 +10,7 @@
 #'
 #' @examples
 
-cb_check_secondary_sampling <- function(aru_dates_df, occasion_length) {
+cb_occ_start_end_dates <- function(aru_dates_df, occasion_length) {
 
   start_date <- as.Date(aru_dates_df |> filter(date_type == 'min_date') |> pull(date) |> str_replace(pattern = '[0-9]{4}', '2021'))
   end_date <- as.Date(aru_dates_df |> filter(date_type == 'max_date') |> pull(date) |> str_replace(pattern = '[0-9]{4}', '2021'))
