@@ -13,8 +13,8 @@ complete_survey_nights <- function(df) {
       project_area,
       survey_year,
       survey_night = seq.Date(
-        as.Date(str_c(max(survey_year), start_date)),
-        as.Date(str_c(max(survey_year), end_date)),
+        as.Date(stringr::str_c(max(survey_year), start_date)),
+        as.Date(stringr::str_c(max(survey_year), end_date)),
         by = "days"
       ),
       # fill in no effort
@@ -41,8 +41,8 @@ create_season_dates <- function(start_year, end_year, start_date, end_date) {
   df <-
     tibble::tibble(
       survey_year = start_year:end_year,
-      start_date = as.Date(str_c(survey_year, start_date)),
-      end_date = as.Date(str_c(survey_year, end_date))
+      start_date = as.Date(stringr::str_c(survey_year, start_date)),
+      end_date = as.Date(stringr::str_c(survey_year, end_date))
     )
 
   df <-
@@ -110,7 +110,7 @@ logit_to_probability <- function(x, reverse = FALSE) {
   } else if (reverse == TRUE) {
 
     # 0-1 probability to birdnet logit
-    log(x /(1 - x))
+    log(x / (1 - x))
 
   }
 
