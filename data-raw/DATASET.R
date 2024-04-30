@@ -155,3 +155,11 @@ cb_boundary_layers <-
 
 # this updates the /data folder
 usethis::use_data(cb_boundary_layers, overwrite = TRUE)
+
+
+# birdnet thresholds/codes ------------------------------------------------
+
+species_threshold_df <- read_csv(here::here('data-raw/species_thresholds.csv'))
+
+usethis::use_data(species_threshold_df, overwrite = TRUE)
+
