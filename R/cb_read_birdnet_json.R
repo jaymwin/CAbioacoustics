@@ -27,9 +27,9 @@ cb_read_birdnet_json <- function(path) {
 
   # detections and birdnet scores
   df <-
-    tibble::enframe(json_list) %>%
-    dplyr::filter(name == 'detections') %>%
-    tidyr::unnest_longer(value) %>%
+    tibble::enframe(json_list) |>
+    dplyr::filter(name == 'detections') |>
+    tidyr::unnest_longer(value) |>
     dplyr::rename(start_time = value_id) |>
     tidyr::unnest(cols = c(value)) |>
     tidyr::unnest(cols = c(value)) |>
