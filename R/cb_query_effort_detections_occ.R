@@ -99,6 +99,7 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
     group_by(study_type, project_area, group_id, survey_year, cell_id, unit_number, survey_night) |>
     # calculate the maximum count for each survey night
     summarize(detection = max(detection, na.rm = TRUE)) |>
+    suppressWarnings() |>
     # NAs here are 0 detection nights
     mutate(
       detection = case_when(
@@ -154,7 +155,7 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
   # assign secondary sampling occasion to each date
   efforts_detections_df <-
     efforts_detections_df |>
-    left_join(occ_dates_df)
+    left_join(occ_dates_df, by = join_by('survey_year', 'survey_night'))
 
   # 1) summarize mean date over sampling occasion (days since start date)
   dates_df <-
@@ -163,6 +164,7 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
     summarize(
       mean_date = mean(day_of_season)
     ) |>
+    suppressMessages() |>
     ungroup()
 
   # 2) summarize maximum number of ARUs operational over a sampling occasion
@@ -171,11 +173,12 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
     filter(survey_hours > 0) |>
     group_by(cell_id, survey_year, survey_night) |>
     tally(name = 'arus') |>
-    left_join(occ_dates_df |> select(-day_of_season)) |>
+    left_join(occ_dates_df |> select(-day_of_season), by = join_by('survey_year', 'survey_night')) |>
     group_by(cell_id, survey_year, occasion) |>
     summarize(
       arus = max(arus)
     ) |>
+    suppressMessages() |>
     ungroup()
 
   # 3) summarize total survey hours over a sampling occasion
@@ -185,6 +188,7 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
     summarize(
       survey_hours = sum(survey_hours)
     ) |>
+    suppressMessages() |>
     ungroup() |>
     # 0s here are occasions where there were no arus deployed
     mutate(
@@ -220,6 +224,8 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
     summarize(
       detection = max(detection, na.rm = TRUE)
     ) |>
+    suppressWarnings() |>
+    suppressMessages() |>
     ungroup() |>
     # -Inf from summarising just means there was no effort during sampling occasion;
     # change to NA
@@ -230,10 +236,10 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
       )
     ) |>
     # join in various effort data frames
-    left_join(detection_critera_df) |>
-    left_join(active_arus_df) |>
-    left_join(survey_hours_df) |>
-    left_join(dates_df) |>
+    left_join(detection_critera_df, by = join_by('cell_id', 'survey_year')) |>
+    left_join(active_arus_df, by = join_by('cell_id', 'survey_year', 'occasion')) |>
+    left_join(survey_hours_df, by = join_by('cell_id', 'survey_year', 'occasion')) |>
+    left_join(dates_df, by = join_by('survey_year', 'occasion')) |>
     # organize
     select(cell_id, survey_year, occasion, survey_hours, detection_nights, detection_criteria, arus, mean_date, detection)
 
