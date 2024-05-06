@@ -100,23 +100,6 @@ hoots_same_night <- function(df, focal_date) {
 }
 
 
-logit_to_probability <- function(x, reverse = FALSE) {
-
-  if (reverse == FALSE) {
-
-    # birdnet logit to 0-1 probability
-    1 / (1 + exp(-x))
-
-  } else if (reverse == TRUE) {
-
-    # 0-1 probability to birdnet logit
-    log(x / (1 - x))
-
-  }
-
-}
-
-
 st_intersects_any <- function(x, y) {
 
   sf::st_intersects(x, y) %>%
