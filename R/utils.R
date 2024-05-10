@@ -106,3 +106,38 @@ st_intersects_any <- function(x, y) {
     purrr::map_lgl(~length(.x) > 0)
 
 }
+
+# copy sd wav folders to desktop
+copy_sd_wav_folders_to_desktop <- function(x) {
+
+  fs::dir_copy(
+    path <- x,
+    new_path <- stringr::str_c(desktop_wav_path, stringr::str_remove(sd_wav_folders, sd_card_path), sep = '/'),
+    overwrite = TRUE
+  )
+
+}
+
+
+# convert flacs
+flac_conversion <- function(desktop_wav_path, desktop_flac_path) {
+
+  # create sox command
+  command <- paste(desktop_wav_path, desktop_flac_path)
+
+  # sox will then send this command over to the terminal for execution.
+  seewave::sox(command, path2exe = sox_path)
+
+}
+
+
+# copy desktop flacs to external hard drive
+copy_to_hd <- function(desktop_flac_path, hard_drive_path, group_visit) {
+
+  fs::dir_copy(
+    path <- stringr::str_c(desktop_flac_path, group_visit, sep = '/'),
+    new_path <- stringr::str_c(hard_drive_path, group_visit, sep = '/'),
+    overwrite = FALSE
+  )
+
+}
