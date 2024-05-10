@@ -108,7 +108,7 @@ st_intersects_any <- function(x, y) {
 }
 
 # copy sd wav folders to desktop
-copy_sd_wav_folders_to_desktop <- function(x) {
+copy_sd_wav_folders_to_desktop <- function(x, desktop_wav_path, sd_wav_folders, sd_card_path) {
 
   fs::dir_copy(
     path <- x,
