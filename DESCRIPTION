@@ -15,3 +15,27 @@ BugReports: https://github.com/jaymwin/CAbioacoustics/issues
 Depends: 
     R (>= 2.10)
 LazyData: true
+Collate: 
+    'cb_cells_by_ownership.R'
+    'cb_check_s3.R'
+    'cb_connect_db.R'
+    'cb_disconnect_db.R'
+    'cb_get_s3_df.R'
+    'cb_get_spatial.R'
+    'cb_globus_check.R'
+    'cb_globus_transfer.R'
+    'cb_list_spatial.R'
+    'cb_logit_to_confidence.R'
+    'cb_occ_start_end_dates.R'
+    'cb_query_effort_detections_occ.R'
+    'cb_read_birdnet_json.R'
+    'cb_read_birdnet_selections.R'
+    'cb_read_surveyor_data.R'
+    'cb_save_s3_flac.R'
+    'cb_season_dates.R'
+    'cb_segment_flacs.R'
+    'cb_set_db_credentials.R'
+    'cb_set_s3_credentials.R'
+    'utils.R'
+    'cb_wav_to_flac.R'
+    'read_birdnet_json_2.R'
