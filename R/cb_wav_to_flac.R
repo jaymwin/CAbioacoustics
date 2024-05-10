@@ -9,6 +9,7 @@
 #'
 #' @return
 #' @export
+#' @include utils.R
 #'
 #' @examples
 
