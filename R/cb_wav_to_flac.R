@@ -128,9 +128,6 @@ cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, sox_path
   time_diff <- round(as.numeric(end - start, units = "secs") / 60, 2)
   message(time_diff, ' minutes to complete task')
 
-  # cont flacs that were transferred
-  n_flacs <- length(fs::dir_ls(stringr::str_c(desktop_flac_path, group_visit, sep = '/'), glob = '*.flac', recurse = TRUE))
-
   # delete desktop flacs
   fs::dir_delete(stringr::str_c(desktop_flac_path, group_visit, sep = '/'))
 
@@ -139,6 +136,8 @@ cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, sox_path
   message('done!')
 
   # tally files transferred/converted
+  # cont flacs that were transferred
+  n_flacs <- length(fs::dir_ls(stringr::str_c(hard_drive_path, group_visit, sep = '/'), glob = '*.flac', recurse = TRUE))
   message(dim(file_paths_df)[1], ' wavs on SD; ', n_flacs, ' flacs on external hard drive')
 
   beepr::beep('ping')
