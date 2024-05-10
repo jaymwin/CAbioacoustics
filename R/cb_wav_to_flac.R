@@ -12,9 +12,10 @@
 #'
 #' @examples
 
+
 cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, sox_path, deployment_df) {
 
-  tictoc::tic('total runtime')
+  tic('total runtime')
   # set up desktop folders
   desktop_wav_path <- stringr::str_c(desktop_path, 'wavs', sep = '/')
   desktop_flac_path <- stringr::str_c(desktop_path, 'flacs', sep = '/')
@@ -113,6 +114,10 @@ cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, sox_path
   time_diff <- round(as.numeric(end - start, units = "secs") / 60, 2)
   message(time_diff, ' minutes to complete task')
 
+  # delete desktop wavs
+  fs::dir_ls(desktop_wav_path, regex = card_swift_id) |>
+    purrr::walk(\(x) dir_delete(x))
+
   # copy flacs to external hard drive
   message('copying desktop flacs to external hard drive...')
   start <- Sys.time()
@@ -121,17 +126,8 @@ cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, sox_path
   time_diff <- round(as.numeric(end - start, units = "secs") / 60, 2)
   message(time_diff, ' minutes to complete task')
 
-  # remove desktop wavs/flacs now
-  message('deleting wavs and flacs on desktop...')
-  start <- Sys.time()
-  # delete desktop wavs
-  fs::dir_ls(desktop_wav_path, regex = card_swift_id) |>
-    purrr::walk(\(x) dir_delete(x))
   # delete desktop flacs
   fs::dir_delete(stringr::str_c(desktop_flac_path, group_visit, sep = '/'))
-  end <- Sys.time()
-  time_diff <- round(as.numeric(end - start, units = "secs") / 60, 2)
-  message(time_diff, ' minutes to complete task')
 
   # eject SD card now?
 
