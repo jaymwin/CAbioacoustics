@@ -26,6 +26,7 @@ Collate:
     'cb_globus_transfer.R'
     'cb_list_spatial.R'
     'cb_logit_to_confidence.R'
+    'cb_make_aru_sf.R'
     'cb_occ_start_end_dates.R'
     'cb_query_effort_detections_occ.R'
     'cb_read_birdnet_json.R'
