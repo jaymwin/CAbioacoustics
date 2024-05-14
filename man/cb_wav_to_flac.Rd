@@ -2,7 +2,7 @@
 % Please edit documentation in R/cb_wav_to_flac.R
 \name{cb_wav_to_flac}
 \alias{cb_wav_to_flac}
-\title{Title}
+\title{Convert WAV files stored on Swift SD card to FLAC files stored on external hard drive}
 \usage{
 cb_wav_to_flac(
   desktop_path,
@@ -16,5 +16,5 @@ cb_wav_to_flac(
 \item{deployment_df}{}
 }
 \description{
-Title
+Convert WAV files stored on Swift SD card to FLAC files stored on external hard drive
 }

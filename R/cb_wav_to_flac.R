@@ -1,5 +1,5 @@
 
-#' Title
+#' Convert WAV files stored on Swift SD card to FLAC files stored on external hard drive
 #'
 #' @param desktop_path
 #' @param sd_card_path
@@ -140,6 +140,7 @@ cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, sox_path
   n_flacs <- length(fs::dir_ls(stringr::str_c(hard_drive_path, group_visit, sep = '/'), glob = '*.flac', recurse = TRUE))
   message(dim(file_paths_df)[1], ' wavs on SD; ', n_flacs, ' flacs on external hard drive')
 
+  # make a noise when done
   beepr::beep('ping')
 
   # total time

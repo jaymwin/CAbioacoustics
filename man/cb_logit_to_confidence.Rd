@@ -2,13 +2,18 @@
 % Please edit documentation in R/cb_logit_to_confidence.R
 \name{cb_logit_to_confidence}
 \alias{cb_logit_to_confidence}
-\title{Title}
+\title{Convert BirdNET logit scores to confidence scores (or do the opposite)}
 \usage{
 cb_logit_to_confidence(x, reverse = FALSE)
 }
 \arguments{
-\item{reverse}{}
+\item{x}{Either BirdNET logit or confidence score}
+
+\item{reverse}{Go from logit to confidence (reverse == TRUE) or confidence to logit (reverse == FALSE)}
+}
+\value{
+BirdNET logit or confidence score
 }
 \description{
-Title
+Convert BirdNET logit scores to confidence scores (or do the opposite)
 }
