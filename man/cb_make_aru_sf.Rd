@@ -7,7 +7,7 @@
 cb_make_aru_sf(df)
 }
 \arguments{
-\item{df}{A data frame containing at minimum a column for the UTM zone (10 or 11; utm_zone) and easting (utme) and northing (utmn) coordinates}
+\item{df}{A data frame containing at minimum a column for the UTM zone (10 or 11; \code{utm_zone}) and easting (\code{utme}) and northing (\code{utmn}) coordinates}
 }
 \value{
 A simple feature point object

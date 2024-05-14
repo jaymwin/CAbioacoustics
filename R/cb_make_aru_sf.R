@@ -1,7 +1,7 @@
 
 #' Make a data frame containing ARUs and UTMs into a simple feature object
 #'
-#' @param df A data frame containing at minimum a column for the UTM zone (10 or 11; utm_zone) and easting (utme) and northing (utmn) coordinates
+#' @param df A data frame containing at minimum a column for the UTM zone (10 or 11; `utm_zone`) and easting (`utme`) and northing (`utmn`) coordinates
 #'
 #' @return A simple feature point object
 #' @export
