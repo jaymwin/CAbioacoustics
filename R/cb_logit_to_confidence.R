@@ -1,10 +1,10 @@
 
-#' Title
+#' Convert BirdNET logit scores to confidence scores (or do the opposite)
 #'
-#' @param x
-#' @param reverse
+#' @param x Either BirdNET logit or confidence score
+#' @param reverse Go from logit to confidence (reverse == TRUE) or confidence to logit (reverse == FALSE)
 #'
-#' @return
+#' @return BirdNET logit or confidence score
 #' @export
 #'
 #' @examples
