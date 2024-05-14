@@ -1,5 +1,5 @@
 
-#' Title
+#' Make a data frame containing ARUs and UTMs into a simple feature object
 #'
 #' @param df
 #'
@@ -7,6 +7,20 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # example ARU data frame
+#' aru_df <-
+#' tibble::tribble(
+#'   ~cell_id, ~utm_zone, ~utme, ~utmn,
+#'   'C0001', 10, 670282, 4390557,
+#'   'C0001', 10, 670972, 4390553,
+#'   'C0001', 10, 669829, 4390388
+#' )
+#' # convert to simple feature point geometry
+#' aru_df |>
+#' dplyr::group_split(utm_zone) |>
+#'   purrr::map_dfr(cb_make_aru_sf)
+#' }
 
 cb_make_aru_sf <- function(df) {
 
