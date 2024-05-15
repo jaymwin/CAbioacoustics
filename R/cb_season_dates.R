@@ -1,12 +1,12 @@
 
-#' Title
+#' Get start and end dates of primary sampling period
 #'
-#' @param study_type
-#' @param cell_ids
-#' @param start_year
-#' @param end_year
+#' @param study_type Sierra Monitoring, Sierra Projects, etc.
+#' @param cell_ids List of cell IDs
+#' @param start_year Minimum survey year
+#' @param end_year Maximum survey year
 #'
-#' @return
+#' @return A data frame containing earliest/latest date of passive acoustic monitoring
 #' @export
 #'
 #' @examples
