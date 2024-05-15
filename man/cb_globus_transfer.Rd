@@ -2,7 +2,7 @@
 % Please edit documentation in R/cb_globus_transfer.R
 \name{cb_globus_transfer}
 \alias{cb_globus_transfer}
-\title{Execute a Globus file transfer between two collections from R}
+\title{Execute a file transfer between two Globus collections from R}
 \usage{
 cb_globus_transfer(
   collection_one,
@@ -13,8 +13,41 @@ cb_globus_transfer(
 )
 }
 \arguments{
-\item{label}{}
+\item{collection_one}{Globus collection (source collection UUID)}
+
+\item{collection_two}{Globus collection (destination collection UUID)}
+
+\item{destination_path}{Path to destination for \code{collection_two}}
+
+\item{batch_file_path}{A .txt file (i.e., batch file) containing path to files in source collection (1st column) and destination paths (2nd column)}
+
+\item{label}{Label for Globus transfer}
+}
+\value{
+Audio files copied to \code{collection_two}
 }
 \description{
-Execute a Globus file transfer between two collections from R
+Execute a file transfer between two Globus collections from R
+}
+\examples{
+\dontrun{
+# create name for transfer
+transfer_label <- stringr::str_c('example_transfer', Sys.Date(), sep = '_')
+
+# find batch file
+batch_file_path <- here::here('in.txt')
+
+# additional path info for destination two
+destination_path <- 'data_requests/example_request/raw_flacs'
+
+# run the transfer
+cb_globus_transfer(
+# collection UUIDs saved as system variables on PC already for `s3_id` and `rd_id`
+  collection_one = 's3_id',
+  collection_two = 'rd_id',
+  destination_path = destination_path,
+  batch_file_path = batch_file_path,
+  label = transfer_label
+)
+}
 }

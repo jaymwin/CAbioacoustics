@@ -2,10 +2,18 @@
 % Please edit documentation in R/cb_check_s3.R
 \name{cb_check_s3}
 \alias{cb_check_s3}
-\title{Title}
+\title{Check that Amazon S3 bucket exists}
 \usage{
 cb_check_s3()
 }
+\value{
+Output will contain \code{TRUE} if connection to S3 bucket is working
+}
 \description{
-Title
+Check that Amazon S3 bucket exists
+}
+\examples{
+\dontrun{
+cb_check_s3()
+}
 }

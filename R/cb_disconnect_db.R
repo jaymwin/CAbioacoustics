@@ -1,10 +1,12 @@
 
-#' Title
+#' Disconnect from spotted owl database when finished with queries
 #'
-#' @return
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' cb_disconnect_db()
+#' }
 
 cb_disconnect_db <- function() {
 

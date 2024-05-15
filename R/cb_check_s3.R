@@ -1,10 +1,13 @@
 
-#' Title
+#' Check that Amazon S3 bucket exists
 #'
-#' @return
+#' @return Output will contain `TRUE` if connection to S3 bucket is working
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' cb_check_s3()
+#' }
 
 cb_check_s3 <- function() {
 

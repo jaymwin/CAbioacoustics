@@ -6,6 +6,14 @@
 \usage{
 cb_globus_check()
 }
+\value{
+Globus credentials (i.e., UW-Madison email)
+}
 \description{
 Check if you're set up with Globus from R
+}
+\examples{
+\dontrun{
+cb_globus_check()
+}
 }

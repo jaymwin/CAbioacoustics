@@ -2,10 +2,15 @@
 % Please edit documentation in R/cb_disconnect_db.R
 \name{cb_disconnect_db}
 \alias{cb_disconnect_db}
-\title{Title}
+\title{Disconnect from spotted owl database when finished with queries}
 \usage{
 cb_disconnect_db()
 }
 \description{
-Title
+Disconnect from spotted owl database when finished with queries
+}
+\examples{
+\dontrun{
+cb_disconnect_db()
+}
 }

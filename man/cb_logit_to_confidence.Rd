@@ -17,3 +17,14 @@ BirdNET logit or confidence score
 \description{
 Convert BirdNET logit scores to confidence scores (or do the opposite)
 }
+\examples{
+\dontrun{
+# convert from BirdNET logit to confidence score
+birdnet_logit_score <- 1.49850
+
+birdnet_confidence_score <- cb_logit_to_confidence(birdnet_logit_score, reverse = FALSE)
+
+# convert from BirdNET confidence to logit score
+cb_logit_to_confidence(birdnet_confidence_score, reverse = TRUE)
+}
+}
