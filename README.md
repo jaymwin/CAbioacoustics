@@ -4,7 +4,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of CAbioacoustics is to ...
+CAbioacoustics provides functions to streamline the management and analysis of bioacoustic data collected as part of passive acoustic monitoring efforts led by University of Wisconin - Madison and Cornell University.
 
 ## Installation
 
@@ -14,13 +14,3 @@ You can install the development version of CAbioacoustics from [GitHub](https://
 # install.packages("devtools")
 devtools::install_github("jaymwin/CAbioacoustics")
 ```
-
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(CAbioacoustics)
-## basic example code
-```
-
