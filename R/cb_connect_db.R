@@ -1,10 +1,14 @@
 
-#' Title
+#' Connect to the UW spotted owl database
 #'
-#' @return
+#' @return `DBI` database connection
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # connect to the database
+#' cb_connect_db()
+#' }
 
 cb_connect_db <- function() {
 
