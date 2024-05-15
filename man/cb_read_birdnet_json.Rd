@@ -2,13 +2,24 @@
 % Please edit documentation in R/cb_read_birdnet_json.R
 \name{cb_read_birdnet_json}
 \alias{cb_read_birdnet_json}
-\title{Title}
+\title{Read a BirdNET JSON file in tidy format}
 \usage{
 cb_read_birdnet_json(path)
 }
 \arguments{
-\item{path}{}
+\item{path}{Path to BirdNET JSON (json.gz)}
+}
+\value{
+Tibble form of BirdNET JSON output
 }
 \description{
-Title
+Read a BirdNET JSON file in tidy format
+}
+\examples{
+\dontrun{
+json_path <- here::here('birdnet_json_example.json.gz')
+
+# read json
+birdnet_df <- cb_read_birdnet_json(json_path)
+}
 }

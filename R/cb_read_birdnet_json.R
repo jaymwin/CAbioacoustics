@@ -1,12 +1,18 @@
 
-#' Title
+#' Read a BirdNET JSON file in tidy format
 #'
-#' @param path
+#' @param path Path to BirdNET JSON (json.gz)
 #'
-#' @return
+#' @return Tibble form of BirdNET JSON output
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' json_path <- here::here('birdnet_json_example.json.gz')
+#'
+#' # read json
+#' birdnet_df <- cb_read_birdnet_json(json_path)
+#' }
 
 cb_read_birdnet_json <- function(path) {
 
