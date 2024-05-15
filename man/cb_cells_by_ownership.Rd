@@ -2,13 +2,21 @@
 % Please edit documentation in R/cb_cells_by_ownership.R
 \name{cb_cells_by_ownership}
 \alias{cb_cells_by_ownership}
-\title{Title}
+\title{Get a list of cell IDs depending on land ownership}
 \usage{
 cb_cells_by_ownership(ownership)
 }
 \arguments{
-\item{ownership}{}
+\item{ownership}{US Forest Service (\code{usfs}), National Park Service (\code{nps}), or all cells (\code{any})}
+}
+\value{
+List of cell IDs
 }
 \description{
-Title
+Get a list of cell IDs depending on land ownership
+}
+\examples{
+\dontrun{
+cell_list <- cb_cells_by_ownership('usfs')
+}
 }
