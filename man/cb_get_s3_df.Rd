@@ -2,10 +2,18 @@
 % Please edit documentation in R/cb_get_s3_df.R
 \name{cb_get_s3_df}
 \alias{cb_get_s3_df}
-\title{Title}
+\title{Return a data frame of flac file paths in Amazon S3 bucket}
 \usage{
 cb_get_s3_df()
 }
+\value{
+A data frame of S3 flac file paths
+}
 \description{
-Title
+Return a data frame of flac file paths in Amazon S3 bucket
+}
+\examples{
+\dontrun{
+s3_flac_df <- cb_get_s3_df()
+}
 }

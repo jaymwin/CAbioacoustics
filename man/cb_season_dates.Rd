@@ -2,13 +2,22 @@
 % Please edit documentation in R/cb_season_dates.R
 \name{cb_season_dates}
 \alias{cb_season_dates}
-\title{Title}
+\title{Get start and end dates of primary sampling period}
 \usage{
 cb_season_dates(study_type, cell_ids, start_year, end_year)
 }
 \arguments{
-\item{end_year}{}
+\item{study_type}{Sierra Monitoring, Sierra Projects, etc.}
+
+\item{cell_ids}{List of cell IDs}
+
+\item{start_year}{Minimum survey year}
+
+\item{end_year}{Maximum survey year}
+}
+\value{
+A data frame containing earliest/latest date of passive acoustic monitoring
 }
 \description{
-Title
+Get start and end dates of primary sampling period
 }

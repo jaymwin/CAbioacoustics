@@ -2,10 +2,19 @@
 % Please edit documentation in R/cb_connect_db.R
 \name{cb_connect_db}
 \alias{cb_connect_db}
-\title{Title}
+\title{Connect to the UW spotted owl database}
 \usage{
 cb_connect_db()
 }
+\value{
+\code{DBI} database connection
+}
 \description{
-Title
+Connect to the UW spotted owl database
+}
+\examples{
+\dontrun{
+# connect to the database
+cb_connect_db()
+}
 }

@@ -2,13 +2,20 @@
 % Please edit documentation in R/cb_read_surveyor_data.R
 \name{cb_read_surveyor_data}
 \alias{cb_read_surveyor_data}
-\title{Title}
+\title{Read callback survey data}
 \usage{
-cb_read_surveyor_data(df)
+cb_read_surveyor_data(path)
 }
 \arguments{
-\item{df}{}
+\item{path}{Path to surveyor data}
 }
 \description{
-Title
+Read callback survey data
+}
+\examples{
+\dontrun{
+# path to data
+path <- here::here('surveyor_data_example.csv')
+surveyor_df <- cb_read_surveyor_data(path)
+}
 }
