@@ -1,10 +1,13 @@
 
-#' Title
+#' Establish credentials to access Amazon S3 bucket
 #'
-#' @return
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # this will prompt to enter 1) the AWS access key ID, and 2) AWS secret access key
+#' cb_set_s3_credentials()
+#' }
 
 cb_set_s3_credentials <- function() {
 
