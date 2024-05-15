@@ -1,19 +1,19 @@
 
-#' Title
+#' Get start and end dates for establishing primary sampling period and the number of secondary sampling occasions for occupancy analyses
 #'
-#' @param start_date
-#' @param end_date
-#' @param occasion_length
+#' @param aru_dates_df A data frame of ...
+#' @param occasion_length Length (in days) of secondary sampling occasions
 #'
-#' @return
+#' @return A data frame of start/end dates and the number of secondary sampling occasions
 #' @export
 #'
 #' @examples
 
 cb_occ_start_end_dates <- function(aru_dates_df, occasion_length) {
 
-  start_date <- as.Date(aru_dates_df |> filter(date_type == 'min_date') |> pull(date) |> str_replace(pattern = '[0-9]{4}', '2021'))
-  end_date <- as.Date(aru_dates_df |> filter(date_type == 'max_date') |> pull(date) |> str_replace(pattern = '[0-9]{4}', '2021'))
+  # always use 2021; year doesn't really matter
+  start_date <- as.Date(aru_dates_df |> dplyr::filter(date_type == 'min_date') |> dplyr::pull(date) |> stringr::str_replace(pattern = '[0-9]{4}', '2021'))
+  end_date <- as.Date(aru_dates_df |> dplyr::filter(date_type == 'max_date') |> dplyr::pull(date) |> stringr::str_replace(pattern = '[0-9]{4}', '2021'))
 
   num_occasions <- length(seq.Date(start_date, end_date, by = 'days')) / occasion_length
 
@@ -38,7 +38,7 @@ cb_occ_start_end_dates <- function(aru_dates_df, occasion_length) {
   while (check_integer(num_occasions) == FALSE) {
 
     i <- i + 1
-    end_date <- as.Date(aru_dates_df |> filter(date_type == 'max_date') |> pull(date) |> str_replace(pattern = '[0-9]{4}', '2021')) + i
+    end_date <- as.Date(aru_dates_df |> dplyr::filter(date_type == 'max_date') |> dplyr::pull(date) |> stringr::str_replace(pattern = '[0-9]{4}', '2021')) + i
     num_occasions <- length(seq.Date(start_date, end_date, by = 'days')) / occasion_length
 
     if (check_integer(num_occasions) == TRUE) {
@@ -54,7 +54,7 @@ cb_occ_start_end_dates <- function(aru_dates_df, occasion_length) {
   message(glue::glue('season end date = {format(end_date, "%b %d")}'))
   message(glue::glue('assuming {occasion_length}-day secondary sampling occasions, there are {num_occasions} occasions'))
 
-  tibble(
+  tibble::tibble(
     start_date = start_date,
     end_date = end_date,
     num_occasions = num_occasions
