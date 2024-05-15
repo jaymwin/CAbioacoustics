@@ -37,4 +37,3 @@ Collate:
     'cb_set_s3_credentials.R'
     'utils.R'
     'cb_wav_to_flac.R'
-    'read_birdnet_json_2.R'
