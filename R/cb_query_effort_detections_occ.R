@@ -1,19 +1,19 @@
 
-#' Title
+#' Query spotted owl database to format data for occupancy modeling (static, single-season or dynamic models)
 #'
-#' @param species
-#' @param template
-#' @param study_type
-#' @param cell_ids
-#' @param start_year
-#' @param end_year
-#' @param start_date
-#' @param end_date
-#' @param occasion_length
-#' @param num_occasions
-#' @param type
+#' @param species Vector of species (CSOW or BDOW)
+#' @param template BirdNET version used
+#' @param study_type Vector of study types (e.g., Sierra Monitoring, Sierra Projects)
+#' @param cell_ids Vector cell IDs
+#' @param start_year Start year
+#' @param end_year End year
+#' @param start_date Start date of sampling
+#' @param end_date End date of sampling
+#' @param occasion_length Length (in days) of secondary sampling occasions
+#' @param num_occasions Number of secondary sampling occasions
+#' @param type Occupancy modeling framework, either single-season or dynamic
 #'
-#' @return
+#' @return A list of data frames
 #' @export
 #'
 #' @examples

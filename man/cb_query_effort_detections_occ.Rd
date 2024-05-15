@@ -2,7 +2,7 @@
 % Please edit documentation in R/cb_query_effort_detections_occ.R
 \name{cb_query_effort_detections_occ}
 \alias{cb_query_effort_detections_occ}
-\title{Title}
+\title{Query spotted owl database to format data for occupancy modeling (static, single-season or dynamic models)}
 \usage{
 cb_query_effort_detections_occ(
   species,
@@ -19,8 +19,31 @@ cb_query_effort_detections_occ(
 )
 }
 \arguments{
-\item{type}{}
+\item{species}{Vector of species (CSOW or BDOW)}
+
+\item{template}{BirdNET version used}
+
+\item{study_type}{Vector of study types (e.g., Sierra Monitoring, Sierra Projects)}
+
+\item{cell_ids}{Vector cell IDs}
+
+\item{start_year}{Start year}
+
+\item{end_year}{End year}
+
+\item{start_date}{Start date of sampling}
+
+\item{end_date}{End date of sampling}
+
+\item{occasion_length}{Length (in days) of secondary sampling occasions}
+
+\item{num_occasions}{Number of secondary sampling occasions}
+
+\item{type}{Occupancy modeling framework, either single-season or dynamic}
+}
+\value{
+A list of data frames
 }
 \description{
-Title
+Query spotted owl database to format data for occupancy modeling (static, single-season or dynamic models)
 }
