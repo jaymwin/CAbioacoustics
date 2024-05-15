@@ -4,7 +4,6 @@
 #' @param desktop_path
 #' @param sd_card_path
 #' @param hard_drive_path
-#' @param sox_path
 #' @param deployment_df
 #'
 #' @return
@@ -14,9 +13,9 @@
 #' @examples
 
 
-cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, sox_path, deployment_df) {
+cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, deployment_df) {
 
-  tic('total runtime')
+  tictoc::tic('total runtime')
   # set up desktop folders
   desktop_wav_path <- stringr::str_c(desktop_path, 'wavs', sep = '/')
   desktop_flac_path <- stringr::str_c(desktop_path, 'flacs', sep = '/')
@@ -110,7 +109,7 @@ cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, sox_path
   message('converting wavs on desktop to flacs on desktop...')
   start <- Sys.time()
   file_paths_df |>
-    dplyr::select(matches('desktop')) |>
+    dplyr::select(dplyr::matches('desktop')) |>
     furrr::future_pwalk(flac_conversion)
   end <- Sys.time()
   time_diff <- round(as.numeric(end - start, units = "secs") / 60, 2)
@@ -118,7 +117,7 @@ cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, sox_path
 
   # delete desktop wavs
   fs::dir_ls(desktop_wav_path, regex = card_swift_id) |>
-    purrr::walk(\(x) dir_delete(x))
+    purrr::walk(\(x) fs::dir_delete(x))
 
   # copy flacs to external hard drive
   message('copying desktop flacs to external hard drive...')
