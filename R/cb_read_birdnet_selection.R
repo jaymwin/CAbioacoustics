@@ -25,7 +25,7 @@
 #'   purrr::map_dfr(cb_read_birdnet_selections)
 #' }
 
-cb_read_birdnet_selections <- function(birdnet_path) {
+cb_read_birdnet_selection <- function(birdnet_path) {
 
   data.table::fread(birdnet_path) |>
     tibble::as_tibble() |>
