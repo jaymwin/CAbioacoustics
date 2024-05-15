@@ -1,12 +1,16 @@
 
-#' Title
+#' Retrieve a project vector layer
 #'
-#' @param layer_name
+#' @param layer_name Shapefile name
 #'
-#' @return
+#' @return `sf` polygon object
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # retrieve layer of Sierra Nevada hex cells
+#' hexes_sf <- cb_get_spatial('hexes')
+#' }
 
 cb_get_spatial <- function(layer_name = NULL) {
 

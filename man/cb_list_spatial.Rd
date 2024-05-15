@@ -2,10 +2,19 @@
 % Please edit documentation in R/cb_list_spatial.R
 \name{cb_list_spatial}
 \alias{cb_list_spatial}
-\title{Title}
+\title{Get a list of spatial layers available in \code{CAbioacoustics}}
 \usage{
 cb_list_spatial()
 }
+\value{
+data frame of available shapefiles
+}
 \description{
-Title
+Get a list of spatial layers available in \code{CAbioacoustics}
+}
+\examples{
+\dontrun{
+# print list of shapefiles
+cb_list_spatial()
+}
 }

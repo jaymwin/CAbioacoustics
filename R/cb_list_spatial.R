@@ -1,10 +1,14 @@
 
-#' Title
+#' Get a list of spatial layers available in `CAbioacoustics`
 #'
-#' @return
+#' @return data frame of available shapefiles
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # print list of shapefiles
+#' cb_list_spatial()
+#' }
 
 cb_list_spatial <- function() {
 

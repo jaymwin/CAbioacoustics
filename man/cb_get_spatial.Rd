@@ -2,13 +2,22 @@
 % Please edit documentation in R/cb_get_spatial.R
 \name{cb_get_spatial}
 \alias{cb_get_spatial}
-\title{Title}
+\title{Retrieve a project vector layer}
 \usage{
 cb_get_spatial(layer_name = NULL)
 }
 \arguments{
-\item{layer_name}{}
+\item{layer_name}{Shapefile name}
+}
+\value{
+\code{sf} polygon object
 }
 \description{
-Title
+Retrieve a project vector layer
+}
+\examples{
+\dontrun{
+# retrieve layer of Sierra Nevada hex cells
+hexes_sf <- cb_get_spatial('hexes')
+}
 }

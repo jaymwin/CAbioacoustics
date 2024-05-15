@@ -2,13 +2,25 @@
 % Please edit documentation in R/cb_read_birdnet_selections.R
 \name{cb_read_birdnet_selections}
 \alias{cb_read_birdnet_selections}
-\title{Title}
+\title{Read a BirdNET selection table}
 \usage{
-cb_read_birdnet_selections(df)
+cb_read_birdnet_selections(birdnet_path)
 }
 \arguments{
-\item{df}{}
+\item{birdnet_path}{Path to a BirdNET selection table}
+}
+\value{
+Tibble version of a BirdNET selection table
 }
 \description{
-Title
+Read a BirdNET selection table
+}
+\examples{
+\dontrun{
+# set path to BirdNET selection file
+birdnet_path <- here::here('G005_V1_C0125_U2_20230521_210001.BirdNET')
+
+# read in BirdNET file
+birdnet_selection_df <- cb_read_birdnet_selections(birdnet_path)
+}
 }
