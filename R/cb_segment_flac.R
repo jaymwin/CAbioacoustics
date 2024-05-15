@@ -21,6 +21,6 @@ cb_segment_flac <- function(begin_file, begin_time, end_time) {
   output_flac <- stringr::str_c(here::here('processed_flacs'), '/', stringr::str_remove(begin_file, '.flac'), '_', begin_time, '_', end_time, '.flac')
 
   # now trim flac
-  seewave::sox(stringr::str_glue("{input_flac} {output_flac} trim {begin} ={end}"), path2exe = sox_path)
+  seewave::sox(stringr::str_glue("{input_flac} {output_flac} trim {begin} ={end}"), path2exe = "C:/Program Files (x86)/sox-14-4-2")
 
 }
