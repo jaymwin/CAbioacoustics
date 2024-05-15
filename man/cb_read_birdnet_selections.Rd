@@ -22,5 +22,15 @@ birdnet_path <- here::here('G005_V1_C0125_U2_20230521_210001.BirdNET')
 
 # read in BirdNET file
 birdnet_selection_df <- cb_read_birdnet_selections(birdnet_path)
+
+# or read and combine multiple BirdNET files at once
+birdnet_selection_path <- "Z:/Acoustic_Data/ARU_Data_Processed/BirdNET_Postprocessing/Detection_Vetting/Sierra_Monitoring/2023_CSOW+BDOW/G001"
+# get list of BirdNET files in a directory
+birdnet_selection <- fs::dir_ls(birdnet_selections_2023_path, recurse = TRUE, glob = '*.BirdNET')
+
+# now combine in a single data frame
+birdnet_selection_df <-
+  birdnet_selection |>
+  purrr::map_dfr(cb_read_birdnet_selections)
 }
 }
