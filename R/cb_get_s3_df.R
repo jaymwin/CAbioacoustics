@@ -1,11 +1,13 @@
 
-
-#' Title
+#' Return a data frame of flac file paths in Amazon S3 bucket
 #'
-#' @return
+#' @return A data frame of S3 flac file paths
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' s3_flac_df <- cb_get_s3_df()
+#' }
 
 cb_get_s3_df <- function() {
 
