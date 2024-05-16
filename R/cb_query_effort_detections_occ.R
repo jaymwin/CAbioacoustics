@@ -75,7 +75,7 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
     # create a field for survey night (i.e., biologically-relevant night for an owl)
     dplyr::mutate(
       survey_night = dplyr::case_when(
-        survey_hour >= '00:00' & survey_hour < '05:59' ~ sql("date_add(survey_date, interval -1 day)"),
+        survey_hour >= '00:00' & survey_hour < '05:59' ~ dplyr::sql("date_add(survey_date, interval -1 day)"),
         TRUE ~ survey_date
       )
     ) |>

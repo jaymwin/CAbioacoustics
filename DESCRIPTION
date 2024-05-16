@@ -37,3 +37,24 @@ Collate:
     'cb_set_db_credentials.R'
     'cb_set_s3_credentials.R'
     'cb_wav_to_flac.R'
+Imports: 
+    aws.s3,
+    data.table,
+    DBI,
+    dplyr,
+    fs,
+    furrr,
+    glue,
+    hms,
+    jsonlite,
+    keyring,
+    lubridate,
+    purrr,
+    readr,
+    readxl,
+    RMariaDB,
+    seewave,
+    sf,
+    stringr,
+    tibble,
+    tidyr
