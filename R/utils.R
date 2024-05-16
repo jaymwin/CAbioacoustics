@@ -126,7 +126,7 @@ flac_conversion <- function(desktop_wav_path, desktop_flac_path) {
   command <- paste(desktop_wav_path, desktop_flac_path)
 
   # sox will then send this command over to the terminal for execution.
-  seewave::sox(command, path2exe = sox_path)
+  seewave::sox(command, path2exe = "C:/Program Files (x86)/sox-14-4-2")
 
 }
 
