@@ -6,12 +6,35 @@
 #' @param hard_drive_path Path to external hard drive
 #' @param deployment_df Data frame containing Swift ID
 #'
-#' @return
+#' @return WAV files from SD card transferred and converted to FLAC on external hard drive
 #' @export
 #' @include utils.R
 #'
 #' @examples
-
+#' \dontrun{
+#' # adjust for your desktop path
+#' desktop_path <- "C:/Users/jmwin/OneDrive/Desktop"
+#'
+#' # set other paths; change accordingly
+#' sd_card_path <- "E:/"
+#' hard_drive_path <- "D:/"
+#'
+#' # deployment data
+#' deployment_df <-
+#'  tibble(
+#'    swift_id = 'S1732',
+#'    deployment_name = 'G030_V1_C1989_U1',
+#'    survey_year = 2023
+#'  )
+#'
+#' # transfer and convert flacs (SD -> hard drive)
+#' cb_wav_to_flac(
+#'   desktop_path = desktop_path,
+#'   sd_card_path = sd_card_path,
+#'   hard_drive_path = hard_drive_path,
+#'   deployment_df = fake_owl_db
+#' )
+#'}
 
 cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, deployment_df) {
 
