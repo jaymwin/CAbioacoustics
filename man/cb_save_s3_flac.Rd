@@ -2,13 +2,23 @@
 % Please edit documentation in R/cb_save_s3_flac.R
 \name{cb_save_s3_flac}
 \alias{cb_save_s3_flac}
-\title{Title}
+\title{Save FLAC files on Amazon S3 locally}
 \usage{
 cb_save_s3_flac(file, destination_folder)
 }
 \arguments{
-\item{destination_folder}{}
+\item{file}{Path to FLAC file on Amazon S3}
+
+\item{destination_folder}{Path to folder where FLAC will be downloaded}
+}
+\value{
+FLAC file
 }
 \description{
-Title
+Save FLAC files on Amazon S3 locally
+}
+\examples{
+\dontrun{
+cb_save_s3_flac(amazon_s3_key, here::here())
+}
 }

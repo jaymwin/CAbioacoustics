@@ -1,10 +1,10 @@
 
 #' Convert WAV files stored on Swift SD card to FLAC files stored on external hard drive
 #'
-#' @param desktop_path
-#' @param sd_card_path
-#' @param hard_drive_path
-#' @param deployment_df
+#' @param desktop_path Path to desktop
+#' @param sd_card_path Path to SD card
+#' @param hard_drive_path Path to external hard drive
+#' @param deployment_df Data frame containing Swift ID
 #'
 #' @return
 #' @export

@@ -7,7 +7,13 @@
 cb_wav_to_flac(desktop_path, sd_card_path, hard_drive_path, deployment_df)
 }
 \arguments{
-\item{deployment_df}{}
+\item{desktop_path}{Path to desktop}
+
+\item{sd_card_path}{Path to SD card}
+
+\item{hard_drive_path}{Path to external hard drive}
+
+\item{deployment_df}{Data frame containing Swift ID}
 }
 \description{
 Convert WAV files stored on Swift SD card to FLAC files stored on external hard drive

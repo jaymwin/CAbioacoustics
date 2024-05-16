@@ -54,6 +54,7 @@ Imports:
     keyring,
     lubridate,
     magrittr,
+    parallelly,
     purrr,
     readr,
     readxl,

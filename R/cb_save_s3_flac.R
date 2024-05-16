@@ -1,14 +1,16 @@
 
-# write script to save each file to flac
-#' Title
+#' Save FLAC files on Amazon S3 locally
 #'
-#' @param file
-#' @param destination_folder
+#' @param file Path to FLAC file on Amazon S3
+#' @param destination_folder Path to folder where FLAC will be downloaded
 #'
-#' @return
+#' @return FLAC file
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' cb_save_s3_flac(amazon_s3_key, here::here())
+#' }
 
 cb_save_s3_flac <- function(file, destination_folder) {
 
