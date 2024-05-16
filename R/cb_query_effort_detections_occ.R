@@ -52,9 +52,9 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
   efforts_deployments_detections_sql_df <-
     efforts_sql_df |>
     # deployment acoustic_field_visit_id = effort id; rename to join
-    dplyr::left_join(deployments_sql_df |> dplyr::rename(acoustic_field_visit_id = id), by = join_by('acoustic_field_visit_id')) |>
+    dplyr::left_join(deployments_sql_df |> dplyr::rename(acoustic_field_visit_id = id), by = dplyr::join_by('acoustic_field_visit_id')) |>
     # detections effort id = effort id
-    dplyr::left_join(detections_sql_df |> dplyr::rename(effort_id = acoustic_effort_id), by = join_by('effort_id')) |>
+    dplyr::left_join(detections_sql_df |> dplyr::rename(effort_id = acoustic_effort_id), by = dplyr::join_by('effort_id')) |>
     # clean up
     dplyr::select(survey_date:unit_number, detection)
 
@@ -112,10 +112,10 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
 
   efforts_detections_df <-
     efforts_df |>
-    dplyr::left_join(detections_df, by = join_by('cell_id', 'unit_number', 'survey_year', 'survey_night')) |>
+    dplyr::left_join(detections_df, by = dplyr::join_by('cell_id', 'unit_number', 'survey_year', 'survey_night')) |>
     # create a cell_unit field; fix empty project area
     dplyr::mutate(
-      cell_unit = str_c(cell_id, '_', unit_number),
+      cell_unit = stringr::str_c(cell_id, '_', unit_number),
       project_area = dplyr::case_when(
         project_area == "" ~ as.character(NA),
         TRUE ~ project_area
@@ -156,7 +156,7 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
   # assign secondary sampling occasion to each date
   efforts_detections_df <-
     efforts_detections_df |>
-    dplyr::left_join(occ_dates_df, by = join_by('survey_year', 'survey_night'))
+    dplyr::left_join(occ_dates_df, by = dplyr::join_by('survey_year', 'survey_night'))
 
   # 1) summarize mean date over sampling occasion (days since start date)
   dates_df <-
@@ -174,7 +174,7 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
     dplyr::filter(survey_hours > 0) |>
     dplyr::group_by(cell_id, survey_year, survey_night) |>
     dplyr::tally(name = 'arus') |>
-    dplyr::left_join(occ_dates_df |> dplyr::select(-day_of_season), by = join_by('survey_year', 'survey_night')) |>
+    dplyr::left_join(occ_dates_df |> dplyr::select(-day_of_season), by = dplyr::join_by('survey_year', 'survey_night')) |>
     dplyr::group_by(cell_id, survey_year, occasion) |>
     dplyr::summarize(
       arus = max(arus)
@@ -237,10 +237,10 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
       )
     ) |>
     # join in various effort data frames
-    dplyr::left_join(detection_critera_df, by = join_by('cell_id', 'survey_year')) |>
-    dplyr::left_join(active_arus_df, by = join_by('cell_id', 'survey_year', 'occasion')) |>
-    dplyr::left_join(survey_hours_df, by = join_by('cell_id', 'survey_year', 'occasion')) |>
-    dplyr::left_join(dates_df, by = join_by('survey_year', 'occasion')) |>
+    dplyr::left_join(detection_critera_df, by = dplyr::join_by('cell_id', 'survey_year')) |>
+    dplyr::left_join(active_arus_df, by = dplyr::join_by('cell_id', 'survey_year', 'occasion')) |>
+    dplyr::left_join(survey_hours_df, by = dplyr::join_by('cell_id', 'survey_year', 'occasion')) |>
+    dplyr::left_join(dates_df, by = dplyr::join_by('survey_year', 'occasion')) |>
     # organize
     dplyr::select(cell_id, survey_year, occasion, survey_hours, detection_nights, detection_criteria, arus, mean_date, detection)
 
