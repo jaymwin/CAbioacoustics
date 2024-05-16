@@ -49,6 +49,7 @@ Imports:
     jsonlite,
     keyring,
     lubridate,
+    magrittr,
     purrr,
     readr,
     readxl,
