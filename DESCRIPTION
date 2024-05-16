@@ -37,14 +37,18 @@ Collate:
     'cb_set_db_credentials.R'
     'cb_set_s3_credentials.R'
     'cb_wav_to_flac.R'
+    'utils-pipe.R'
 Imports: 
     aws.s3,
+    beepr,
     data.table,
     DBI,
     dplyr,
     fs,
     furrr,
+    future,
     glue,
+    here,
     hms,
     jsonlite,
     keyring,
@@ -58,4 +62,5 @@ Imports:
     sf,
     stringr,
     tibble,
+    tictoc,
     tidyr
