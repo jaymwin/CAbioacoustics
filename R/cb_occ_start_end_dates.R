@@ -1,5 +1,5 @@
 
-#' Get start and end dates for establishing primary sampling period and the number of secondary sampling occasions for occupancy analyses
+#' Get start and end dates and number of secondary sampling occasions based off annual monitoring and length of sampling occasions
 #'
 #' @param aru_dates_df A data frame of ...
 #' @param occasion_length Length (in days) of secondary sampling occasions
@@ -19,7 +19,7 @@ cb_occ_start_end_dates <- function(aru_dates_df, occasion_length) {
 
   check_integer <- function(N) {
 
-    !grepl("[^[:digit:]]", format(N,  digits = 20, scientific = FALSE))
+    !grepl("[^[:digit:]]", format(N, digits = 20, scientific = FALSE))
 
   }
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/cb_occ_start_end_dates.R
 \name{cb_occ_start_end_dates}
 \alias{cb_occ_start_end_dates}
-\title{Get start and end dates for establishing primary sampling period and the number of secondary sampling occasions for occupancy analyses}
+\title{Get start and end dates and number of secondary sampling occasions based off annual monitoring and length of sampling occasions}
 \usage{
 cb_occ_start_end_dates(aru_dates_df, occasion_length)
 }
@@ -15,5 +15,5 @@ cb_occ_start_end_dates(aru_dates_df, occasion_length)
 A data frame of start/end dates and the number of secondary sampling occasions
 }
 \description{
-Get start and end dates for establishing primary sampling period and the number of secondary sampling occasions for occupancy analyses
+Get start and end dates and number of secondary sampling occasions based off annual monitoring and length of sampling occasions
 }

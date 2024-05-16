@@ -42,7 +42,7 @@ cb_query_effort_detections_occ(
 \item{type}{Occupancy modeling framework, either single-season or dynamic}
 }
 \value{
-A list of data frames
+A list of data frames of effort and encounter histories
 }
 \description{
 Query spotted owl database to format data for occupancy modeling (static, single-season or dynamic models)

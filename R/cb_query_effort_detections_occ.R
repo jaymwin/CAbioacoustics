@@ -13,7 +13,7 @@
 #' @param num_occasions Number of secondary sampling occasions
 #' @param type Occupancy modeling framework, either single-season or dynamic
 #'
-#' @return A list of data frames
+#' @return A list of data frames of effort and encounter histories
 #' @export
 #' @include utils.R
 #'
