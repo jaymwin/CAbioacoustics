@@ -61,7 +61,7 @@ cb_season_dates <- function(study_type, cell_ids, start_year, end_year) {
 
   # pick the earliest date and the latest date, regardless of year
   efforts_deployments <-
-    dplyr::efforts_deployments |>
+    efforts_deployments |>
     tidyr::pivot_longer(
       cols = !survey_year,
       names_to = 'date_type',
