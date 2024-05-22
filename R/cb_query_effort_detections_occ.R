@@ -385,7 +385,9 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
         names_from = c(variable, survey_year, occasion),
         names_glue = "{variable}_{survey_year}_{occasion}",
         values_from = c(value)
-      )
+      ) |>
+      # fix order
+      dplyr::select(cell_id, dplyr::matches('aru'), dplyr::matches('survey_hours'), dplyr::matches('mean_date'))
 
     occ_df <-
       list(
