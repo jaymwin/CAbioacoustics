@@ -53,8 +53,8 @@ cb_season_dates <- function(study_type, cell_ids, start_year, end_year) {
     # find min/max date by year
     dplyr::group_by(survey_year) |>
     dplyr::summarise(
-      min_date = min(survey_night),
-      max_date = max(survey_night)
+      min_date = min(survey_night, na.rm = TRUE),
+      max_date = max(survey_night, na.rm = TRUE)
     ) |>
     # read into memory
     dplyr::collect()
