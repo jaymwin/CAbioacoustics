@@ -327,7 +327,7 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
       mean_date
     ) |>
     dplyr::mutate(
-      dplyr::across(c(survey_hours, arus), \(x) tidyr::na_if(x, 0)),
+      dplyr::across(c(survey_hours, arus), \(x) dplyr::na_if(x, 0)),
       mean_date = dplyr::case_when(
         is.na(survey_hours) ~ NA,
         TRUE ~ mean_date
