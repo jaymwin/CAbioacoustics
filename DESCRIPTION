@@ -26,6 +26,7 @@ Collate:
     'cb_logit_to_confidence.R'
     'cb_make_aru_sf.R'
     'cb_occ_start_end_dates.R'
+    'cb_play_flac.R'
     'utils.R'
     'cb_query_effort_detections_occ.R'
     'cb_read_birdnet_json.R'
