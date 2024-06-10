@@ -2,6 +2,7 @@
 
 export("%>%")
 export(cb_arcgis_deployments)
+export(cb_aru_lat_long)
 export(cb_cells_by_ownership)
 export(cb_check_s3)
 export(cb_connect_db)
