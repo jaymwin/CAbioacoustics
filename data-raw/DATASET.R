@@ -160,6 +160,8 @@ usethis::use_data(cb_boundary_layers, overwrite = TRUE)
 # birdnet thresholds/codes ------------------------------------------------
 
 # species_threshold_df <- read_csv(here::here('data-raw/species_thresholds.csv'))
-
 # usethis::use_data(species_threshold_df, overwrite = TRUE)
+
+birdnet_species_codes <- read_csv(here::here('data-raw/species_codes.csv'))
+usethis::use_data(birdnet_species_codes, overwrite = TRUE)
 
