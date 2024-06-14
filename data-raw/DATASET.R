@@ -165,3 +165,14 @@ usethis::use_data(cb_boundary_layers, overwrite = TRUE)
 birdnet_species_codes <- read_csv(here::here('data-raw/species_codes.csv'))
 usethis::use_data(birdnet_species_codes, overwrite = TRUE)
 
+forests_north_south <-
+  c(
+    'Lassen National Forest',
+    'Plumas National Forest',
+    'Tahoe National Forest',
+    'Eldorado National Forest',
+    'Stanislaus National Forest',
+    'Sequoia National Forest',
+    'Sierra National Forest'
+  )
+usethis::use_data(forests_north_south, overwrite = TRUE)
