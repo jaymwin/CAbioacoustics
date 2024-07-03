@@ -80,7 +80,7 @@ cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, deployme
   # create flac folder paths from deployment name associated with swift ID, year
   group <- stringr::str_sub(deployment$deployment_name, 1, 4)
   visit <- stringr::str_extract(deployment$deployment_name, '[V][1-9]{1}')
-  cell <- stringr::str_extract(deployment$deployment_name, '[C][1-9]{4}')
+  cell <- stringr::str_extract(deployment$deployment_name, '[C][0-9]{4}')
   unit_number <- stringr::str_extract(deployment$deployment_name, '[U][1-9]{1}')
   group_visit <- stringr::str_c(group, visit, sep = '_')
   group_visit_cell_unit <- stringr::str_c(group_visit, cell, unit_number, sep = '_')
