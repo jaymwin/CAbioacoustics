@@ -69,6 +69,9 @@ cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, deployme
     unique() |>
     as.numeric()
 
+  # this can be NA if the log file is read above; just get rid of here
+  card_survey_year <- card_survey_year[!is.na(card_survey_year)]
+
   # use this to get deployment info
   deployment <-
     deployment_df |>
