@@ -74,8 +74,7 @@ cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, deployme
 
   # use this to get deployment info
   deployment <-
-    deployment_df |>
-    dplyr::filter(swift_id == card_swift_id & survey_year == card_survey_year)
+    deployment_df
 
   # create flac folder paths from deployment name associated with swift ID, year
   group <- stringr::str_sub(deployment$deployment_name, 1, 4)
