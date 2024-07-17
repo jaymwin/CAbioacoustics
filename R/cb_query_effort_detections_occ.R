@@ -28,6 +28,9 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
   deployments_sql_df <-
     conn |>
     dplyr::tbl('acoustic_field_visits') |>
+    # only use valid records
+    dplyr::filter(is_invalid == 0) |>
+    # keep necessary deployment data
     dplyr::select(id:unit_number)
 
   # query acoustic efforts table
