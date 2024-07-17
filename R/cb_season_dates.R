@@ -19,6 +19,8 @@ cb_season_dates <- function(study_type, cell_ids, start_year, end_year) {
   deployments <-
     conn |>
     dplyr::tbl('acoustic_field_visits') |>
+    # only use valid records
+    dplyr::filter(is_invalid == 0) |>
     dplyr::select(id:unit_number)
 
   # query acoustic efforts table
