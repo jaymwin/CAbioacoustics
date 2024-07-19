@@ -36,7 +36,7 @@
 #' )
 #'}
 
-cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, deployment_df) {
+cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, deployment_df, swift_id, year) {
 
   tictoc::tic('total runtime')
   # set up desktop folders
@@ -51,36 +51,13 @@ cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, deployme
   sd_wav_folders <-
     fs::dir_ls(sd_card_path) |>
     # should all be SXXXX_XXX where X is number
-    stringr::str_subset("[S][0-9]{4}[_][0-9]{3}")
-
-  # get swift ID from SD card
-  card_swift_id <-
-    sd_wav_folders |>
-    stringr::str_extract("[S][0-9]{4}") |>
-    unique()
-
-  # get year from SD card
-  card_survey_year <-
-    fs::dir_ls(sd_wav_folders, recurse = 1) |>
-    # get dates
-    stringr::str_extract("[0-9]{4}[-][0-9]{2}[-][0-9]{2}") |>
-    # get year
-    stringr::str_extract("[0-9]{4}") |>
-    unique() |>
-    as.numeric()
-
-  # this can be NA if the log file is read above; just get rid of here
-  card_survey_year <- card_survey_year[!is.na(card_survey_year)]
-
-  # use this to get deployment info
-  deployment <-
-    deployment_df
+    stringr::str_subset("[_][0-9]+")
 
   # create flac folder paths from deployment name associated with swift ID, year
-  group <- stringr::str_sub(deployment$deployment_name, 1, 4)
-  visit <- stringr::str_extract(deployment$deployment_name, '[V][1-9]{1}')
-  cell <- stringr::str_extract(deployment$deployment_name, '[C][0-9]{4}')
-  unit_number <- stringr::str_extract(deployment$deployment_name, '[U][1-9]{1}')
+  group <- stringr::str_sub(deployment_df$deployment_name, 1, 4)
+  visit <- stringr::str_extract(deployment_df$deployment_name, '[V][1-9]{1}')
+  cell <- stringr::str_extract(deployment_df$deployment_name, '[C][0-9]{4}')
+  unit_number <- stringr::str_extract(deployment_df$deployment_name, '[U][1-9]{1}')
   group_visit <- stringr::str_c(group, visit, sep = '_')
   group_visit_cell_unit <- stringr::str_c(group_visit, cell, unit_number, sep = '_')
 
@@ -141,7 +118,7 @@ cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, deployme
   message(time_diff, ' minutes to complete task')
 
   # delete desktop wavs
-  fs::dir_ls(desktop_wav_path, regex = card_swift_id) |>
+  fs::dir_ls(desktop_wav_path, regex = swift_id) |>
     purrr::walk(\(x) fs::dir_delete(x))
 
   # copy flacs to external hard drive

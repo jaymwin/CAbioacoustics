@@ -112,7 +112,7 @@ copy_sd_wav_folders_to_desktop <- function(x, desktop_wav_path, sd_wav_folders, 
 
   fs::dir_copy(
     path <- x,
-    new_path <- stringr::str_c(desktop_wav_path, stringr::str_remove(sd_wav_folders, sd_card_path), sep = '/'),
+    new_path <- stringr::str_c(desktop_wav_path, stringr::str_remove(path, sd_card_path), sep = '/'),
     overwrite = TRUE
   )
 
