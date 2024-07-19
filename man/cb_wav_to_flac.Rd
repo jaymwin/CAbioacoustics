@@ -4,7 +4,14 @@
 \alias{cb_wav_to_flac}
 \title{Convert WAV files stored on Swift SD card to FLAC files stored on external hard drive}
 \usage{
-cb_wav_to_flac(desktop_path, sd_card_path, hard_drive_path, deployment_df)
+cb_wav_to_flac(
+  desktop_path,
+  sd_card_path,
+  hard_drive_path,
+  deployment_df,
+  swift_id,
+  year
+)
 }
 \arguments{
 \item{desktop_path}{Path to desktop}
