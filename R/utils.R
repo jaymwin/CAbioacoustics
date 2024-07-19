@@ -135,8 +135,18 @@ flac_conversion <- function(desktop_wav_path, desktop_flac_path) {
 copy_to_hd <- function(desktop_flac_path, hard_drive_path, group_visit) {
 
   fs::dir_copy(
-    path <- stringr::str_c(desktop_flac_path, group_visit, sep = '/'),
-    new_path <- stringr::str_c(hard_drive_path, group_visit, sep = '/'),
+    path <-
+      stringr::str_c(
+        desktop_flac_path,
+        group_visit,
+        sep = '/'
+      ),
+    new_path <-
+      stringr::str_c(
+        hard_drive_path,
+        # group_visit,
+        sep = '/'
+      ),
     overwrite = FALSE
   )
 

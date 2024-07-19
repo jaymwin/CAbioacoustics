@@ -97,7 +97,6 @@ cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, deployme
     # create directory for each day
     purrr::walk(\(x) fs::dir_create(x))
 
-  print(desktop_wav_path)
   # copy SD wav directories to desktop
   message('copying wav directories on SD card to desktop...')
   start <- Sys.time()
@@ -121,7 +120,7 @@ cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, deployme
   fs::dir_ls(desktop_wav_path, regex = swift_id) |>
     purrr::walk(\(x) fs::dir_delete(x))
 
-  # copy flacs to external hard drive
+  # copy desktop flacs to external hard drive
   message('copying desktop flacs to external hard drive...')
   start <- Sys.time()
   copy_to_hd(desktop_flac_path, hard_drive_path, group_visit)
