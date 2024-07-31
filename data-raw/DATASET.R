@@ -165,14 +165,15 @@ usethis::use_data(cb_boundary_layers, overwrite = TRUE)
 birdnet_species_codes <- read_csv(here::here('data-raw/species_codes.csv'))
 usethis::use_data(birdnet_species_codes, overwrite = TRUE)
 
+
+# forest order (by latitude) ----------------------------------------------
+
 forests_north_south <-
-  c(
-    'Lassen National Forest',
-    'Plumas National Forest',
-    'Tahoe National Forest',
-    'Eldorado National Forest',
-    'Stanislaus National Forest',
-    'Sequoia National Forest',
-    'Sierra National Forest'
-  )
+  usfs_boundaries |>
+  st_centroid() %>%
+  mutate(lat = st_coordinates(.)[,2]) |>
+  arrange(desc(lat)) |>
+  pull()
+
+# save
 usethis::use_data(forests_north_south, overwrite = TRUE)
