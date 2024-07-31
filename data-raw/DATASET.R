@@ -4,7 +4,6 @@ library(arcpullr)
 library(tidyverse)
 library(sf)
 library(janitor)
-library(terra)
 
 
 # california boundary -----------------------------------------------------
@@ -173,7 +172,7 @@ forests_north_south <-
   st_centroid() %>%
   mutate(lat = st_coordinates(.)[,2]) |>
   arrange(desc(lat)) |>
-  pull()
+  pull(frst_nm)
 
 # save
 usethis::use_data(forests_north_south, overwrite = TRUE)
