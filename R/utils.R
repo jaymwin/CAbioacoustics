@@ -186,3 +186,6 @@ read_birdnet_json_2 <- function(json_gz_path, species_threshold_df, p_true_posit
 
 }
 
+
+# this is handy for filtering
+'%ni%' <- Negate('%in%')
