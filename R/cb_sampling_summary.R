@@ -115,7 +115,7 @@ cb_sampling_summary <- function(species, template, study_type, cell_ids, start_y
 
   # get detection summary by forest and year
   forest_detections_df <-
-    dplyr::efforts_deployments_detections_sql_df |>
+    efforts_deployments_detections_sql_df |>
     dplyr::filter(detection == 1) |>
     dplyr::collect() |>
     dplyr::left_join(cb_get_spatial('hexes') |> dplyr::select(cell_id, forest_name = ownership) |> sf::st_drop_geometry()) |>
