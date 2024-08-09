@@ -7,7 +7,7 @@ Description: CAbioacoustics provides functions to streamline the management and 
 License: GPL-3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 URL: https://github.com/jaymwin/CAbioacoustics
 BugReports: https://github.com/jaymwin/CAbioacoustics/issues
 Depends: 
@@ -34,6 +34,7 @@ Collate:
     'cb_read_birdnet_json.R'
     'cb_read_birdnet_selection.R'
     'cb_read_surveyor_data.R'
+    'cb_sampling_summary.R'
     'cb_save_s3_flac.R'
     'cb_season_dates.R'
     'cb_segment_flac.R'
