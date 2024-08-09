@@ -148,7 +148,7 @@ cb_sampling_summary <- function(species, template, study_type, cell_ids, start_y
   # combine effort and detection summaries
   sampling_summary_df <-
     effort_summary_df |>
-    dplyr::left_join(detections_summary_df, by = dplyr::join_by(c('forest_name', 'survey_year'))) |>
+    dplyr::left_join(detections_summary_df, by = dplyr::join_by('forest_name', 'survey_year')) |>
     # clean up
     dplyr::mutate(forest_name = stringr::str_remove(forest_name, ' National Forest'))
 
