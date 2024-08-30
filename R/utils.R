@@ -189,3 +189,37 @@ read_birdnet_json_2 <- function(json_gz_path, species_threshold_df, p_true_posit
 
 # this is handy for filtering
 '%ni%' <- Negate('%in%')
+
+# get file size
+get_file_info <- function(path) {
+
+  fs::file_info(
+    fs::dir_ls(
+      path
+    )
+  ) |>
+    dplyr::select(path, size) |>
+    dplyr::mutate(size = as.numeric(size))
+
+}
+
+# get all daily subfolders
+get_subdirectory_contents <- function(df) {
+
+  subfolders <-
+    fs::dir_ls(
+      path = df$value,
+      recurse = 2
+    )
+
+  subfolder_length <- max(stringr::str_length(subfolders))
+
+  daily_subfolders <-
+    subfolders |>
+    tibble::as_tibble() |>
+    dplyr::filter(stringr::str_length(value) == subfolder_length) |>
+    dplyr::pull(value)
+
+  return(daily_subfolders)
+
+}
