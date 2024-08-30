@@ -17,6 +17,7 @@ Collate:
     'cb_arcgis_deployments.R'
     'cb_aru_lat_long.R'
     'cb_cells_by_ownership.R'
+    'cb_check_empty_folders.R'
     'cb_check_s3.R'
     'cb_connect_db.R'
     'cb_disconnect_db.R'
