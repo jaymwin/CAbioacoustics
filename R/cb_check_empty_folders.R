@@ -36,7 +36,7 @@ cb_check_empty_folders <- function(path, year) {
   # get group_visit_cell_unit folders within a group_visit folder
   folders_1 <-
     folders_0 |>
-    dplyr::drop_na() |>
+    tidyr::drop_na() |>
     dplyr::pull(group_visit) |>
     furrr::future_map_dfr(get_files_next_depth) |>
     dplyr::rename(group_visit = upper_level) |>
@@ -45,7 +45,7 @@ cb_check_empty_folders <- function(path, year) {
   # get group_visit_cell_unit_date folders within a group_visit_cell_unit folder
   folders_2 <-
     folders_1 |>
-    dplyr::drop_na() |>
+    tidyr::drop_na() |>
     dplyr::pull(group_visit_cell_unit) |>
     furrr::future_map_dfr(get_files_next_depth) |>
     dplyr::mutate(group_visit_cell_unit = upper_level) |>
@@ -54,7 +54,7 @@ cb_check_empty_folders <- function(path, year) {
   # get flacs within a group_visit_cell_unit_date folder
   folders_3 <-
     folders_2 |>
-    dplyr::drop_na() |>
+    tidyr::drop_na() |>
     dplyr::pull(group_visit_cell_unit_date) |>
     furrr::future_map_dfr(get_files_next_depth) |>
     dplyr::mutate(group_visit_cell_unit_date = upper_level) |>
