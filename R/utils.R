@@ -237,7 +237,7 @@ get_files_next_depth <- function(path) {
   df <-
     fs::dir_ls(path, recurse = 0) |>
     tibble::as_tibble() |>
-    furrr::mutate(upper_level = path)
+    dplyr::mutate(upper_level = path)
 
   if (dim(df)[1] == 0) {
 
