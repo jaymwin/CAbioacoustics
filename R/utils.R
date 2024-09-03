@@ -249,3 +249,13 @@ get_files_next_depth <- function(path) {
   return(df)
 
 }
+
+# move files to delete later (data proofing)
+move_files_delete <- function(x) {
+
+  fs::file_move(
+    path = x,
+    new_path = stringr::str_glue(here::here('flacs_to_delete/{basename(x)}'))
+  )
+
+}
