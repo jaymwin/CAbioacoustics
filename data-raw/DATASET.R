@@ -176,3 +176,27 @@ forests_north_south <-
 
 # save
 usethis::use_data(forests_north_south, overwrite = TRUE)
+
+
+# owl_recording_times -----------------------------------------------------
+
+owl_times <-
+  # 8PM - 5:59 AM
+  # starts at 8PM with last recording starting at 5AM
+  hms::parse_hms(
+    c(
+      '20:00:00',
+      '21:00:00',
+      '22:00:00',
+      '23:00:00',
+      '00:00:00',
+      '01:00:00',
+      '02:00:00',
+      '03:00:00',
+      '04:00:00',
+      '05:00:00'
+    )
+  )
+
+# save
+usethis::use_data(owl_times, overwrite = TRUE)

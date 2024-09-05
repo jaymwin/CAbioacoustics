@@ -57,6 +57,7 @@ create_season_dates <- function(start_year, end_year, start_date, end_date) {
 }
 
 
+# get crs for utm zone
 get_utm_crs <- function(df) {
 
   zone <- unique(df$utm_zone)
@@ -76,6 +77,7 @@ get_utm_crs <- function(df) {
 }
 
 
+# hoots on same night as ARU data
 hoots_same_night <- function(df, focal_date) {
 
   n_rows <-
@@ -100,12 +102,14 @@ hoots_same_night <- function(df, focal_date) {
 }
 
 
+# find polygons intersecting another polygon
 st_intersects_any <- function(x, y) {
 
   sf::st_intersects(x, y) %>%
     purrr::map_lgl(~length(.x) > 0)
 
 }
+
 
 # copy sd wav folders to desktop
 copy_sd_wav_folders_to_desktop <- function(x, desktop_wav_path, sd_wav_folders, sd_card_path) {
@@ -249,6 +253,7 @@ get_files_next_depth <- function(path) {
   return(df)
 
 }
+
 
 # move files to delete later (data proofing)
 move_files_delete <- function(x) {
