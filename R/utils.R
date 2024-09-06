@@ -264,3 +264,20 @@ move_files_delete <- function(x) {
   )
 
 }
+
+
+# write pipeline files in digestible batches for the dtabase website
+write_pipeline_batches <- function(df) {
+
+  region <- unique(df$region)
+  csv_num <- unique(df$csv_num)
+
+  df |>
+    dplyr::select(file_name) |>
+    write.table(
+      stringr::str_glue(here::here('code_outputs/pipeline_files/{region}_{csv_num}_pipeline.csv')),
+      row.names = FALSE,
+      col.names = FALSE
+    )
+
+}
