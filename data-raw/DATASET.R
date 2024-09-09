@@ -205,7 +205,16 @@ usethis::use_data(owl_times, overwrite = TRUE)
 # minimum flac size -------------------------------------------------------
 
 # file sizes below this are moved and later discarded
-min_flac_size <- 92
+min_flac_size <- 92 # (megabytes)
 
 # save
 usethis::use_data(min_flac_size, overwrite = TRUE)
+
+
+# minimum json size -------------------------------------------------------
+
+# file sizes below this are moved and later discarded
+min_json_size <- 0.01 # (megabytes)
+
+# save
+usethis::use_data(min_json_size, overwrite = TRUE)
