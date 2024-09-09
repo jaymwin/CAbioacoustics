@@ -28,6 +28,7 @@ Collate:
     'cb_get_spatial.R'
     'cb_globus_check.R'
     'cb_globus_transfer.R'
+    'cb_json_file_structure.R'
     'cb_list_spatial.R'
     'cb_logit_to_confidence.R'
     'cb_make_aru_sf.R'
