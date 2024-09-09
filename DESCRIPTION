@@ -22,6 +22,7 @@ Collate:
     'cb_connect_db.R'
     'cb_disconnect_db.R'
     'cb_flac_file_structure.R'
+    'cb_get_date_code_output.R'
     'cb_get_flac_paths.R'
     'cb_get_s3_df.R'
     'cb_get_spatial.R'
