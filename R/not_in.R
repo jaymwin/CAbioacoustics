@@ -9,7 +9,7 @@
 #'
 #' @examples
 
-"%nin%" <- function(x, table) {
+"%ni%" <- function(x, table) {
 
   !(match(x, table, nomatch = 0) > 0)
 
