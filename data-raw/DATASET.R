@@ -200,3 +200,12 @@ owl_times <-
 
 # save
 usethis::use_data(owl_times, overwrite = TRUE)
+
+
+# minimum flac size -------------------------------------------------------
+
+# file sizes below this are moved and later discarded
+min_flac_size <- 92
+
+# save
+usethis::use_data(min_flac_size, overwrite = TRUE)
