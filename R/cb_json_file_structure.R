@@ -14,7 +14,7 @@ cb_json_file_structure <- function(network_drive, survey_year, regions) {
 
   stringr::str_c(
     network_drive,
-    '/Acoustic_Data/ARU_Data_Raw/(ARU_Sierra_Monitoring|ARU_Sierra_Projects)/',
+    '/Acoustic_Data/ARU_Data_Processed/BirdNET_Results_JSON/(JSON_Sierra_Monitoring|JSON_Sierra_Projects)/',
     survey_year,
     '/',
     '(',
