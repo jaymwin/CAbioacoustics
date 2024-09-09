@@ -47,7 +47,7 @@ cb_read_birdnet_json <- function(path) {
     dplyr::select(start_time, species_code, birdnet_logit) |>
     # join in species codes
     dplyr::left_join(species_df, by = 'species_code') |>
-    dplyr::mutate(birdnet_prediction = round(logit_to_probability(birdnet_logit), 3)) |>
+    dplyr::mutate(birdnet_prediction = round(cb_logit_to_confidence(birdnet_logit), 3)) |>
     dplyr::arrange(start_time, common_name) |>
     dplyr::select(start_time, dplyr::matches('name'), dplyr::matches('birdnet')) |>
     dplyr::mutate(start_time = as.numeric(start_time)) |>
