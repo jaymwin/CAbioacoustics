@@ -247,12 +247,23 @@ get_files_next_depth <- function(path) {
 }
 
 
-# move files to delete later (data proofing)
-move_files_delete <- function(x) {
+# move flacs to delete later (data proofing)
+move_flacs_delete <- function(x) {
 
   fs::file_move(
     path = x,
     new_path = stringr::str_glue(here::here('flacs_to_delete/{basename(x)}'))
+  )
+
+}
+
+
+# move jsons to delete later (data proofing)
+move_jsons_delete <- function(x) {
+
+  fs::file_move(
+    path = x,
+    new_path = stringr::str_glue(here::here('jsons_to_delete/{basename(x)}'))
   )
 
 }
