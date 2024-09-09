@@ -218,3 +218,11 @@ min_json_size <- 0.01 # (megabytes)
 
 # save
 usethis::use_data(min_json_size, overwrite = TRUE)
+
+
+# buffer distance ARU and broadcast survey --------------------------------
+
+hoot_buffer_distance <- 1500 # (meters)
+
+# save
+usethis::use_data(hoot_buffer_distance, overwrite = TRUE)
