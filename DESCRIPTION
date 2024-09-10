@@ -39,6 +39,7 @@ Collate:
     'cb_query_effort_detections_occ.R'
     'cb_read_birdnet_json.R'
     'cb_read_birdnet_selection.R'
+    'cb_read_filter_json.R'
     'cb_read_surveyor_data.R'
     'cb_sampling_summary.R'
     'cb_save_s3_flac.R'
