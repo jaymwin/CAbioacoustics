@@ -59,19 +59,19 @@ cb_read_filter_json <- function(path, species_thresholds = species_threshold_df)
       df_json |>
       tidyr::unnest_longer(value) |>
       dplyr::select(-name) |>
-      dplyr::rename(start_time = value_id) |>
+      dplyr::rename(relative_time = value_id) |>
       tidyr::unnest(cols = c(value)) |>
       tidyr::unnest(cols = c(value)) |>
       dplyr::group_by(start_time) |>
       dplyr::mutate(
         species_code = dplyr::row_number() - 1,
-        start_time = as.numeric(start_time)
+        relative_time = as.numeric(relative_time)
       ) |>
       dplyr::ungroup() |>
-      dplyr::select(start_time, species_code, value) |>
-      dplyr::inner_join(species_threshold_df, by = join_by('species_code')) |>
+      dplyr::select(relative_time, species_code, value) |>
+      dplyr::inner_join(species_threshold_df, by = dplyr::join_by('species_code')) |>
       dplyr::filter(value >= threshold) |>
-      select(-threshold)
+      dplyr::select(-threshold)
 
     file_name <- stringr::str_extract(path, 'G(P|R|C|M|[0-9])[0-9]{2}_V[0-9]{1}_C[0-9]{4}_U[0-9]{1}_[0-9]{8}_[0-9]{6}')
 
