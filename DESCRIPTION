@@ -45,6 +45,7 @@ Collate:
     'cb_season_dates.R'
     'cb_segment_flac.R'
     'cb_set_db_credentials.R'
+    'cb_set_future_cores.R'
     'cb_set_s3_credentials.R'
     'cb_wav_to_flac.R'
     'not_in.R'
