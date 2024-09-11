@@ -15,7 +15,8 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
   file_name <- stringr::str_extract(path, 'G(P|R|C|M|[0-9])[0-9]{2}_V[0-9]{1}_C[0-9]{4}_U[0-9]{1}_[0-9]{8}_[0-9]{6}')
 
   # read json (shouldn't be any errors at this point)
-  jsonlite::fromJSON(path) |>
+  json_df <-
+    jsonlite::fromJSON(path) |>
     # save the detections using species-specific thresholds
     tibble::enframe() |>
     # get detections
@@ -25,9 +26,21 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
     dplyr::select(-name) |>
     dplyr::rename(relative_time = value_id) |>
     tidyr::unnest(cols = c(value)) |>
-    tidyr::unnest(cols = c(value)) |>
-    # save dimensions of the JSON predictions df
-    purrr::walk(\(x) get_dim(x, file_name, date_time)) |>
+    tidyr::unnest(cols = c(value))
+
+  # some can parse but have no detections
+  tibble::tibble(
+    path = basename(file_name),
+    n_predictions = dim(json_df)[1]
+  ) |>
+    write.table(
+      stringr::str_glue(here::here('code_outputs/post_birdnet_{date_time}/prediction_count_jsons.txt')),
+      col.names = FALSE,
+      row.names = FALSE,
+      append = TRUE
+    )
+
+  json_df |>
     dplyr::group_by(relative_time) |>
     # this allows for different duration files
     dplyr::mutate(
