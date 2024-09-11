@@ -284,3 +284,21 @@ write_pipeline_batches <- function(df) {
     )
 
 }
+
+
+# get number of predictions for a functioning JSON file
+get_dim <- function(x, date_time = date_time) {
+
+  # some can parse but have no detections
+  tibble::tibble(
+    path = basename(path),
+    n_predictions = dim(x)[1]
+  ) |>
+    write.table(
+      stringr::str_glue(here::here('code_outputs/post_birdnet_{date_time}/prediction_count_jsons.txt')),
+      col.names = FALSE,
+      row.names = FALSE,
+      append = TRUE
+    )
+
+}

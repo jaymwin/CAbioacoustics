@@ -9,7 +9,7 @@
 #'
 #' @examples
 
-cb_extract_json_predictions <- function(path, species_thresholds = species_threshold_df) {
+cb_extract_json_predictions <- function(path, species_thresholds = species_threshold_df, date_time = date_time) {
 
   # get name of file first for saving things later
   file_name <- stringr::str_extract(path, 'G(P|R|C|M|[0-9])[0-9]{2}_V[0-9]{1}_C[0-9]{4}_U[0-9]{1}_[0-9]{8}_[0-9]{6}')
@@ -26,6 +26,8 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
     dplyr::rename(relative_time = value_id) |>
     tidyr::unnest(cols = c(value)) |>
     tidyr::unnest(cols = c(value)) |>
+    # save dimensions of the JSON predictions df
+    purrr::walk(\(x) get_dim(x, date_time)) |>
     dplyr::group_by(relative_time) |>
     # this allows for different duration files
     dplyr::mutate(
@@ -39,6 +41,6 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
     dplyr::select(-threshold)
 
   df |>
-    readr::write_csv(stringr::str_glue(here::here('code_outputs/species_predictions/{file_name}_filtered.csv')))
+    readr::write_csv(stringr::str_glue(here::here('code_outputs/post_birdnet_{date_time}/species_predictions/{file_name}_filtered.csv')))
 
 }
