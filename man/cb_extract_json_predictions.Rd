@@ -4,14 +4,10 @@
 \alias{cb_extract_json_predictions}
 \title{Title}
 \usage{
-cb_extract_json_predictions(
-  path,
-  species_thresholds = species_threshold_df,
-  date_time = date_time
-)
+cb_extract_json_predictions(path, species_thresholds = species_threshold_df)
 }
 \arguments{
-\item{date_time}{}
+\item{species_thresholds}{}
 }
 \description{
 Title
