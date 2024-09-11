@@ -4,10 +4,14 @@
 \alias{cb_read_filter_json}
 \title{Title}
 \usage{
-cb_read_filter_json(path, species_thresholds = species_threshold_df)
+cb_read_filter_json(
+  path,
+  species_thresholds = species_threshold_df,
+  date_time = date_time
+)
 }
 \arguments{
-\item{species_thresholds}{}
+\item{date_time}{}
 }
 \description{
 Title
