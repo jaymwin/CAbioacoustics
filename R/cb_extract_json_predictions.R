@@ -27,7 +27,7 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
     tidyr::unnest(cols = c(value)) |>
     tidyr::unnest(cols = c(value)) |>
     # save dimensions of the JSON predictions df
-    purrr::walk(\(x) get_dim(x, date_time)) |>
+    purrr::walk(\(x) get_dim(x, file_name, date_time)) |>
     dplyr::group_by(relative_time) |>
     # this allows for different duration files
     dplyr::mutate(
@@ -38,9 +38,8 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
     dplyr::select(relative_time, species_code, value) |>
     dplyr::inner_join(species_threshold_df, by = dplyr::join_by('species_code')) |>
     dplyr::filter(value >= threshold) |>
-    dplyr::select(-threshold)
-
-  df |>
+    dplyr::select(-threshold) |>
+    # and save
     readr::write_csv(stringr::str_glue(here::here('code_outputs/post_birdnet_{date_time}/species_predictions/{file_name}_filtered.csv')))
 
 }
