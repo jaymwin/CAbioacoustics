@@ -12,7 +12,7 @@
 cb_extract_json_predictions <- function(path, species_thresholds = species_threshold_df, date_time = date_time) {
 
   # get name of file first for saving things later
-  file_name <- stringr::str_extract(path, 'G(P|R|C|M|[0-9])[0-9]{2}_V[0-9]{1}_C[0-9]{4}_U[0-9]{1}_[0-9]{8}_[0-9]{6}')
+  file_name <- stringr::str_extract(path, 'G(P|R|C|M|0)[0-9]{2}_V[1-5]{1}_C[0-9]{4}_U[1-5]{1}_[0-9]{8}_[0-9]{6}')
 
   # read json (shouldn't be any errors at this point)
   json_df <-
