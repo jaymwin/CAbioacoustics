@@ -17,9 +17,9 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
   # read json (shouldn't be any errors at this point)
   json_df <-
     jsonlite::fromJSON(path) |>
-    # save the detections using species-specific thresholds
+    # turn into data frame where every row is a list
     tibble::enframe() |>
-    # get detections
+    # get detections part
     dplyr::filter(name == 'detections') |>
     # do some unnesting/cleaning
     tidyr::unnest_longer(value) |>
