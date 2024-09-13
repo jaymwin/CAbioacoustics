@@ -31,7 +31,7 @@ cb_create_selection_table <- function(df, date_time) {
     Overwrite = 'no'
   ) |>
     write.table(
-      file = stringr::str_glue(here::here('code_outputs/csow_bdow_selection_tables_{date_time}/{flac_name}.BIRDNET')),
+      file = stringr::str_glue(here::here('code_outputs/csow_bdow_selection_tables_{date_time}/{flac_name}.BirdNET')),
       sep = "\t",
       row.names = FALSE,
       col.names = TRUE,
