@@ -21,6 +21,7 @@ Collate:
     'cb_check_empty_folders.R'
     'cb_check_s3.R'
     'cb_connect_db.R'
+    'cb_create_selection_table.R'
     'cb_disconnect_db.R'
     'cb_extract_json_predictions.R'
     'cb_flac_file_structure.R'
