@@ -127,7 +127,11 @@ copy_sd_wav_folders_to_desktop <- function(x, desktop_wav_path, sd_wav_folders, 
 flac_conversion <- function(desktop_wav_path, desktop_flac_path) {
 
   # create sox command
-  command <- paste(desktop_wav_path, desktop_flac_path)
+  command <-
+    paste(
+      desktop_wav_path,
+      desktop_flac_path
+    )
 
   # sox will then send this command over to the terminal for execution.
   seewave::sox(command, path2exe = "C:/Program Files (x86)/sox-14-4-2")
@@ -231,14 +235,20 @@ get_subdirectory_contents <- function(df) {
 get_files_next_depth <- function(path) {
 
   df <-
-    fs::dir_ls(path, recurse = 0) |>
+    fs::dir_ls(
+      path,
+      recurse = 0
+    ) |>
     tibble::as_tibble() |>
     dplyr::mutate(upper_level = path)
 
   if (dim(df)[1] == 0) {
 
     df <-
-      tibble::tibble(value = NA, upper_level = path)
+      tibble::tibble(
+        value = NA,
+        upper_level = path
+      )
 
   }
 

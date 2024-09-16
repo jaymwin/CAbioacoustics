@@ -1,7 +1,7 @@
 
 #' Get date of most recent code run
 #'
-#' @param folder
+#' @param folder A code output folder (e.g., pre_birdnet, post_birdnet).
 #'
 #' @return
 #' @export

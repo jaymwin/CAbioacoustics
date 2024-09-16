@@ -2,7 +2,7 @@
 % Please edit documentation in R/cb_read_surveyor_data.R
 \name{cb_read_surveyor_data}
 \alias{cb_read_surveyor_data}
-\title{Read callback survey data}
+\title{Read broadcast survey data}
 \usage{
 cb_read_surveyor_data(path)
 }
@@ -10,7 +10,7 @@ cb_read_surveyor_data(path)
 \item{path}{Path to surveyor data}
 }
 \description{
-Read callback survey data
+Read broadcast survey data
 }
 \examples{
 \dontrun{

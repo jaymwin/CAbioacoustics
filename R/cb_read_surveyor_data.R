@@ -1,5 +1,5 @@
 
-#' Read callback survey data
+#' Read broadcast survey data
 #'
 #' @param path Path to surveyor data
 #'

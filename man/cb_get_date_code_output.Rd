@@ -7,7 +7,7 @@
 cb_get_date_code_output(folder)
 }
 \arguments{
-\item{folder}{}
+\item{folder}{A code output folder (e.g., pre_birdnet, post_birdnet).}
 }
 \description{
 Get date of most recent code run
