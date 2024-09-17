@@ -60,9 +60,9 @@ usfs_boundaries <-
 #   clean_names()
 
 
-# hexes -------------------------------------------------------------------
+# sierra hexes ------------------------------------------------------------
 
-hexes <-
+sierra_hexes <-
   st_read(
     here::here('data-raw/sierra_nevada_hexes.shp'),
     quiet = TRUE
@@ -73,9 +73,34 @@ hexes <-
 # sierra study area (based off of hexes) ----------------------------------
 
 sierra_study_area <-
-  hexes |>
+  sierra_hexes |>
   summarise() |>
   nngeo::st_remove_holes()
+
+
+# coastal hexes -----------------------------------------------------------
+
+mendocino_hexes <-
+  st_read(
+    here::here('data-raw/mendocino_hexes.shp'),
+    quiet = TRUE
+  ) |>
+  st_make_valid() |>
+  st_transform(4326)
+
+sonoma_hexes <-
+  st_read(
+    here::here('data-raw/sonoma_hexes.shp'),
+    quiet = TRUE
+  ) |>
+  st_make_valid() |>
+  st_transform(4326)
+
+# combine
+coastal_hexes <-
+  mendocino_hexes |>
+  bind_rows(sonoma_hexes) |>
+  select(cell_id = CELL_ID)
 
 
 # fire perimeters ---------------------------------------------------------
@@ -142,7 +167,8 @@ demography_study_areas <-
 
 cb_boundary_layers <-
   list(
-    hexes = hexes,
+    sierra_hexes = sierra_hexes,
+    coastal_hexes = coastal_hexes,
     # epa_ecoregions = epa_ecoregions,
     usfs_boundaries = usfs_boundaries,
     nps_boundaries = nps_boundaries,
