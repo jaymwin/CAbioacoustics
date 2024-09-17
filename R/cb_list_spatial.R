@@ -14,12 +14,11 @@ cb_list_spatial <- function() {
 
   tibble::tribble(
     ~layer_name, ~description, ~type,
-    'hexes', 'hex sampling grid for Sierra Nevada region', 'shapefile',
-    # 'epa_ecoregions', 'EPA ecoregions (level III)', 'shapefile',
+    'sierra_hexes', 'hex sampling grid for Sierra Nevada region', 'shapefile',
+    'coastal_hexes', 'hex sampling grid for Coastal Barred Owl region', 'shapefile',
     'usfs_boundaries', 'USFS national forest boundaries', 'shapefile',
     'nps_boundaries', 'NPS boundaries', 'shapefile',
     'ca_boundary', 'California border', 'shapefile',
-    # 'fire_perimeters', 'Recent (2020-onward) fire perimeters', 'shapefile',
     'demography_study_areas', 'CSOW demographic study areas', 'shapefile',
     'sierra_study_area', 'Sierra study area (based on hex boundary)', 'shapefile'
   ) %>%

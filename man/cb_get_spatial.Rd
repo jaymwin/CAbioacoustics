@@ -18,6 +18,6 @@ Retrieve a project vector layer
 \examples{
 \dontrun{
 # retrieve layer of Sierra Nevada hex cells
-hexes_sf <- cb_get_spatial('hexes')
+hexes_sf <- cb_get_spatial('sierra_hexes')
 }
 }

@@ -9,7 +9,7 @@
 #' @examples
 #' \dontrun{
 #' # retrieve layer of Sierra Nevada hex cells
-#' hexes_sf <- cb_get_spatial('hexes')
+#' hexes_sf <- cb_get_spatial('sierra_hexes')
 #' }
 
 cb_get_spatial <- function(layer_name = NULL) {
@@ -18,9 +18,13 @@ cb_get_spatial <- function(layer_name = NULL) {
 
     layer <- cb_boundary_layers$ca_boundary
 
-  } else if (layer_name == 'hexes') {
+  } else if (layer_name == 'sierra_hexes') {
 
-    layer <- cb_boundary_layers$hexes
+    layer <- cb_boundary_layers$sierra_hexes
+
+  } else if (layer_name == 'coastal_hexes') {
+
+    layer <- cb_boundary_layers$coastal_hexes
 
   } else if (layer_name == 'nps_boundaries') {
 
@@ -29,10 +33,6 @@ cb_get_spatial <- function(layer_name = NULL) {
   } else if (layer_name == 'usfs_boundaries') {
 
     layer <- cb_boundary_layers$usfs_boundaries
-
-  # } else if (layer_name == 'fire_perimeters') {
-  #
-  #   layer <- cb_boundary_layers$fire_perimeters
 
   } else if (layer_name == 'demography_study_areas') {
 
