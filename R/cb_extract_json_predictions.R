@@ -50,8 +50,8 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
     dplyr::ungroup() |>
     dplyr::select(relative_time, species_code, value) |>
     dplyr::inner_join(species_threshold_df, by = dplyr::join_by('species_code')) |>
-    dplyr::filter(value >= threshold) |>
-    dplyr::select(-threshold) |>
+    dplyr::filter(value >= logit_threshold) |>
+    dplyr::select(-logit_threshold) |>
     # and save
     readr::write_csv(stringr::str_glue(here::here('code_outputs/post_birdnet_{date_time}/species_predictions/{file_name}_filtered.csv')))
 
