@@ -4,7 +4,7 @@
 \alias{cb_create_selection_table}
 \title{Title}
 \usage{
-cb_create_selection_table(df, date_time)
+cb_create_selection_table(df, date_time, species_group)
 }
 \arguments{
 \item{df}{}
