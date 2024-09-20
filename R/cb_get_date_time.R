@@ -9,7 +9,7 @@
 #'
 #' @examples
 
-cb_get_date <- function(type, folder) {
+cb_get_date_time <- function(type, folder) {
 
   if (type == 'previous') {
 

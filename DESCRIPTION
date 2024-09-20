@@ -25,7 +25,7 @@ Collate:
     'cb_disconnect_db.R'
     'cb_extract_json_predictions.R'
     'cb_flac_file_structure.R'
-    'cb_get_date.R'
+    'cb_get_date_time.R'
     'cb_get_flac_paths.R'
     'cb_get_json_paths.R'
     'cb_get_s3_df.R'
