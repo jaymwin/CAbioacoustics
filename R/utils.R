@@ -280,7 +280,7 @@ move_jsons_delete <- function(x) {
 
 
 # write pipeline files in digestible batches for the dtabase website
-write_pipeline_batches <- function(df) {
+write_pipeline_batches <- function(df, date_time) {
 
   region <- unique(df$region)
   csv_num <- unique(df$csv_num)
@@ -288,7 +288,7 @@ write_pipeline_batches <- function(df) {
   df |>
     dplyr::select(file_name) |>
     write.table(
-      stringr::str_glue(here::here('code_outputs/pipeline_files/{region}_{csv_num}_pipeline.csv')),
+      stringr::str_glue(here::here('code_outputs/effort_pipelines_{date_time}/{region}_{csv_num}_pipeline.csv')),
       row.names = FALSE,
       col.names = FALSE
     )
