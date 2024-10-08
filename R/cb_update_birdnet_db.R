@@ -49,7 +49,7 @@ cb_update_birdnet_db <- function() {
     # otherwise append new data
     message('appending new data to database...')
 
-    conn <- DBI::dbConnect(duckdb(dbdir = "Z:/birdnet_detections_effort.duckdb"))
+    conn <- DBI::dbConnect(duckdb::duckdb(dbdir = "Z:/birdnet_detections_effort.duckdb"))
 
     birdnet_prediction_paths <- fs::dir_ls(stringr::str_glue(here::here('code_outputs/post_birdnet_{date_time}/species_predictions')), glob = '*.csv')
     duckdb::duckdb_read_csv(conn, "species_detections", birdnet_prediction_paths)
