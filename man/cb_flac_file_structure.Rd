@@ -2,7 +2,7 @@
 % Please edit documentation in R/cb_flac_file_structure.R
 \name{cb_flac_file_structure}
 \alias{cb_flac_file_structure}
-\title{Check that flacs are properly nested on research drive}
+\title{Create expected FLAC file path based on drive location, survey year, and study regions}
 \usage{
 cb_flac_file_structure(network_drive, survey_year, regions)
 }
@@ -10,5 +10,5 @@ cb_flac_file_structure(network_drive, survey_year, regions)
 \item{regions}{}
 }
 \description{
-Check that flacs are properly nested on research drive
+Create expected FLAC file path based on drive location, survey year, and study regions
 }

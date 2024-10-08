@@ -2,7 +2,7 @@
 % Please edit documentation in R/cb_get_json_paths.R
 \name{cb_get_json_paths}
 \alias{cb_get_json_paths}
-\title{Title}
+\title{Get path info for JSONs on research drive}
 \usage{
 cb_get_json_paths(path, year)
 }
@@ -10,5 +10,5 @@ cb_get_json_paths(path, year)
 \item{year}{}
 }
 \description{
-Title
+Get path info for JSONs on research drive
 }

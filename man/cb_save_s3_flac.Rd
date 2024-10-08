@@ -2,7 +2,7 @@
 % Please edit documentation in R/cb_save_s3_flac.R
 \name{cb_save_s3_flac}
 \alias{cb_save_s3_flac}
-\title{Save FLAC files on Amazon S3 locally}
+\title{Save FLAC files from Amazon S3 locally}
 \usage{
 cb_save_s3_flac(file, destination_folder)
 }
@@ -15,7 +15,7 @@ cb_save_s3_flac(file, destination_folder)
 FLAC file
 }
 \description{
-Save FLAC files on Amazon S3 locally
+Save FLAC files from Amazon S3 locally
 }
 \examples{
 \dontrun{

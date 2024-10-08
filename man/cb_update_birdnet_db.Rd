@@ -2,10 +2,10 @@
 % Please edit documentation in R/cb_update_birdnet_db.R
 \name{cb_update_birdnet_db}
 \alias{cb_update_birdnet_db}
-\title{Title}
+\title{Append new detections to a duckdb of all BirdNET species detections}
 \usage{
 cb_update_birdnet_db()
 }
 \description{
-Title
+Append new detections to a duckdb of all BirdNET species detections
 }

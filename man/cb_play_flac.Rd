@@ -2,13 +2,13 @@
 % Please edit documentation in R/cb_play_selection.R
 \name{cb_play_flac}
 \alias{cb_play_flac}
-\title{Play a FLAC file}
+\title{Play a BirdNET selection from a FLAC file}
 \usage{
 cb_play_flac(flac_path, begin_time, end_time)
 }
 \arguments{
-\item{flac_path}{}
+\item{end_time}{}
 }
 \description{
-Play a FLAC file
+Play a BirdNET selection from a FLAC file
 }

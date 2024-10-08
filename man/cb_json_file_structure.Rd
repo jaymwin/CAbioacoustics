@@ -2,7 +2,7 @@
 % Please edit documentation in R/cb_json_file_structure.R
 \name{cb_json_file_structure}
 \alias{cb_json_file_structure}
-\title{Title}
+\title{Create expected JSON file path based on drive location, survey year, and study regions}
 \usage{
 cb_json_file_structure(network_drive, survey_year, regions)
 }
@@ -10,5 +10,5 @@ cb_json_file_structure(network_drive, survey_year, regions)
 \item{regions}{}
 }
 \description{
-Title
+Create expected JSON file path based on drive location, survey year, and study regions
 }

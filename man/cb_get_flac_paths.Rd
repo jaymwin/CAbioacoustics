@@ -2,7 +2,7 @@
 % Please edit documentation in R/cb_get_flac_paths.R
 \name{cb_get_flac_paths}
 \alias{cb_get_flac_paths}
-\title{Get path info for flacs on research drive}
+\title{Get path info for FLACs on research drive}
 \usage{
 cb_get_flac_paths(path, year)
 }
@@ -10,5 +10,5 @@ cb_get_flac_paths(path, year)
 \item{year}{}
 }
 \description{
-Get path info for flacs on research drive
+Get path info for FLACs on research drive
 }
