@@ -40,7 +40,8 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
       append = TRUE
     )
 
-  json_df |>
+  json_df <-
+    json_df |>
     dplyr::group_by(relative_time) |>
     # this allows for different duration files
     dplyr::mutate(
@@ -48,11 +49,18 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
       relative_time = as.numeric(relative_time)
     ) |>
     dplyr::ungroup() |>
-    dplyr::select(relative_time, species_code, value) |>
     dplyr::inner_join(species_threshold_df, by = dplyr::join_by('species_code')) |>
-    dplyr::filter(value >= logit_threshold) |>
-    dplyr::select(-logit_threshold) |>
-    # and save
-    readr::write_csv(stringr::str_glue(here::here('code_outputs/post_birdnet_{date_time}/species_predictions/{file_name}_filtered.csv')))
+    dplyr::filter(value >= logit_threshold)
+
+  if (dim(json_df)[1] > 0) {
+
+    json_df |>
+      dplyr::select(-logit_threshold) |>
+      mutate(json = file_name) |>
+      dplyr::select(json, relative_time, species_code, birdnet_logit = value) |>
+      # and save
+      readr::write_csv(stringr::str_glue(here::here('code_outputs/post_birdnet_{date_time}/species_predictions/{file_name}_filtered.csv')))
+
+  }
 
 }
