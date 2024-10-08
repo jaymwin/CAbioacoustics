@@ -1,7 +1,7 @@
 
 #' Set number of cores to run functions in parallel with future/furrr
 #'
-#' @param n Number of cores to use. If blank use all except leave one available for other tasks.
+#' @param n Number of cores to use. If blank, use all except leave one available for other tasks.
 #'
 #' @return
 #' @export

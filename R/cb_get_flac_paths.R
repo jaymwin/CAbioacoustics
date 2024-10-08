@@ -1,5 +1,5 @@
 
-#' Get path info for flacs on research drive
+#' Get path info for FLACs on research drive
 #'
 #' @param path
 #' @param year

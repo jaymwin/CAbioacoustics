@@ -1,5 +1,5 @@
 
-#' Save FLAC files on Amazon S3 locally
+#' Save FLAC files from Amazon S3 locally
 #'
 #' @param file Path to FLAC file on Amazon S3
 #' @param destination_folder Path to folder where FLAC will be downloaded

@@ -1,5 +1,5 @@
 
-#' Check that flacs are properly nested on research drive
+#' Create expected FLAC file path based on drive location, survey year, and study regions
 #'
 #' @param network_drive
 #' @param survey_year

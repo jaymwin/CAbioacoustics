@@ -1,7 +1,9 @@
 
-#' Play a FLAC file
+#' Play a BirdNET selection from a FLAC file
 #'
 #' @param flac_path
+#' @param begin_time
+#' @param end_time
 #'
 #' @return
 #' @export

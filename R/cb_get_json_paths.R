@@ -1,5 +1,5 @@
 
-#' Title
+#' Get path info for JSONs on research drive
 #'
 #' @param path
 #' @param year
