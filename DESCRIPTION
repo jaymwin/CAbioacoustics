@@ -51,6 +51,7 @@ Collate:
     'cb_set_future_cores.R'
     'cb_set_s3_credentials.R'
     'cb_show_globus_endpoints.R'
+    'cb_update_birdnet_db.R'
     'cb_wav_to_flac.R'
     'not_in.R'
     'utils-pipe.R'
