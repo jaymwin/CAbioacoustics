@@ -7,6 +7,13 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # use all cores - 1
+#' cb_set_future_cores()
+#'
+#' # or a specified number of cores
+#' cb_set_future_cores(n = 10)
+#' }
 
 cb_set_future_cores <- function(n) {
 

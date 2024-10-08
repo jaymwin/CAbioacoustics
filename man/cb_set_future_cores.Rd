@@ -12,3 +12,12 @@ cb_set_future_cores(n)
 \description{
 Set number of cores to run functions in parallel with future/furrr
 }
+\examples{
+\dontrun{
+# use all cores - 1
+cb_set_future_cores()
+
+# or a specified number of cores
+cb_set_future_cores(n = 10)
+}
+}
