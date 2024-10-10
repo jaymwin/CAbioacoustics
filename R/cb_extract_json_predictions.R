@@ -56,7 +56,7 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
 
     json_df |>
       dplyr::select(-logit_threshold) |>
-      mutate(json = file_name) |>
+      dplyr::mutate(json = file_name) |>
       dplyr::select(json, relative_time, species_code, birdnet_logit = value) |>
       # and save
       readr::write_csv(stringr::str_glue(here::here('code_outputs/post_birdnet_{date_time}/species_predictions/{file_name}_filtered.csv')))
