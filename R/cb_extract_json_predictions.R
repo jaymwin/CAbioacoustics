@@ -58,10 +58,17 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
         species_threshold_df |> dplyr::filter(species_type %in% c('forest_owl', 'csow_bdow')),
         by = dplyr::join_by('species_code')
       ) |>
-      dplyr::filter(value >= logit_threshold) |>
+      dplyr::filter(value >= logit_threshold)
+
+    if (dim(json_df)[1] > 0) {
+
+    json_df <-
+      json_df |>
       dplyr::group_by(relative_time, scientific_name) |>
       dplyr::filter(species_code == max(species_code)) |>
       dplyr::ungroup()
+
+    }
 
   } else if (rounded_file_start_time %in% all_bird_hours) {
 
@@ -79,10 +86,17 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
         species_threshold_df,
         by = dplyr::join_by('species_code')
       ) |>
-      dplyr::filter(value >= logit_threshold) |>
-      dplyr::group_by(relative_time, scientific_name) |>
-      dplyr::filter(species_code == max(species_code)) |>
-      dplyr::ungroup()
+      dplyr::filter(value >= logit_threshold)
+
+    if (dim(json_df)[1] > 0) {
+
+      json_df <-
+        json_df |>
+        dplyr::group_by(relative_time, scientific_name) |>
+        dplyr::filter(species_code == max(species_code)) |>
+        dplyr::ungroup()
+
+    }
 
   } else if (rounded_file_start_time %in% diurnal_bird_hours) {
 
