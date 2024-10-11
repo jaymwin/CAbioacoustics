@@ -252,3 +252,46 @@ hoot_buffer_distance <- 1500 # (meters)
 
 # save
 usethis::use_data(hoot_buffer_distance, overwrite = TRUE)
+
+
+# recording times by species group ----------------------------------------
+
+# these are start times
+csow_bdow_forest_owl_hours <-
+  hms::parse_hms(
+    c(
+      '20:00:00',
+      '21:00:00',
+      '22:00:00',
+      '23:00:00',
+      '00:00:00',
+      '01:00:00',
+      '02:00:00',
+      '03:00:00'
+    )
+  )
+
+usethis::use_data(csow_bdow_forest_owl_hours, overwrite = TRUE)
+
+all_bird_hours <-
+  hms::parse_hms(
+    c(
+      '03:00:00',
+      '04:00:00'
+    )
+  )
+
+usethis::use_data(all_bird_hours, overwrite = TRUE)
+
+diurnal_bird_hours <-
+  hms::parse_hms(
+    c(
+      '18:00:00',
+      '19:00:00',
+      '06:00:00',
+      '07:00:00',
+      '08:00:00'
+    )
+  )
+
+usethis::use_data(diurnal_bird_hours, overwrite = TRUE)

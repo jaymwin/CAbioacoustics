@@ -40,17 +40,67 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
       append = TRUE
     )
 
-  json_df <-
-    json_df |>
-    dplyr::group_by(relative_time) |>
-    # this allows for different duration files
-    dplyr::mutate(
-      species_code = dplyr::row_number() - 1,
-      relative_time = as.numeric(relative_time)
-    ) |>
-    dplyr::ungroup() |>
-    dplyr::inner_join(species_threshold_df, by = dplyr::join_by('species_code')) |>
-    dplyr::filter(value >= logit_threshold)
+  if (rounded_file_start_time %in% csow_bdow_forest_owl_hours) {
+
+    # owl outputs only
+    json_df <-
+      json_df |>
+      dplyr::group_by(relative_time) |>
+      # this allows for different duration files
+      dplyr::mutate(
+        species_code = dplyr::row_number() - 1,
+        relative_time = as.numeric(relative_time)
+      ) |>
+      dplyr::ungroup() |>
+      dplyr::inner_join(
+        species_threshold_df |> dplyr::filter(species_type %in% c('forest_owl', 'csow_bdow')),
+        by = dplyr::join_by('species_code')
+      ) |>
+      dplyr::filter(value >= logit_threshold) |>
+      group_by(relative_time, scientific_name) |>
+      dplyr::filter(species_code == max(species_code)) |>
+      dplyr::ungroup()
+
+  } else if (rounded_file_start_time %in% all_bird_hours) {
+
+    # all outputs
+    json_df <-
+      json_df |>
+      dplyr::group_by(relative_time) |>
+      # this allows for different duration files
+      dplyr::mutate(
+        species_code = dplyr::row_number() - 1,
+        relative_time = as.numeric(relative_time)
+      ) |>
+      dplyr::ungroup() |>
+      dplyr::inner_join(
+        species_threshold_df,
+        by = dplyr::join_by('species_code')
+      ) |>
+      dplyr::filter(value >= logit_threshold) |>
+      group_by(relative_time, scientific_name) |>
+      dplyr::filter(species_code == max(species_code)) |>
+      dplyr::ungroup()
+
+  } else if (rounded_file_start_time %in% diurnal_bird_hours) {
+
+    # diurnal outputs only
+    json_df <-
+      json_df |>
+      dplyr::group_by(relative_time) |>
+      # this allows for different duration files
+      dplyr::mutate(
+        species_code = dplyr::row_number() - 1,
+        relative_time = as.numeric(relative_time)
+      ) |>
+      dplyr::ungroup() |>
+      dplyr::inner_join(
+        species_threshold_df |> dplyr::filter(species_type == 'diurnal'),
+        by = dplyr::join_by('species_code')
+      ) |>
+      dplyr::filter(value >= logit_threshold)
+
+  }
 
   if (dim(json_df)[1] > 0) {
 
