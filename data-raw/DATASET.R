@@ -276,8 +276,8 @@ usethis::use_data(csow_bdow_forest_owl_hours, overwrite = TRUE)
 all_bird_hours <-
   hms::parse_hms(
     c(
-      '03:00:00',
-      '04:00:00'
+      '04:00:00',
+      '05:00:00'
     )
   )
 
