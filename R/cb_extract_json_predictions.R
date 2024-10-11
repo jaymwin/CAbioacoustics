@@ -13,6 +13,8 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
 
   # get name of file first for saving things later
   file_name <- stringr::str_extract(path, 'G(P|R|C|M|0)[0-9]{2}_V[1-5]{1}_C[0-9]{4}_U[1-5]{1}_[0-9]{8}_[0-9]{6}')
+  file_date_time <- lubridate::ymd_hms(stringr::str_extract(file_name, '[0-9]{8}_[0-9]{6}'))
+  rounded_file_start_time <- hms::as_hms(lubridate::round_date(file_date_time, 'hour'))
 
   # read json (shouldn't be any errors at this point)
   json_df <-
