@@ -59,7 +59,7 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
         by = dplyr::join_by('species_code')
       ) |>
       dplyr::filter(value >= logit_threshold) |>
-      group_by(relative_time, scientific_name) |>
+      dplyr::group_by(relative_time, scientific_name) |>
       dplyr::filter(species_code == max(species_code)) |>
       dplyr::ungroup()
 
@@ -80,7 +80,7 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
         by = dplyr::join_by('species_code')
       ) |>
       dplyr::filter(value >= logit_threshold) |>
-      group_by(relative_time, scientific_name) |>
+      dplyr::group_by(relative_time, scientific_name) |>
       dplyr::filter(species_code == max(species_code)) |>
       dplyr::ungroup()
 
