@@ -24,7 +24,7 @@ cb_create_selection_table <- function(df, date_time, species_group) {
     `Low Freq (Hz)` = 150,
     `High Freq (Hz)` = 12000,
     `Common Name` = df$common_name,
-    Score = df$score,
+    Score = df$species_code,
     Detector = 'BirdNET',
     Species = '',
     `Call Type` = df$call_type,
@@ -56,7 +56,7 @@ cb_create_selection_table <- function(df, date_time, species_group) {
       `Common Name` = df$common_name,
       Score = df$score,
       Detector = 'BirdNET',
-      Species = '',
+      Species = df$species_code,
       Keep = ''
     ) |>
       write.table(
