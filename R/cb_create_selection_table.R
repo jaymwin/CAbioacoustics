@@ -26,7 +26,7 @@ cb_create_selection_table <- function(df, date_time, species_group) {
     `Common Name` = df$common_name,
     Score = df$score,
     Detector = 'BirdNET',
-    Species = df$species_code,
+    Species = df$species,
     `Call Type` = df$call_type,
     Sex = '',
     Keep = '',
@@ -56,7 +56,7 @@ cb_create_selection_table <- function(df, date_time, species_group) {
       `Common Name` = df$common_name,
       Score = df$score,
       Detector = 'BirdNET',
-      Species = df$species_code,
+      Species = df$species,
       Keep = ''
     ) |>
       write.table(
