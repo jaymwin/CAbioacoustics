@@ -26,10 +26,10 @@ cb_create_selection_table <- function(df, date_time, species_group) {
     `Common Name` = df$common_name,
     Score = df$score,
     Detector = 'BirdNET',
-    Species = as.character(NA),
+    Species = '',
     `Call Type` = df$call_type,
-    Sex = as.character(NA),
-    Keep = 'Y',
+    Sex = '',
+    Keep = '',
     Overwrite = 'no'
   ) |>
     write.table(
@@ -56,8 +56,8 @@ cb_create_selection_table <- function(df, date_time, species_group) {
       `Common Name` = df$common_name,
       Score = df$score,
       Detector = 'BirdNET',
-      Species = as.character(NA),
-      Keep = 'Y'
+      Species = '',
+      Keep = ''
     ) |>
       write.table(
         file = stringr::str_glue(here::here('code_outputs/forest_owl_selection_tables_{date_time}/{flac_name}.BirdNET')),
