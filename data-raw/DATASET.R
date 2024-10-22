@@ -296,3 +296,13 @@ diurnal_bird_hours <-
   )
 
 usethis::use_data(diurnal_bird_hours, overwrite = TRUE)
+
+
+# minimum json predictions ------------------------------------------------
+
+# this is equivalent to a 30 minute recording with predictions for each
+# 3-second chunk
+min_json_predictions <- 144600
+
+usethis::use_data(min_json_predictions, overwrite = TRUE)
+
