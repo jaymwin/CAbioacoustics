@@ -9,6 +9,7 @@
 #' @examples
 #' \dontrun{
 #' cell_list <- cb_cells_by_ownership('usfs')
+#' print(cell_list)
 #' }
 
 cb_cells_by_ownership <- function(ownership) {
