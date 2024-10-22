@@ -12,3 +12,12 @@ cb_play_flac(flac_path, begin_time, end_time)
 \description{
 Play a BirdNET selection from a FLAC file
 }
+\examples{
+\dontrun{
+cb(
+ "Z:/Acoustic_Data/ARU_Data_Raw/ARU_Sierra_Monitoring/2024/North/G018_V1/G018_V1_C0263_U3/G018_V1_C0263_U3_20240616/G018_V1_C0263_U3_20240616_060104Z.flac",
+ 3,
+ 6
+)
+}
+}
