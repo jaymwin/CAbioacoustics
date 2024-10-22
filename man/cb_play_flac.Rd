@@ -7,7 +7,11 @@
 cb_play_flac(flac_path, begin_time, end_time)
 }
 \arguments{
-\item{end_time}{}
+\item{flac_path}{Path to FLAC file}
+
+\item{begin_time}{When to start playing FLAC}
+
+\item{end_time}{When to stop playing FLAC}
 }
 \description{
 Play a BirdNET selection from a FLAC file
