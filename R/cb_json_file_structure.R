@@ -9,6 +9,24 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # example ARU data frame
+#' # set mapped drive to research path
+#' network_drive <- 'Z:'
+#' # path to data
+#' path <- stringr::str_c(network_drive, "/Acoustic_Data/ARU_Data_Processed/BirdNET_Results_JSON")
+#' # current year = survey year
+#' data_year <- lubridate::year(lubridate::today())
+
+#' # string with proper naming convention
+#' json_file_structure <-
+#'   cb_json_file_structure(
+#'     network_drive = network_drive,
+#'     survey_year = data_year,
+#'     regions = regions
+#'  )
+#'  print(json_file_structure)
+#' }
 
 cb_json_file_structure <- function(network_drive, survey_year, regions) {
 
