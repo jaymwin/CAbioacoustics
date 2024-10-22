@@ -27,7 +27,7 @@ tibble::tribble(
 )
 # convert to simple feature point geometry
 aru_df |>
-dplyr::group_split(utm_zone) |>
+  dplyr::group_split(utm_zone) |>
   purrr::map_dfr(cb_make_aru_sf)
 }
 }

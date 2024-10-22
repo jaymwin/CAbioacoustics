@@ -3,7 +3,6 @@
 export("%>%")
 export("%ni%")
 export(cb_arcgis_deployments)
-export(cb_aru_lat_long)
 export(cb_cells_by_ownership)
 export(cb_check_bad_json)
 export(cb_check_empty_folders)

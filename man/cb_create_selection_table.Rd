@@ -2,13 +2,13 @@
 % Please edit documentation in R/cb_create_selection_table.R
 \name{cb_create_selection_table}
 \alias{cb_create_selection_table}
-\title{Title}
+\title{Create selection tables for CSOW/BDOW or forest owls}
 \usage{
 cb_create_selection_table(df, date_time, species_group)
 }
 \arguments{
-\item{df}{}
+\item{species_group}{}
 }
 \description{
-Title
+Create selection tables for CSOW/BDOW or forest owls
 }

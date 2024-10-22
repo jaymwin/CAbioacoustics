@@ -2,7 +2,7 @@
 % Please edit documentation in R/cb_extract_json_predictions.R
 \name{cb_extract_json_predictions}
 \alias{cb_extract_json_predictions}
-\title{Title}
+\title{Extract predictions from JSON files using species-specific threshold values}
 \usage{
 cb_extract_json_predictions(
   path,
@@ -11,8 +11,8 @@ cb_extract_json_predictions(
 )
 }
 \arguments{
-\item{species_thresholds}{}
+\item{date_time}{}
 }
 \description{
-Title
+Extract predictions from JSON files using species-specific threshold values
 }
