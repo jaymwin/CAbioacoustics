@@ -3,7 +3,7 @@
 #'
 #' @param n Number of cores to use. If blank, use all except leave one available for other tasks.
 #'
-#' @return
+#' @return Number of cores to use in parallel
 #' @export
 #'
 #' @examples

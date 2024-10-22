@@ -6,6 +6,9 @@
 \usage{
 cb_set_db_credentials()
 }
+\value{
+Saved passwords for spotted owl database
+}
 \description{
 Establish credentials for the UW spotted owl database
 }

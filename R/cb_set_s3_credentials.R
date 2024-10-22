@@ -1,6 +1,7 @@
 
 #' Establish credentials to access Amazon S3 bucket
 #'
+#' @return Saved passwords for Amazon S3
 #' @export
 #'
 #' @examples

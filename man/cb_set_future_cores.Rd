@@ -9,6 +9,9 @@ cb_set_future_cores(n)
 \arguments{
 \item{n}{Number of cores to use. If blank, use all except leave one available for other tasks.}
 }
+\value{
+Number of cores to use in parallel
+}
 \description{
 Set number of cores to run functions in parallel with future/furrr
 }

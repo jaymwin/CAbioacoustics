@@ -6,6 +6,9 @@
 \usage{
 cb_update_birdnet_db()
 }
+\value{
+Updated duckdb
+}
 \description{
 Append new detections to a duckdb of all BirdNET species detections
 }

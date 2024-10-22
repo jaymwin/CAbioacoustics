@@ -1,7 +1,7 @@
 
 #' Print Globus endpoint IDs
 #'
-#' @return
+#' @return UUIDs for available Globus endpoints
 #' @export
 #'
 #' @examples

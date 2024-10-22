@@ -1,7 +1,7 @@
 
 #' Append new detections to a duckdb of all BirdNET species detections
 #'
-#' @return
+#' @return Updated duckdb
 #' @export
 #'
 #' @examples

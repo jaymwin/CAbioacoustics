@@ -6,6 +6,9 @@
 \usage{
 cb_show_globus_endpoints()
 }
+\value{
+UUIDs for available Globus endpoints
+}
 \description{
 Print Globus endpoint IDs
 }

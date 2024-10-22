@@ -6,6 +6,9 @@
 \usage{
 cb_set_s3_credentials()
 }
+\value{
+Saved passwords for Amazon S3
+}
 \description{
 Establish credentials to access Amazon S3 bucket
 }
