@@ -10,7 +10,8 @@
 #'
 #' @examples
 #' \dontrun{
-#' cb(
+#' # play seconds 3-6
+#' cb_play_flac(
 #'  "Z:/Acoustic_Data/ARU_Data_Raw/ARU_Sierra_Monitoring/2024/North/G018_V1/G018_V1_C0263_U3/G018_V1_C0263_U3_20240616/G018_V1_C0263_U3_20240616_060104Z.flac",
 #'  3,
 #'  6
