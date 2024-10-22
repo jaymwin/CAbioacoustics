@@ -5,7 +5,7 @@
 #' @param begin_time When to start playing FLAC
 #' @param end_time When to stop playing FLAC
 #'
-#' @return
+#' @return Audio of FLAC at particular start/end time
 #' @export
 #'
 #' @examples

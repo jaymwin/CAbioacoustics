@@ -7,7 +7,14 @@
 cb_json_file_structure(network_drive, survey_year, regions)
 }
 \arguments{
-\item{regions}{}
+\item{network_drive}{Drive name (e.g., Z:/)}
+
+\item{survey_year}{Year}
+
+\item{regions}{Study regions (e.g., North, Central, South) or other year subfolder names}
+}
+\value{
+String with proper naming convention
 }
 \description{
 Create expected JSON file path based on drive location, survey year, and study regions

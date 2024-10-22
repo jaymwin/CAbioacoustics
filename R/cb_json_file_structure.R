@@ -1,11 +1,11 @@
 
 #' Create expected JSON file path based on drive location, survey year, and study regions
 #'
-#' @param network_drive
-#' @param survey_year
-#' @param regions
+#' @param network_drive Drive name (e.g., Z:/)
+#' @param survey_year Year
+#' @param regions Study regions (e.g., North, Central, South) or other year subfolder names
 #'
-#' @return
+#' @return String with proper naming convention
 #' @export
 #'
 #' @examples

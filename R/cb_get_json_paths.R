@@ -1,10 +1,10 @@
 
 #' Get path info for JSONs on research drive
 #'
-#' @param path
-#' @param year
+#' @param path Path to JSON files
+#' @param year Year
 #'
-#' @return
+#' @return Tibble of JSON file paths with size (MB), file name, and deployment name
 #' @export
 #'
 #' @examples
