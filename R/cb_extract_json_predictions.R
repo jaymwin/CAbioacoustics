@@ -1,8 +1,9 @@
 
-#' Title
+#' Extract predictions from JSON files using species-specific threshold values
 #'
 #' @param path
 #' @param species_thresholds
+#' @param date_time
 #'
 #' @return
 #' @export

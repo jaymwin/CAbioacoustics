@@ -1,7 +1,9 @@
 
-#' Title
+#' Create selection tables for CSOW/BDOW or forest owls
 #'
 #' @param df
+#' @param date_time
+#' @param species_group
 #'
 #' @return
 #' @export
