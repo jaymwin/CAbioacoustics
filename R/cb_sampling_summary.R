@@ -1,5 +1,5 @@
 
-#' Title
+#' Get summary of sampling effort
 #'
 #' @param species
 #' @param template

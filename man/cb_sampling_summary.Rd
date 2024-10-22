@@ -2,7 +2,7 @@
 % Please edit documentation in R/cb_sampling_summary.R
 \name{cb_sampling_summary}
 \alias{cb_sampling_summary}
-\title{Title}
+\title{Get summary of sampling effort}
 \usage{
 cb_sampling_summary(
   species,
@@ -17,5 +17,5 @@ cb_sampling_summary(
 \item{end_year}{}
 }
 \description{
-Title
+Get summary of sampling effort
 }

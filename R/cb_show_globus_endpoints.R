@@ -5,6 +5,9 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' cb_show_globus_endpoints()
+#' }
 
 cb_show_globus_endpoints <- function() {
 
