@@ -241,7 +241,7 @@ usethis::use_data(min_flac_size, overwrite = TRUE)
 
 # file sizes below this are moved and later discarded
 # this seems to be a good threshold now that jsons contain embeddings
-min_json_size <- 4 # (megabytes)
+min_json_size <- 3 # (megabytes)
 
 # save
 usethis::use_data(min_json_size, overwrite = TRUE)
