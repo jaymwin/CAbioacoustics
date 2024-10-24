@@ -6,7 +6,7 @@
 #'
 #' @examples
 
-cb_update_birdnet_db <- function() {
+cb_update_birdnet_db <- function(spp_predictions_df) {
 
   # if 2024, create duckdb for the first time; otherwise don't and just append the new data
   if (!file.exists("Z:/birdnet_detections_effort.duckdb")) {
@@ -38,8 +38,7 @@ cb_update_birdnet_db <- function() {
 
     conn <- DBI::dbConnect(duckdb::duckdb(dbdir = "Z:/birdnet_detections_effort.duckdb"))
 
-    birdnet_prediction_paths <- fs::dir_ls(stringr::str_glue(here::here('code_outputs/post_birdnet_{date_time}/species_predictions')), glob = '*.csv')
-    duckdb::duckdb_read_csv(conn, "species_detections", birdnet_prediction_paths)
+    DBI::dbAppendTable(conn, "species_detections", spp_predictions_df)
     duckdb::duckdb_read_csv(conn, "species_thresholds", here::here('birdnet_sierra_241_spp_thresholds.csv'))
 
     DBI::dbDisconnect(conn)
@@ -51,8 +50,7 @@ cb_update_birdnet_db <- function() {
 
     conn <- DBI::dbConnect(duckdb::duckdb(dbdir = "Z:/birdnet_detections_effort.duckdb"))
 
-    birdnet_prediction_paths <- fs::dir_ls(stringr::str_glue(here::here('code_outputs/post_birdnet_{date_time}/species_predictions')), glob = '*.csv')
-    duckdb::duckdb_read_csv(conn, "species_detections", birdnet_prediction_paths)
+    DBI::dbAppendTable(conn, "species_detections", spp_predictions_df)
 
     DBI::dbDisconnect(conn)
 
