@@ -27,7 +27,7 @@ cb_update_birdnet_db <- function(spp_predictions_df) {
 
     # full set of thresholds
     thresholds_df <-
-      read_csv(here::here('birdnet_sierra_241_spp_thresholds.csv'))
+      readr::read_csv(here::here('birdnet_sierra_241_spp_thresholds.csv'))
 
     # create these tables in the database
     DBI::dbCreateTable(conn, "species_detections", spp_detections_template)
