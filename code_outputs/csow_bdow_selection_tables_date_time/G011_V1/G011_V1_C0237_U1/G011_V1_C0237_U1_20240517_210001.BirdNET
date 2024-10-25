@@ -1,3 +1,0 @@
-Selection	View	Channel	Begin File	Begin Time (s)	End Time (s)	Low Freq (Hz)	High Freq (Hz)	Common Name	Score	Detector	Species	Call Type	Sex	Keep	Overwrite
-1	Spectrogram 1	1	G011_V1_C0237_U1_20240517_210001.flac	876	879	150	12000	Spotted Owl (four)	0.99	BirdNET	CSOW	FOUR			no
-2	Spectrogram 1	1	G011_V1_C0237_U1_20240517_210001.flac	3333	3336	150	12000	Spotted Owl (four)	0.99	BirdNET	CSOW	FOUR			no
