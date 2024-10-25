@@ -9,12 +9,12 @@
 cb_update_birdnet_db <- function(spp_predictions_df) {
 
   # if 2024, create duckdb for the first time; otherwise don't and just append the new data
-  if (!file.exists("Z:/birdnet_detections_effort.duckdb")) {
+  if (!file.exists("Z:/sierra_birdnet_detections_effort.duckdb")) {
 
     message("database doesn't exist yet; building database...")
 
     # create database
-    conn <- DBI::dbConnect(duckdb::duckdb(dbdir = "Z:/birdnet_detections_effort.duckdb"))
+    conn <- DBI::dbConnect(duckdb::duckdb(dbdir = "Z:/sierra_birdnet_detections_effort.duckdb"))
 
     # create empty table of species detections
     spp_detections_template <-
@@ -36,7 +36,7 @@ cb_update_birdnet_db <- function(spp_predictions_df) {
     # then append to empty database
     message('appending new data to database...')
 
-    conn <- DBI::dbConnect(duckdb::duckdb(dbdir = "Z:/birdnet_detections_effort.duckdb"))
+    conn <- DBI::dbConnect(duckdb::duckdb(dbdir = "Z:/sierra_birdnet_detections_effort.duckdb"))
 
     DBI::dbAppendTable(conn, "species_detections", spp_predictions_df)
     duckdb::duckdb_read_csv(conn, "species_thresholds", here::here('birdnet_sierra_241_spp_thresholds.csv'))
@@ -48,7 +48,7 @@ cb_update_birdnet_db <- function(spp_predictions_df) {
     # otherwise append new data
     message('appending new data to database...')
 
-    conn <- DBI::dbConnect(duckdb::duckdb(dbdir = "Z:/birdnet_detections_effort.duckdb"))
+    conn <- DBI::dbConnect(duckdb::duckdb(dbdir = "Z:/sierra_birdnet_detections_effort.duckdb"))
 
     DBI::dbAppendTable(conn, "species_detections", spp_predictions_df)
 
