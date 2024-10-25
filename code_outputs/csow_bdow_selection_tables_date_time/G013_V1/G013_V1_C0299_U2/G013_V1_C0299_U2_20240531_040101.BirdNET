@@ -1,0 +1,2 @@
+Selection	View	Channel	Begin File	Begin Time (s)	End Time (s)	Low Freq (Hz)	High Freq (Hz)	Common Name	Score	Detector	Species	Call Type	Sex	Keep	Overwrite
+1	Spectrogram 1	1	G013_V1_C0299_U2_20240531_040101.flac	297	300	150	12000	Barred Owl	0.982	BirdNET	BDOW				no

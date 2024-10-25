@@ -1,0 +1,24 @@
+Selection	View	Channel	Begin File	Begin Time (s)	End Time (s)	Low Freq (Hz)	High Freq (Hz)	Common Name	Score	Detector	Species	Call Type	Sex	Keep	Overwrite
+1	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	0	3	150	12000	Spotted Owl	0.995	BirdNET	CSOW				no
+2	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	36	39	150	12000	Spotted Owl (four)	0.997	BirdNET	CSOW	FOUR			no
+3	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	60	63	150	12000	Spotted Owl (four)	0.999	BirdNET	CSOW	FOUR			no
+4	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	279	282	150	12000	Spotted Owl (four)	0.999	BirdNET	CSOW	FOUR			no
+5	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	303	306	150	12000	Spotted Owl (four)	0.996	BirdNET	CSOW	FOUR			no
+6	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	333	336	150	12000	Spotted Owl	0.997	BirdNET	CSOW				no
+7	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	336	339	150	12000	Spotted Owl	0.997	BirdNET	CSOW				no
+8	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	372	375	150	12000	Spotted Owl (four)	0.997	BirdNET	CSOW	FOUR			no
+9	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	396	399	150	12000	Spotted Owl	0.996	BirdNET	CSOW				no
+10	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	399	402	150	12000	Spotted Owl	0.999	BirdNET	CSOW				no
+11	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	423	426	150	12000	Spotted Owl (four)	0.991	BirdNET	CSOW	FOUR			no
+12	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	426	429	150	12000	Spotted Owl (four)	0.994	BirdNET	CSOW	FOUR			no
+13	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	486	489	150	12000	Spotted Owl (four)	0.992	BirdNET	CSOW	FOUR			no
+14	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	516	519	150	12000	Spotted Owl (four)	0.999	BirdNET	CSOW	FOUR			no
+15	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	555	558	150	12000	Spotted Owl (four)	0.992	BirdNET	CSOW	FOUR			no
+16	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	612	615	150	12000	Spotted Owl (four)	0.996	BirdNET	CSOW	FOUR			no
+17	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	615	618	150	12000	Spotted Owl	1	BirdNET	CSOW				no
+18	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	663	666	150	12000	Spotted Owl (four)	0.997	BirdNET	CSOW	FOUR			no
+19	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	705	708	150	12000	Spotted Owl	0.998	BirdNET	CSOW				no
+20	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	708	711	150	12000	Spotted Owl (four)	0.997	BirdNET	CSOW	FOUR			no
+21	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	930	933	150	12000	Spotted Owl (four)	0.995	BirdNET	CSOW	FOUR			no
+22	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	948	951	150	12000	Spotted Owl (four)	0.998	BirdNET	CSOW	FOUR			no
+23	Spectrogram 1	1	G001_V1_C0131_U3_20240517_050102.flac	1092	1095	150	12000	Spotted Owl (four)	0.995	BirdNET	CSOW	FOUR			no
