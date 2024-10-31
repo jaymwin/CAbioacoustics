@@ -13,8 +13,8 @@
 cb_create_selection_table <- function(df, date_time, species_group) {
 
   flac_name <- unique(df$json)
-  group_visit <- stringr::str_sub(flac_name, 1, 7)
-  group_visit_cell_unit <- stringr::str_sub(flac_name, 1, 16)
+  group <- stringr::str_sub(flac_name, 1, 4)
+  cell <- stringr::str_extract(flac_name, 'C[0-9]{4}')
 
   if (species_group == 'csow_bdow') {
 
@@ -31,13 +31,13 @@ cb_create_selection_table <- function(df, date_time, species_group) {
     Score = df$score,
     Detector = 'BirdNET',
     Species = df$species,
-    `Call Type` = df$call_type,
+    `Call Type` = stringr::str_to_lower(df$call_type),
     Sex = '',
     Keep = '',
     Overwrite = 'no'
   ) |>
     write.table(
-      file = stringr::str_glue(here::here('code_outputs/csow_bdow_selection_tables_{date_time}/{group_visit}/{group_visit_cell_unit}/{flac_name}.BirdNET')),
+      file = stringr::str_glue(here::here('code_outputs/csow_bdow_selection_tables_{date_time}/{group}/{cell}/{flac_name}.BirdNET')),
       sep = "\t",
       row.names = FALSE,
       col.names = TRUE,
@@ -64,7 +64,7 @@ cb_create_selection_table <- function(df, date_time, species_group) {
       Keep = ''
     ) |>
       write.table(
-        file = stringr::str_glue(here::here('code_outputs/forest_owl_selection_tables_{date_time}/{group_visit}/{group_visit_cell_unit}/{flac_name}.BirdNET')),
+        file = stringr::str_glue(here::here('code_outputs/forest_owl_selection_tables_{date_time}/{group}/{cell}/{flac_name}.BirdNET')),
         sep = "\t",
         row.names = FALSE,
         col.names = TRUE,

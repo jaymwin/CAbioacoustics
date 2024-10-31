@@ -4,7 +4,7 @@
 \alias{cb_update_birdnet_db}
 \title{Append new detections to a duckdb of all BirdNET species detections}
 \usage{
-cb_update_birdnet_db(spp_predictions_df)
+cb_update_birdnet_db(spp_predictions_df, effort_df)
 }
 \value{
 Updated duckdb

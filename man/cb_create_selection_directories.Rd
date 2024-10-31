@@ -4,7 +4,7 @@
 \alias{cb_create_selection_directories}
 \title{Create directories to store selection tables}
 \usage{
-cb_create_selection_directories(date_time, directory)
+cb_create_selection_directories(date_time, directory, species_group)
 }
 \arguments{
 \item{directory}{}
