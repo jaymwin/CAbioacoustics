@@ -99,7 +99,7 @@ cb_get_surveyor_overlap <- function(df, human_hoots, year, previous_date_time, n
   # otherwise change overwrite to 'no' and save
   if (isTRUE(intersections) == TRUE) {
 
-    focal_birdnet_df |>
+    df |>
       dplyr::select(-filename) |>
       dplyr::mutate(Overwrite = 'surveyed') |>
       dplyr::mutate(dplyr::across(c(View, `Begin File`, `Common Name`, Detector, Species, `Call Type`, Sex, Keep, Overwrite), ~tidyr::replace_na(., ""))) |>
@@ -113,7 +113,7 @@ cb_get_surveyor_overlap <- function(df, human_hoots, year, previous_date_time, n
 
   } else {
 
-    focal_birdnet_df |>
+    df |>
       dplyr::select(-filename) |>
       dplyr::mutate(Overwrite = 'no') |>
       dplyr::mutate(dplyr::across(c(View, `Begin File`, `Common Name`, Detector, Species, `Call Type`, Sex, Keep, Overwrite), ~tidyr::replace_na(., ""))) |>
