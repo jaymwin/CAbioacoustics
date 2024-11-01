@@ -31,6 +31,7 @@ Collate:
     'cb_get_json_paths.R'
     'cb_get_s3_df.R'
     'cb_get_spatial.R'
+    'cb_get_surveyor_overlap.R'
     'cb_globus_check.R'
     'cb_globus_transfer.R'
     'cb_json_file_structure.R'
