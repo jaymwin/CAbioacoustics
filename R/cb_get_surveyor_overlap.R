@@ -8,7 +8,7 @@
 #'
 #' @examples
 
-cb_get_surveyor_overlap <- function(df, year, previous_date_time, new_date_time) {
+cb_get_surveyor_overlap <- function(df, human_hoots, year, previous_date_time, new_date_time) {
 
   # get birdnet file path and filename (XXXX.flac)
   focal_birdnet_path <- unique(df$filename)
@@ -68,19 +68,19 @@ cb_get_surveyor_overlap <- function(df, year, previous_date_time, new_date_time)
     sf::st_buffer(dist = 1500)
 
   # now determine if there are any surveyor hoots on the same night as the birdnet detections
-  hoots <- CAbioacoustics:::hoots_same_night(human_hoots_sf, focal_date)
+  hoots <- CAbioacoustics:::hoots_same_night(human_hoots, focal_date)
 
   # if there are, then see if any surveyor hoot locations intersect the ARU buffer;
   # otherwise set 'intersections' to FALSE
   if (hoots == TRUE) {
 
     focal_human_hoots_sf <-
-      human_hoots_sf %>%
+      human_hoots %>%
       # does it intersect ARU buffer?
       dplyr::filter(survey_night_date == as.Date(birdnet_selection_df$aru_survey_night))
 
     intersections <-
-      human_hoots_sf %>%
+      human_hoots %>%
       # does it intersect ARU buffer?
       dplyr::filter(survey_night_date == as.Date(birdnet_selection_df$aru_survey_night)) %>%
       dplyr::mutate(int = CAbioacoustics:::st_intersects_any(., focal_deployment_sf |> sf::st_transform(4326))) |>
