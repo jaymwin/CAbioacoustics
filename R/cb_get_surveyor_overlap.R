@@ -28,7 +28,7 @@ cb_get_surveyor_overlap <- function(df, year, previous_date_time, new_date_time)
       # convert date to survey night depending on time
       aru_survey_night =
         dplyr::case_when(
-          hour(hms::as_hms(aru_date_time)) >= 0 ~ as.Date(aru_date_time) - 1,
+          lubridate::hour(hms::as_hms(aru_date_time)) >= 0 ~ as.Date(aru_date_time) - 1,
           TRUE ~ as.Date(aru_date_time)
         )
     ) |>
