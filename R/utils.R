@@ -283,12 +283,13 @@ move_jsons_delete <- function(x) {
 write_pipeline_batches <- function(df, date_time) {
 
   region <- unique(df$region)
+  study <- unique(df$study_type)
   csv_num <- unique(df$csv_num)
 
   df |>
     dplyr::select(file_name) |>
     write.table(
-      stringr::str_glue(here::here('code_outputs/effort_pipelines_{date_time}/{region}_{csv_num}_pipeline.csv')),
+      stringr::str_glue(here::here('code_outputs/effort_pipelines_{date_time}/{region}_{study}_{csv_num}_pipeline.csv')),
       row.names = FALSE,
       col.names = FALSE
     )
