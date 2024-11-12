@@ -4,7 +4,13 @@
 \alias{cb_get_surveyor_overlap}
 \title{Identify BirdNET selections that overlapped with CSOW broadcast surveys}
 \usage{
-cb_get_surveyor_overlap(df, year, previous_date_time, new_date_time)
+cb_get_surveyor_overlap(
+  df,
+  human_hoots,
+  year,
+  previous_date_time,
+  new_date_time
+)
 }
 \arguments{
 \item{df}{}

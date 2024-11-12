@@ -27,6 +27,7 @@ Collate:
     'cb_flac_file_structure.R'
     'cb_get_audio_duration.R'
     'cb_get_date_time.R'
+    'cb_get_elevation.R'
     'cb_get_flac_paths.R'
     'cb_get_json_paths.R'
     'cb_get_s3_df.R'
