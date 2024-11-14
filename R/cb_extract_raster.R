@@ -75,7 +75,19 @@ cb_extract_raster <- function(sf_object, scale, raster_layer, raster_name, buffe
 
   if (scale == 'hex' & is.null(buffer_size) == TRUE) {
 
-    print('do hex stuff, not done yet')
+    extract_df <-
+      exactextractr::exact_extract(
+      raster_layer,
+      # buffer points
+      sf_object |> sf::st_transform(sf::st_crs(raster_layer)),
+      fun = fun,
+      progress = FALSE
+    )
+
+    # bind to deployments
+    sf_object <-
+      sf_object |>
+      dplyr::bind_cols(extract_df)
 
   }
 
