@@ -77,12 +77,14 @@ cb_extract_raster <- function(sf_object, scale, raster_layer, raster_name, buffe
 
     extract_df <-
       exactextractr::exact_extract(
-      raster_layer,
-      # buffer points
-      sf_object |> sf::st_transform(sf::st_crs(raster_layer)),
-      fun = fun,
-      progress = FALSE
-    )
+        raster_layer,
+        # buffer points
+        sf_object |> sf::st_transform(sf::st_crs(raster_layer)),
+        fun = fun,
+        progress = FALSE
+      ) |>
+      tibble::as_tibble() |>
+      dplyr::rename_at(1, ~ raster_name)
 
     # bind to deployments
     sf_object <-
