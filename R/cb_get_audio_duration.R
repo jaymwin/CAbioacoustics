@@ -10,6 +10,9 @@
 
 cb_get_audio_duration <- function(path) {
 
-  av::av_media_info(path)$duration
+  tibble::tibble(
+    path = path,
+    duration = round((av::av_media_info(path)$duration) / 60, 1)
+  )
 
 }
