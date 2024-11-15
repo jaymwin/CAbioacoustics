@@ -1,9 +1,9 @@
 
-#' Get duration of audio file (in seconds)
+#' Get duration of audio file (in minutes)
 #'
 #' @param path Path to audio file
 #'
-#' @return Duration of audio file in seconds
+#' @return Duration of audio file in minutes
 #' @export
 #'
 #' @examples
