@@ -2,7 +2,7 @@
 % Please edit documentation in R/cb_get_audio_duration.R
 \name{cb_get_audio_duration}
 \alias{cb_get_audio_duration}
-\title{Get duration of audio file (in seconds)}
+\title{Get duration of audio file (in minutes)}
 \usage{
 cb_get_audio_duration(path)
 }
@@ -10,8 +10,18 @@ cb_get_audio_duration(path)
 \item{path}{Path to audio file}
 }
 \value{
-Duration of audio file in seconds
+Duration of audio file in minutes
 }
 \description{
-Get duration of audio file (in seconds)
+Get duration of audio file (in minutes)
+}
+\examples{
+\dontrun{
+flac_duration_df <-
+  flac_df |>
+    # list of flac paths
+    pull(path) |>
+    # run in parallel
+    future_map_dfr(get_duration)
+    }
 }

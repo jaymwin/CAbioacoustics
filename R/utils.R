@@ -296,3 +296,12 @@ write_pipeline_batches <- function(df, date_time) {
 
 }
 
+
+# delete a record from the database
+delete_record <- function(table_name, record_id, con) {
+
+  delete_query <- glue::glue_sql("DELETE FROM {table_name} WHERE (id = '{record_id}');", .con = con)
+  print(delete_query)
+  DBI::dbExecute(conn = con, statement = delete_query)
+
+}
