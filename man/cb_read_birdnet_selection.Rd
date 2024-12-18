@@ -4,7 +4,7 @@
 \alias{cb_read_birdnet_selection}
 \title{Read a BirdNET selection table}
 \usage{
-cb_read_birdnet_selection(birdnet_path)
+cb_read_birdnet_selection(birdnet_path, type)
 }
 \arguments{
 \item{birdnet_path}{Path to a BirdNET selection table}
