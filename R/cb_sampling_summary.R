@@ -83,7 +83,7 @@ cb_sampling_summary <- function(species, template, study_type, cell_ids, start_y
     dplyr::mutate(cell_unit = stringr::str_c(cell_id, unit_number, sep = '_')) |>
     dplyr::distinct() |>
     dplyr::collect() |>
-    dplyr::left_join(cb_get_spatial('hexes') |> dplyr::select(cell_id, forest_name = ownership) |> sf::st_drop_geometry(), by = dplyr::join_by('cell_id')) |>
+    dplyr::left_join(cb_get_spatial('sierra_hexes') |> dplyr::select(cell_id, forest_name = ownership) |> sf::st_drop_geometry(), by = dplyr::join_by('cell_id')) |>
     dplyr::group_by(survey_year, forest_name) |>
     dplyr::summarise(
       survey_hours = dplyr::n(),
@@ -118,7 +118,7 @@ cb_sampling_summary <- function(species, template, study_type, cell_ids, start_y
     efforts_deployments_detections_sql_df |>
     dplyr::filter(detection == 1) |>
     dplyr::collect() |>
-    dplyr::left_join(cb_get_spatial('hexes') |> dplyr::select(cell_id, forest_name = ownership) |> sf::st_drop_geometry(), by = dplyr::join_by('cell_id')) |>
+    dplyr::left_join(cb_get_spatial('sierra_hexes') |> dplyr::select(cell_id, forest_name = ownership) |> sf::st_drop_geometry(), by = dplyr::join_by('cell_id')) |>
     dplyr::group_by(survey_year, forest_name) |>
     dplyr::summarise(
       n_detections = sum(detection)
