@@ -125,7 +125,7 @@ cb_sampling_summary <- function(species, template, study_type, cell_ids, start_y
     dplyr::summarise(
       n_detections = sum(detection)
     ) |>
-    dplyr::mutate(n_detections = as.integer(n_detections)) |>
+    # dplyr::mutate(n_detections = as.integer(n_detections)) |>
     dplyr::ungroup() |>
     dplyr::mutate(forest_name = forcats::fct_relevel(forest_name, forests_north_south)) |>
     dplyr::arrange(forest_name, survey_year) |>
