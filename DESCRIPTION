@@ -22,6 +22,7 @@ Collate:
     'cb_connect_db.R'
     'cb_create_selection_directories.R'
     'cb_create_selection_table.R'
+    'cb_create_swift_labels.R'
     'cb_disconnect_db.R'
     'cb_extract_json_predictions.R'
     'cb_extract_raster.R'
