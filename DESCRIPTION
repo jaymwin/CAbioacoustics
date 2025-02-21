@@ -15,11 +15,13 @@ Depends:
 LazyData: true
 Collate: 
     'cb_arcgis_deployments.R'
+    'cb_build_s3_db.R'
     'cb_cells_by_ownership.R'
     'cb_check_bad_json.R'
     'cb_check_empty_folders.R'
     'cb_check_s3.R'
     'cb_connect_db.R'
+    'cb_connect_s3_db.R'
     'cb_create_selection_directories.R'
     'cb_create_selection_table.R'
     'cb_create_swift_labels.R'
