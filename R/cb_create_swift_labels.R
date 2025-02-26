@@ -4,6 +4,8 @@
 #' @param swift_df
 #' @param type
 #' @param file
+#' @param font_size
+#' @param label_height_ratio
 #'
 #' @return
 #' @export

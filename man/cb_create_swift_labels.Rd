@@ -13,7 +13,7 @@ cb_create_swift_labels(
 )
 }
 \arguments{
-\item{file}{}
+\item{label_height_ratio}{}
 }
 \description{
 Create PDF of scannable QR codes for Swift recorders (geared toward Avery 5520 labels)
