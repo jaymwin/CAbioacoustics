@@ -2,7 +2,7 @@
 % Please edit documentation in R/cb_create_swift_labels.R
 \name{cb_create_swift_labels}
 \alias{cb_create_swift_labels}
-\title{Create PDF of Swift barcodes or QR codes}
+\title{Create PDF of scannable QR codes for Swift recorders (geared toward Avery 5520 labels)}
 \usage{
 cb_create_swift_labels(
   swift_df,
@@ -16,5 +16,5 @@ cb_create_swift_labels(
 \item{file}{}
 }
 \description{
-Create PDF of Swift barcodes or QR codes
+Create PDF of scannable QR codes for Swift recorders (geared toward Avery 5520 labels)
 }

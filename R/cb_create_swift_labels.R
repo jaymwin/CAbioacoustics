@@ -1,5 +1,5 @@
 
-#' Create PDF of Swift barcodes or QR codes
+#' Create PDF of scannable QR codes for Swift recorders (geared toward Avery 5520 labels)
 #'
 #' @param swift_df
 #' @param type
