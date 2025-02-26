@@ -4,7 +4,13 @@
 \alias{cb_create_swift_labels}
 \title{Create PDF of Swift barcodes or QR codes}
 \usage{
-cb_create_swift_labels(swift_df, type, file)
+cb_create_swift_labels(
+  swift_df,
+  type = "matrix",
+  file,
+  font_size,
+  label_height_ratio
+)
 }
 \arguments{
 \item{file}{}

@@ -10,7 +10,7 @@
 #'
 #' @examples
 
-cb_create_swift_labels <- function(swift_df, type, file) {
+cb_create_swift_labels <- function(swift_df, type = 'matrix', file, font_size, label_height_ratio) {
 
   num_row <- 10
   page_height <- 11
@@ -19,11 +19,12 @@ cb_create_swift_labels <- function(swift_df, type, file) {
   baRcodeR::custom_create_PDF(
     Labels = swift_df |> as.data.frame(),
     type = type,
-    name = file,
-    Fsz = 18,
+    # .pdf not necessary
+    name = stringr::str_remove(file, '.pdf'),
+    Fsz = font_size,
     numrow = 10,
     numcol = 3,
-    label_height = ((page_height - 2 * height_margin) / num_row) * 8/10,
+    label_height = ((page_height - 2 * height_margin) / num_row) * label_height_ratio,
     width_margin = 3/8,
     height_margin = 1/2
   )
