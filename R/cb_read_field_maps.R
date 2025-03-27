@@ -22,7 +22,7 @@ cb_read_field_maps <- function(feature_layer) {
     )
   ) |>
     janitor::clean_names() |>
-    dplry::select(
+    dplyr::select(
       creation_date,
       deployment_or_recovery,
       deployed_by,
