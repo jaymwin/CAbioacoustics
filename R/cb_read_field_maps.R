@@ -11,7 +11,7 @@
 cb_read_field_maps <- function(feature_layer) {
 
   # make sure there's arcgis pro on your computer and it connects
-  arcgisbinding::arc.check_product()
+  print(arcgisbinding::arc.check_product())
 
   # read now as sf object
   arcgisbinding::arc.data2sf(
