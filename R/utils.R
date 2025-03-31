@@ -305,3 +305,29 @@ delete_record <- function(table_name, record_id, con) {
   DBI::dbExecute(conn = con, statement = delete_query)
 
 }
+
+
+# go from WGS84 to utm zone-specific crs
+wgs84_to_utm <- function(df) {
+
+  # get the crs depending on utm zone
+  zone <- unique(df$utm_zone)
+
+  if (zone == 10) {
+
+    aru_crs = 26910
+
+  } else {
+
+    aru_crs = 26911
+
+  }
+
+  # convert to utm zone-specific crs
+  df <-
+    df |>
+    sf::st_transform(aru_crs)
+
+  return(df)
+
+}
