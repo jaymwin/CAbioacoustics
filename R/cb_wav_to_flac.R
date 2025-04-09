@@ -38,6 +38,8 @@
 
 cb_wav_to_flac <- function(desktop_path, sd_card_path, hard_drive_path, deployment_df, swift_id, year) {
 
+  .Deprecated("cb_shiny_wav_to_flac", msg = "This function is deprecated. Use 'cb_shiny_wav_to_flac' instead.")
+
   tictoc::tic('total runtime')
   # set up desktop folders
   desktop_wav_path <- stringr::str_c(desktop_path, 'wavs', sep = '/')
