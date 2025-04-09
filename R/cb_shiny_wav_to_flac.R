@@ -135,7 +135,7 @@ cb_shiny_wav_to_flac <- function() {
         # count # of flacs compressed
         n_flacs <-
           fs::dir_ls(
-            stringr::str_glue('{hard_drive_path}/{stringr::str_extract(deployment_name, "G(P|R|C|M|0)[0-9]{2}_V[1-5]")}'),
+            stringr::str_glue('{hard_drive_path}/{stringr::str_extract(deployment_name, "G(P|R|C|M|0)[0-9]{2}_V[1-5]{1}_C[0-9]{4}_U[1-4]{1}")}'),
             recurse = TRUE,
             glob = '*.flac'
           ) |>
