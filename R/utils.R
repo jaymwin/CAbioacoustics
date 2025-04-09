@@ -498,6 +498,8 @@ server <- function(input, output) {
     desktop_path <- input$desktop_path
     hard_drive_path <- input$hard_drive_path
 
+    message('is this working?')
+
     # Display pre-function message immediately
     output$swift <- shiny::renderText({
       shiny::HTML(stringr::str_glue("Swift ID: <b>{val$swift_id}</b>"))
