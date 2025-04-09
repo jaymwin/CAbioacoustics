@@ -383,246 +383,236 @@ get_deployment_info <- function(sd_card_path) {
 
 create_subfolders <- function(x, deployment_name, hard_drive_path) {
 
-  # fs::dir_create(
-  #   stringr::str_glue('{hard_drive_path}/{stringr::str_extract(deployment_name, "G(P|R|C|M|0)[0-9]{2}_V[1-5]")}/{deployment_name}/{deployment_name}_{x}')
-  # )
-
-  message(stringr::str_glue('{hard_drive_path}/{stringr::str_extract(deployment_name, "G(P|R|C|M|0)[0-9]{2}_V[1-5]")}/{deployment_name}/{deployment_name}_{x}'))
+  fs::dir_create(
+    stringr::str_glue('{hard_drive_path}/{stringr::str_extract(deployment_name, "G(P|R|C|M|0)[0-9]{2}_V[1-5]")}/{deployment_name}/{deployment_name}_{x}')
+  )
 
 }
 
-# # convert SD wavs to SSD flacs
-# wav_to_flac <- function(wav_path, deployment_name, desktop_path, hard_drive_path) {
+# convert SD wavs to SSD flacs
+wav_to_flac <- function(wav_path, deployment_name, desktop_path, hard_drive_path) {
+
+  wav_date_time <- stringr::str_extract(wav_path, '[0-9]{8}_[0-9]{6}')
+  wav_desktop_path <- stringr::str_glue('{desktop_path}/{basename(wav_path)}')
+
+  fs::file_copy(
+    wav_path,
+    wav_desktop_path
+  )
+
+  flac_ssd_path <- stringr::str_glue('{hard_drive_path}/{stringr::str_extract(deployment_name, "G(P|R|C|M|0)[0-9]{2}_V[1-5]")}/{deployment_name}/{deployment_name}_{stringr::str_extract(wav_date_time, "[0-9]{8}")}/{deployment_name}_{wav_date_time}Z.flac')
+
+  # wav to flac compression
+  seewave::sox(
+    stringr::str_glue('"{wav_desktop_path}" "{flac_ssd_path}"'),
+    path2exe = "C:/Program Files (x86)/sox-14-4-2"
+  )
+
+  # delete temporary wav on desktop
+  fs::file_delete(wav_desktop_path)
+
+}
+
+
+# # UI for the shiny app
+# ui <- shiny::fluidPage(
 #
-#   wav_date_time <- stringr::str_extract(wav_path, '[0-9]{8}_[0-9]{6}')
-#   wav_desktop_path <- stringr::str_glue('{desktop_path}/{basename(wav_path)}')
+#   shinyjs::useShinyjs(),  # Initialize shinyjs
 #
-#   fs::file_copy(
-#     wav_path,
-#     wav_desktop_path
+#   shiny::titlePanel("Sierra Monitoring WAV to FLAC converter"),
+#
+#   shiny::sidebarLayout(
+#     shiny::sidebarPanel(
+#       shiny::selectInput(
+#         "sd_card_path", "SD card path:",
+#         choices = c("D:/" = "D:/", "E:/" = "E:/", "F:/" = "F:/"),
+#         selected = "D:/"
+#       ),
+#       shiny::textInput("desktop_path", "Local path:", value = "C:/Users/jmwin/OneDrive/Desktop"),
+#       shiny::selectInput(
+#         "hard_drive_path", "External hard drive path:",
+#         choices = c("D:/" = "D:/", "E:/" = "E:/", "F:/" = "F:/"),
+#         selected = "E:/"
+#       ),
+#       shiny::actionButton("run_button", "Run FLAC compression", style = "background-color: #458B74; color: white;", icon = shiny::icon('play')),
+#       shiny::actionButton("reset_button", "Reset app", icon = shiny::icon('refresh'), style = "background-color: #FFA07A; color: white;")
+#     ),
+#
+#     shiny::mainPanel(
+#       shiny::htmlOutput("swift"),
+#       shiny::htmlOutput("deployment_name"),
+#       shiny::htmlOutput("dates"),
+#       shiny::htmlOutput("n_wavs"),
+#       shiny::htmlOutput("pre_function_message"),
+#       shiny::htmlOutput("n_flacs"),
+#       shiny::htmlOutput("runtime"),
+#       shiny::htmlOutput("post_function_message")
+#     )
 #   )
+# )
 #
-#   flac_ssd_path <- stringr::str_glue('{hard_drive_path}/{stringr::str_extract(deployment_name, "G(P|R|C|M|0)[0-9]{2}_V[1-5]")}/{deployment_name}/{deployment_name}_{stringr::str_extract(wav_date_time, "[0-9]{8}")}/{deployment_name}_{wav_date_time}Z.flac')
+# # Server logic for the shiny app
+# server <- function(input, output) {
 #
-#   # wav to flac compression
-#   seewave::sox(
-#     stringr::str_glue('"{wav_desktop_path}" "{flac_ssd_path}"'),
-#     path2exe = "C:/Program Files (x86)/sox-14-4-2"
-#   )
+#   # Initially, hide the post-function message
+#   output$pre_function_message <- shiny::renderText({
+#     ""
+#   })
 #
-#   # delete temporary wav on desktop
-#   fs::file_delete(wav_desktop_path)
+#   # Initially, hide the post-function message
+#   output$post_function_message <- shiny::renderText({
+#     ""
+#   })
+#
+#   # Initially, display the pre-function message
+#   output$swift <- shiny::renderText({
+#     ""
+#   })
+#
+#   # Initially, display the pre-function message
+#   output$deployment_name <- shiny::renderText({
+#     ""
+#   })
+#
+#   # Initially, display the pre-function message
+#   output$n_wavs <- shiny::renderText({
+#     ""
+#   })
+#
+#   # Initially, display the pre-function message
+#   output$dates <- shiny::renderText({
+#     ""
+#   })
+#
+#   # When the 'Run Conversion' button is clicked, run the function
+#   shiny::observeEvent(input$run_button, {
+#
+#     # Generate Poisson-distributed random value
+#     val <- get_deployment_info(input$sd_card_path)
+#
+#     sd_wavs <- fs::dir_ls(input$sd_card_path, recurse = TRUE, glob = '*.wav')
+#     wav_dates <- unique(stringr::str_extract(sd_wavs, '[0-9]{8}'))
+#     deployment_name <- val$deployment_name
+#     desktop_path <- input$desktop_path
+#     hard_drive_path <- input$hard_drive_path
+#
+#     # Display pre-function message immediately
+#     output$swift <- shiny::renderText({
+#       shiny::HTML(stringr::str_glue("Swift ID: <b>{val$swift_id}</b>"))
+#     })
+#
+#     # Display pre-function message immediately
+#     output$deployment_name <- shiny::renderText({
+#       shiny::HTML(stringr::str_glue("Deployment name: <b>{val$deployment_name}</b>"))
+#     })
+#
+#     # Display pre-function message immediately
+#     output$dates <- shiny::renderText({
+#       shiny::HTML(stringr::str_glue("ARU recording dates: <b>{val$min_date} to {val$max_date}</b>"))
+#     })
+#
+#     # Display pre-function message immediately
+#     output$n_wavs <- shiny::renderText({
+#       shiny::HTML(stringr::str_glue("Number of WAV files on SD card: <b>{val$n_wavs}</b>"))
+#     })
+#
+#     # Display pre-function message immediately
+#     output$pre_function_message <- shiny::renderText({
+#       shiny::HTML(stringr::str_glue("<i>FLAC compression is running, please wait...</i>"))
+#     })
+#
+#     # Simulate a delay to show the "please wait" message before continuing
+#     shinyjs::delay(100, {
+#
+#       # calculate run time
+#       start_time <- Sys.time()
+#
+#       # set cores for parallel flac compression
+#       cb_set_future_cores()
+#
+#       # create date folders on external hard drive to store FLACs
+#       wav_dates |>
+#         furrr::future_walk(\(x) create_subfolders(x, deployment_name, hard_drive_path))
+#
+#       # compress flacs
+#       sd_wavs |>
+#         furrr::future_walk(\(x) wav_to_flac(x, deployment_name, desktop_path, hard_drive_path))
+#
+#       # count # of flacs compressed
+#       n_flacs <-
+#         fs::dir_ls(
+#           stringr::str_glue('{hard_drive_path}/{stringr::str_extract(deployment_name, "G(P|R|C|M|0)[0-9]{2}_V[1-5]")}'),
+#           recurse = TRUE,
+#           glob = '*.flac'
+#         ) |>
+#         length()
+#
+#       # get runtime now
+#       run_time <- round((as.numeric(Sys.time() - start_time)), 1)
+#
+#       # After the task completes, display post-function message
+#       output$n_flacs <- shiny::renderText({
+#         shiny::HTML(stringr::str_glue("Number of FLAC files compressed: <b>{n_flacs}</b>"))
+#       })
+#
+#       output$runtime <- shiny::renderText({
+#         shiny::HTML(stringr::str_glue("Runtime (minutes): <b>{run_time}</b>"))
+#       })
+#
+#       # After the task completes, display post-function message
+#       output$post_function_message <- shiny::renderText({
+#         shiny::HTML(stringr::str_glue("<b>Finished compressing!</b>"))
+#       })
+#
+#       beepr::beep('ping')
+#
+#     })
+#
+#   })
+#
+#   # When the 'Reset App' button is clicked, reset the app state
+#   shiny::observeEvent(input$reset_button, {
+#     # Reset pre-function and post-function messages
+#     output$pre_function_message <- shiny::renderText({
+#       ""
+#     })
+#
+#     output$post_function_message <- shiny::renderText({
+#       ""
+#     })
+#
+#     # Initially, display the pre-function message
+#     output$swift <- shiny::renderText({
+#       ""
+#     })
+#
+#     # Initially, display the pre-function message
+#     output$deployment_name <- shiny::renderText({
+#       ""
+#     })
+#
+#     # Initially, display the pre-function message
+#     output$n_wavs <- shiny::renderText({
+#       ""
+#     })
+#
+#     # Initially, display the pre-function message
+#     output$dates <- shiny::renderText({
+#       ""
+#     })
+#
+#     output$n_flacs <- shiny::renderText({
+#       ""
+#     })
+#
+#     output$runtime <- shiny::renderText({
+#       ""
+#     })
+#
+#     # Optionally, reset the buttons' states (like re-enabling them if disabled)
+#     shinyjs::enable("run_button")
+#
+#     # You can also add any additional reset behavior here, if needed.
+#   })
 #
 # }
-
-
-# UI for the shiny app
-ui <- shiny::fluidPage(
-
-  shinyjs::useShinyjs(),  # Initialize shinyjs
-
-  shiny::titlePanel("Sierra Monitoring WAV to FLAC converter"),
-
-  shiny::sidebarLayout(
-    shiny::sidebarPanel(
-      shiny::selectInput(
-        "sd_card_path", "SD card path:",
-        choices = c("D:/" = "D:/", "E:/" = "E:/", "F:/" = "F:/"),
-        selected = "D:/"
-      ),
-      shiny::textInput("desktop_path", "Local path:", value = "C:/Users/jmwin/OneDrive/Desktop"),
-      shiny::selectInput(
-        "hard_drive_path", "External hard drive path:",
-        choices = c("D:/" = "D:/", "E:/" = "E:/", "F:/" = "F:/"),
-        selected = "E:/"
-      ),
-      shiny::actionButton("run_button", "Run FLAC compression", style = "background-color: #458B74; color: white;", icon = shiny::icon('play')),
-      shiny::actionButton("reset_button", "Reset app", icon = shiny::icon('refresh'), style = "background-color: #FFA07A; color: white;")
-    ),
-
-    shiny::mainPanel(
-      shiny::htmlOutput("swift"),
-      shiny::htmlOutput("deployment_name"),
-      shiny::htmlOutput("dates"),
-      shiny::htmlOutput("n_wavs"),
-      shiny::htmlOutput("pre_function_message"),
-      # shiny::htmlOutput("n_flacs"),
-      shiny::htmlOutput("runtime"),
-      shiny::htmlOutput("post_function_message")
-    )
-  )
-)
-
-# Server logic for the shiny app
-server <- function(input, output) {
-
-  # Initially, hide the post-function message
-  output$pre_function_message <- shiny::renderText({
-    ""
-  })
-
-  # Initially, hide the post-function message
-  output$post_function_message <- shiny::renderText({
-    ""
-  })
-
-  # Initially, display the pre-function message
-  output$swift <- shiny::renderText({
-    ""
-  })
-
-  # Initially, display the pre-function message
-  output$deployment_name <- shiny::renderText({
-    ""
-  })
-
-  # Initially, display the pre-function message
-  output$n_wavs <- shiny::renderText({
-    ""
-  })
-
-  # Initially, display the pre-function message
-  output$dates <- shiny::renderText({
-    ""
-  })
-
-  # When the 'Run Conversion' button is clicked, run the function
-  shiny::observeEvent(input$run_button, {
-
-    # Generate Poisson-distributed random value
-    val <- get_deployment_info(input$sd_card_path)
-
-    sd_wavs <- fs::dir_ls(input$sd_card_path, recurse = TRUE, glob = '*.wav')
-    wav_dates <- unique(stringr::str_extract(sd_wavs, '[0-9]{8}'))
-    deployment_name <- val$deployment_name
-    desktop_path <- input$desktop_path
-    hard_drive_path <- input$hard_drive_path
-
-    message('is this working?')
-
-    # Display pre-function message immediately
-    output$swift <- shiny::renderText({
-      shiny::HTML(stringr::str_glue("Swift ID: <b>{val$swift_id}</b>"))
-    })
-
-    # Display pre-function message immediately
-    output$deployment_name <- shiny::renderText({
-      shiny::HTML(stringr::str_glue("Deployment name: <b>{val$deployment_name}</b>"))
-    })
-
-    # Display pre-function message immediately
-    output$dates <- shiny::renderText({
-      shiny::HTML(stringr::str_glue("ARU recording dates: <b>{val$min_date} to {val$max_date}</b>"))
-    })
-
-    # Display pre-function message immediately
-    output$n_wavs <- shiny::renderText({
-      shiny::HTML(stringr::str_glue("Number of WAV files on SD card: <b>{val$n_wavs}</b>"))
-    })
-
-    # Display pre-function message immediately
-    output$pre_function_message <- shiny::renderText({
-      shiny::HTML(stringr::str_glue("<i>FLAC compression is running, please wait...</i>"))
-    })
-
-    # Simulate a delay to show the "please wait" message before continuing
-    shinyjs::delay(100, {
-
-      # calculate run time
-      start_time <- Sys.time()
-
-      # set cores for parallel flac compression
-      # cb_set_future_cores()
-
-      print(sd_wavs)
-      print(wav_dates)
-      message(deployment_name)
-      message(desktop_path)
-      message(hard_drive_path)
-
-      # create date folders on external hard drive to store FLACs
-      # wav_dates |>
-      #   furrr::future_walk(\(x) create_subfolders(x, deployment_name, hard_drive_path))
-
-      # compress flacs
-      # sd_wavs |>
-      #   furrr::future_walk(\(x) wav_to_flac(x, deployment_name, desktop_path, hard_drive_path))
-
-      # count # of flacs compressed
-      # n_flacs <-
-      #   fs::dir_ls(
-      #     stringr::str_glue('{hard_drive_path}/{stringr::str_extract(deployment_name, "G(P|R|C|M|0)[0-9]{2}_V[1-5]")}'),
-      #     recurse = TRUE,
-      #     glob = '*.flac'
-      #   ) |>
-      #   length()
-
-      # get runtime now
-      run_time <- round((as.numeric(Sys.time() - start_time)), 1)
-
-      # After the task completes, display post-function message
-      # output$n_flacs <- shiny::renderText({
-      #   shiny::HTML(stringr::str_glue("Number of FLAC files compressed: <b>{n_flacs}</b>"))
-      # })
-
-      output$runtime <- shiny::renderText({
-        shiny::HTML(stringr::str_glue("Runtime (minutes): <b>{run_time}</b>"))
-      })
-
-      # After the task completes, display post-function message
-      output$post_function_message <- shiny::renderText({
-        shiny::HTML(stringr::str_glue("<b>Finished compressing!</b>"))
-      })
-
-      beepr::beep('ping')
-
-    })
-
-  })
-
-  # When the 'Reset App' button is clicked, reset the app state
-  shiny::observeEvent(input$reset_button, {
-    # Reset pre-function and post-function messages
-    output$pre_function_message <- shiny::renderText({
-      ""
-    })
-
-    output$post_function_message <- shiny::renderText({
-      ""
-    })
-
-    # Initially, display the pre-function message
-    output$swift <- shiny::renderText({
-      ""
-    })
-
-    # Initially, display the pre-function message
-    output$deployment_name <- shiny::renderText({
-      ""
-    })
-
-    # Initially, display the pre-function message
-    output$n_wavs <- shiny::renderText({
-      ""
-    })
-
-    # Initially, display the pre-function message
-    output$dates <- shiny::renderText({
-      ""
-    })
-
-    # output$n_flacs <- shiny::renderText({
-    #   ""
-    # })
-
-    output$runtime <- shiny::renderText({
-      ""
-    })
-
-    # Optionally, reset the buttons' states (like re-enabling them if disabled)
-    shinyjs::enable("run_button")
-
-    # You can also add any additional reset behavior here, if needed.
-  })
-
-}
