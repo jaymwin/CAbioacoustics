@@ -532,9 +532,15 @@ server <- function(input, output) {
       # set cores for parallel flac compression
       # cb_set_future_cores()
 
+      print(sd_wavs)
+      print(wav_dates)
+      message(deployment_name)
+      message(desktop_path)
+      message(hard_drive_path)
+
       # create date folders on external hard drive to store FLACs
-      wav_dates |>
-        furrr::future_walk(\(x) create_subfolders(x, deployment_name, hard_drive_path))
+      # wav_dates |>
+      #   furrr::future_walk(\(x) create_subfolders(x, deployment_name, hard_drive_path))
 
       # compress flacs
       # sd_wavs |>
