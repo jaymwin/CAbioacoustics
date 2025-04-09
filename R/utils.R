@@ -383,35 +383,37 @@ get_deployment_info <- function(sd_card_path) {
 
 create_subfolders <- function(x, deployment_name, hard_drive_path) {
 
-  fs::dir_create(
-    stringr::str_glue('{hard_drive_path}/{stringr::str_extract(deployment_name, "G(P|R|C|M|0)[0-9]{2}_V[1-5]")}/{deployment_name}/{deployment_name}_{x}')
-  )
+  # fs::dir_create(
+  #   stringr::str_glue('{hard_drive_path}/{stringr::str_extract(deployment_name, "G(P|R|C|M|0)[0-9]{2}_V[1-5]")}/{deployment_name}/{deployment_name}_{x}')
+  # )
+
+  message(stringr::str_glue('{hard_drive_path}/{stringr::str_extract(deployment_name, "G(P|R|C|M|0)[0-9]{2}_V[1-5]")}/{deployment_name}/{deployment_name}_{x}'))
 
 }
 
-# convert SD wavs to SSD flacs
-wav_to_flac <- function(wav_path, deployment_name, desktop_path, hard_drive_path) {
-
-  wav_date_time <- stringr::str_extract(wav_path, '[0-9]{8}_[0-9]{6}')
-  wav_desktop_path <- stringr::str_glue('{desktop_path}/{basename(wav_path)}')
-
-  fs::file_copy(
-    wav_path,
-    wav_desktop_path
-  )
-
-  flac_ssd_path <- stringr::str_glue('{hard_drive_path}/{stringr::str_extract(deployment_name, "G(P|R|C|M|0)[0-9]{2}_V[1-5]")}/{deployment_name}/{deployment_name}_{stringr::str_extract(wav_date_time, "[0-9]{8}")}/{deployment_name}_{wav_date_time}Z.flac')
-
-  # wav to flac compression
-  seewave::sox(
-    stringr::str_glue('"{wav_desktop_path}" "{flac_ssd_path}"'),
-    path2exe = "C:/Program Files (x86)/sox-14-4-2"
-  )
-
-  # delete temporary wav on desktop
-  fs::file_delete(wav_desktop_path)
-
-}
+# # convert SD wavs to SSD flacs
+# wav_to_flac <- function(wav_path, deployment_name, desktop_path, hard_drive_path) {
+#
+#   wav_date_time <- stringr::str_extract(wav_path, '[0-9]{8}_[0-9]{6}')
+#   wav_desktop_path <- stringr::str_glue('{desktop_path}/{basename(wav_path)}')
+#
+#   fs::file_copy(
+#     wav_path,
+#     wav_desktop_path
+#   )
+#
+#   flac_ssd_path <- stringr::str_glue('{hard_drive_path}/{stringr::str_extract(deployment_name, "G(P|R|C|M|0)[0-9]{2}_V[1-5]")}/{deployment_name}/{deployment_name}_{stringr::str_extract(wav_date_time, "[0-9]{8}")}/{deployment_name}_{wav_date_time}Z.flac')
+#
+#   # wav to flac compression
+#   seewave::sox(
+#     stringr::str_glue('"{wav_desktop_path}" "{flac_ssd_path}"'),
+#     path2exe = "C:/Program Files (x86)/sox-14-4-2"
+#   )
+#
+#   # delete temporary wav on desktop
+#   fs::file_delete(wav_desktop_path)
+#
+# }
 
 
 # UI for the shiny app
@@ -444,7 +446,7 @@ ui <- shiny::fluidPage(
       shiny::htmlOutput("dates"),
       shiny::htmlOutput("n_wavs"),
       shiny::htmlOutput("pre_function_message"),
-      shiny::htmlOutput("n_flacs"),
+      # shiny::htmlOutput("n_flacs"),
       shiny::htmlOutput("runtime"),
       shiny::htmlOutput("post_function_message")
     )
@@ -528,32 +530,32 @@ server <- function(input, output) {
       start_time <- Sys.time()
 
       # set cores for parallel flac compression
-      cb_set_future_cores()
+      # cb_set_future_cores()
 
       # create date folders on external hard drive to store FLACs
       wav_dates |>
         furrr::future_walk(\(x) create_subfolders(x, deployment_name, hard_drive_path))
 
       # compress flacs
-      sd_wavs |>
-        furrr::future_walk(\(x) wav_to_flac(x, deployment_name, desktop_path, hard_drive_path))
+      # sd_wavs |>
+      #   furrr::future_walk(\(x) wav_to_flac(x, deployment_name, desktop_path, hard_drive_path))
 
       # count # of flacs compressed
-      n_flacs <-
-        fs::dir_ls(
-          stringr::str_glue('{hard_drive_path}/{stringr::str_extract(deployment_name, "G(P|R|C|M|0)[0-9]{2}_V[1-5]")}'),
-          recurse = TRUE,
-          glob = '*.flac'
-        ) |>
-        length()
+      # n_flacs <-
+      #   fs::dir_ls(
+      #     stringr::str_glue('{hard_drive_path}/{stringr::str_extract(deployment_name, "G(P|R|C|M|0)[0-9]{2}_V[1-5]")}'),
+      #     recurse = TRUE,
+      #     glob = '*.flac'
+      #   ) |>
+      #   length()
 
       # get runtime now
       run_time <- round((as.numeric(Sys.time() - start_time)), 1)
 
       # After the task completes, display post-function message
-      output$n_flacs <- shiny::renderText({
-        shiny::HTML(stringr::str_glue("Number of FLAC files compressed: <b>{n_flacs}</b>"))
-      })
+      # output$n_flacs <- shiny::renderText({
+      #   shiny::HTML(stringr::str_glue("Number of FLAC files compressed: <b>{n_flacs}</b>"))
+      # })
 
       output$runtime <- shiny::renderText({
         shiny::HTML(stringr::str_glue("Runtime (minutes): <b>{run_time}</b>"))
@@ -601,9 +603,9 @@ server <- function(input, output) {
       ""
     })
 
-    output$n_flacs <- shiny::renderText({
-      ""
-    })
+    # output$n_flacs <- shiny::renderText({
+    #   ""
+    # })
 
     output$runtime <- shiny::renderText({
       ""
