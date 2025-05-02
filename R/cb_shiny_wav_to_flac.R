@@ -30,6 +30,11 @@ cb_shiny_wav_to_flac <- function() {
           choices = c("D:/" = "D:/", "E:/" = "E:/", "F:/" = "F:/"),
           selected = "E:/"
         ),
+        shiny::selectInput(
+          "year", "Survey year:",
+          choices = c("2021" = 2021, "2022" = 2022, "2023" = 2023, "2024" = 2024, "2025" = 2025),
+          selected = "2025"
+        ),
         shiny::actionButton("run_button", "Run FLAC compression", style = "background-color: #458B74; color: white;", icon = shiny::icon('play')),
         shiny::actionButton("reset_button", "Reset app", icon = shiny::icon('refresh'), style = "background-color: #FFA07A; color: white;")
       ),
@@ -80,7 +85,7 @@ cb_shiny_wav_to_flac <- function() {
     shiny::observeEvent(input$run_button, {
 
       # get deployment information from SD card
-      val <- get_deployment_info(input$sd_card_path)
+      val <- get_deployment_info(input$sd_card_path, input$year)
 
       # get list of wav paths
       sd_wavs <- fs::dir_ls(input$sd_card_path, recurse = TRUE, glob = '*.wav')

@@ -335,7 +335,7 @@ wgs84_to_utm <- function(df) {
 
 # shiny app functions -----------------------------------------------------
 
-get_deployment_info <- function(sd_card_path) {
+get_deployment_info <- function(sd_card_path, year) {
 
   # wav count
   n_wavs <- length(fs::dir_ls(sd_card_path, recurse = TRUE, glob = '*.wav'))
@@ -360,13 +360,13 @@ get_deployment_info <- function(sd_card_path) {
     head(1) |>
     stringr::str_extract('S[0-9]{4}')
 
-  current_year <- lubridate::year(lubridate::today())
+  # current_year <- lubridate::year(lubridate::today())
 
   cb_connect_db()
   focal_deployment <-
     conn |>
     dplyr::tbl('acoustic_field_visits') |>
-    dplyr::filter(swift_id == swift & survey_year == current_year) |>
+    dplyr::filter(swift_id == swift & survey_year == year) |>
     dplyr::collect() |>
     dplyr::pull(deployment_name)
   cb_disconnect_db()
