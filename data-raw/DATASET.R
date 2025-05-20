@@ -71,7 +71,7 @@ sierra_hexes <-
   # make NAs into something
   mutate(
     ownership = case_when(
-      is.na(ownership) ~ 'Other',
+      is.na(ownership) ~ 'other',
       TRUE ~ ownership
     )
   ) |>
@@ -89,9 +89,9 @@ sierra_hexes <-
   # create admin column
   mutate(
     unit_admin = case_when(
-      str_detect(unit_name, 'Forest') ~ 'USFS',
-      str_detect(unit_name, 'Park') ~ 'NPS',
-      TRUE ~ 'Other'
+      str_detect(unit_name, 'Forest') ~ 'usfs',
+      str_detect(unit_name, 'Park') ~ 'nps',
+      TRUE ~ 'other'
     )
   ) |>
   st_make_valid()
