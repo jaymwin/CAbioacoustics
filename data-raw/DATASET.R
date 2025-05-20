@@ -67,6 +67,13 @@ sierra_hexes <-
     here::here('data-raw/sierra_nevada_hexes.shp'),
     quiet = TRUE
   ) |>
+  # make NAs into something
+  mutate(
+    ownership = case_when(
+      is.na(ownership) ~ 'Other',
+      TRUE ~ ownership
+    )
+  ) |>
   st_make_valid()
 
 
