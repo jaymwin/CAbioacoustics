@@ -332,4 +332,3 @@ usethis::use_data(diurnal_bird_hours, overwrite = TRUE)
 min_json_predictions <- 144600
 
 usethis::use_data(min_json_predictions, overwrite = TRUE)
-
