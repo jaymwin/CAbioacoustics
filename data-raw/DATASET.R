@@ -4,6 +4,7 @@ library(arcpullr)
 library(tidyverse)
 library(sf)
 library(janitor)
+library(stringr)
 
 
 # california boundary -----------------------------------------------------
@@ -72,6 +73,25 @@ sierra_hexes <-
     ownership = case_when(
       is.na(ownership) ~ 'Other',
       TRUE ~ ownership
+    )
+  ) |>
+  # add NP to parks
+  mutate(
+    ownership = case_when(
+      ownership == 'Sequoia' ~ 'Sequoia National Park',
+      ownership == 'Kings Canyong' ~ 'Kings Canyon National Park',
+      ownership == 'Yosemite' ~ 'Yosemite National Park',
+      ownership == 'Lassen Volcanic' ~ 'Lassen Volcanic National Park',
+      TRUE ~ ownership
+    )
+  ) |>
+  rename(unit_name = ownership) |>
+  # create admin column
+  mutate(
+    unit_admin = case_when(
+      str_detect(unit_name, 'Forest') ~ 'USFS',
+      str_detect(unit_name, 'Park') ~ 'NPS',
+      TRUE ~ 'Other'
     )
   ) |>
   st_make_valid()
