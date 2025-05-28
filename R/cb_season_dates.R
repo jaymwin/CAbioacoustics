@@ -34,7 +34,7 @@ cb_season_dates <- function(study_type, cell_ids, start_year, end_year) {
   efforts_deployments <-
     efforts |>
     # deployment acoustic_field_visit_id = effort id; rename to join
-    dplyr::left_join(deployments |> dplyr::rename(acoustic_field_visit_id = id), by = 'acoustic_field_visit_id')
+    dplyr::left_join(deployments |> dplyr::rename(acoustic_field_visit_id = id), by = 'acoustic_field_visit_id') |>
     # dplyr::left_join(deployments |> dplyr::rename(acoustic_field_visit_id = id), by = dplyr::join_by('acoustic_field_visit_id')) |>
     dplyr::filter(
       cell_id %in% cell_ids,
