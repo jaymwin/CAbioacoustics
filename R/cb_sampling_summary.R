@@ -86,15 +86,15 @@ cb_sampling_summary <- function(species, template, study_type, cell_ids, start_y
     dplyr::distinct() |>
     dplyr::collect() |>
     # dplyr::left_join(cb_get_spatial('sierra_hexes') |> dplyr::select(cell_id, forest_name = ownership) |> sf::st_drop_geometry(), by = dplyr::join_by('cell_id')) |
-    dplyr::left_join(cb_get_spatial('sierra_hexes') |> dplyr::select(cell_id, forest_name = ownership) |> sf::st_drop_geometry(), by = 'cell_id') |>
-    dplyr::group_by(survey_year, forest_name) |>
+    dplyr::left_join(cb_get_spatial('sierra_hexes') |> dplyr::select(cell_id, unit_name) |> sf::st_drop_geometry(), by = 'cell_id') |>
+    dplyr::group_by(survey_year, unit_name) |>
     dplyr::summarise(
       survey_hours = dplyr::n(),
       cells = dplyr::n_distinct(cell_id),
       arus = dplyr::n_distinct(cell_unit)
     ) |>
     dplyr::ungroup() |>
-    dplyr::mutate(forest_name = forcats::fct_relevel(forest_name, forests_north_south)) |>
+    dplyr::mutate(forest_name = forcats::fct_relevel(unit_name, forests_north_south)) |>
     dplyr::arrange(forest_name, survey_year) |>
     dplyr::select(forest_name, survey_year, arus, cells, survey_hours)
 
@@ -124,7 +124,7 @@ cb_sampling_summary <- function(species, template, study_type, cell_ids, start_y
     dplyr::filter(detection == 1) |>
     # dplyr::collect() |>
     # dplyr::left_join(cb_get_spatial('sierra_hexes') |> dplyr::select(cell_id, forest_name = ownership) |> sf::st_drop_geometry(), by = dplyr::join_by('cell_id')) |>
-    dplyr::left_join(cb_get_spatial('sierra_hexes') |> dplyr::select(cell_id, forest_name = ownership) |> sf::st_drop_geometry(), by = 'cell_id') |>
+    dplyr::left_join(cb_get_spatial('sierra_hexes') |> dplyr::select(cell_id, forest_name = unit_name) |> sf::st_drop_geometry(), by = 'cell_id') |>
     dplyr::group_by(survey_year, forest_name) |>
     dplyr::summarise(
       n_detections = sum(detection)
