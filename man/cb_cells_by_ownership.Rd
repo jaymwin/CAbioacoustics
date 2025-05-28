@@ -7,7 +7,7 @@
 cb_cells_by_ownership(ownership)
 }
 \arguments{
-\item{ownership}{US Forest Service (\code{usfs}), National Park Service (\code{nps}), or all cells (\code{any})}
+\item{ownership}{US Forest Service (\code{usfs}), National Park Service (\code{nps}), other (\code{other}), or all cells (\code{any})}
 }
 \value{
 List of cell IDs
@@ -17,7 +17,7 @@ Get a list of cell IDs depending on land ownership
 }
 \examples{
 \dontrun{
-cell_list <- cb_cells_by_ownership('usfs')
+cell_list <- cb_cells_by_ownership(c('usfs', 'nps'))
 print(cell_list)
 }
 }
