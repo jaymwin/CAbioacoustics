@@ -21,13 +21,13 @@ cb_shiny_wav_to_flac <- function() {
       shiny::sidebarPanel(
         shiny::selectInput(
           "sd_card_path", "SD card path:",
-          choices = c("D:/" = "D:/", "E:/" = "E:/", "F:/" = "F:/"),
+          choices = c("D:/" = "D:/", "E:/" = "E:/", "F:/" = "F:/", "G:/" = "G:/", "H:/" = "H:/", "I:/" = "I:/", "J:/" = "J:/", "K:/" = "K:/", "L:/" = "L:/", "M:/" = "M:/", "N:/" = "N:/", "O:/" = "O:/"),
           selected = "D:/"
         ),
         shiny::textInput("desktop_path", "Local path:", value = "C:/Users/jmwin/OneDrive/Desktop/temp"),
         shiny::selectInput(
           "hard_drive_path", "External hard drive path:",
-          choices = c("D:/" = "D:/", "E:/" = "E:/", "F:/" = "F:/"),
+          choices = c("D:/" = "D:/", "E:/" = "E:/", "F:/" = "F:/", "G:/" = "G:/", "H:/" = "H:/", "I:/" = "I:/", "J:/" = "J:/", "K:/" = "K:/", "L:/" = "L:/", "M:/" = "M:/", "N:/" = "N:/", "O:/" = "O:/"),
           selected = "E:/"
         ),
         shiny::selectInput(
