@@ -67,6 +67,7 @@ Collate:
     'not_in.R'
     'utils-pipe.R'
 Imports: 
+    av,
     aws.s3,
     beepr,
     data.table,
