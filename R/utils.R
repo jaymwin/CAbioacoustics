@@ -412,3 +412,22 @@ wav_to_flac <- function(wav_path, deployment_name, desktop_path, hard_drive_path
   fs::file_delete(wav_desktop_path)
 
 }
+
+
+# convert SD wavs to SSD flacs (sequentially)
+sequential_wav_to_flac <- function(wav_path, deployment_name, hard_drive_path) {
+
+  # wav date and time
+  wav_date_time <- stringr::str_extract(wav_path, '[0-9]{8}_[0-9]{6}')
+
+  # create flac path
+  flac_ssd_path <- stringr::str_glue('{hard_drive_path}/{stringr::str_extract(deployment_name, "G(P|R|C|M|0)[0-9]{2}_V[1-5]")}/{deployment_name}/{deployment_name}_{stringr::str_extract(wav_date_time, "[0-9]{8}")}/{deployment_name}_{wav_date_time}Z.flac')
+
+  # wav to flac compression
+  seewave::sox(
+    stringr::str_glue('"{wav_path}" "{flac_ssd_path}"'),
+    path2exe = "C:/Program Files (x86)/sox-14-4-2"
+  )
+
+}
+

@@ -138,6 +138,14 @@ cb_shiny_wav_to_flac <- function() {
 
           future::plan(future::sequential)
 
+          # create date folders on external hard drive to store FLACs
+          wav_dates |>
+            purrr::walk(\(x) CAbioacoustics:::create_subfolders(x, deployment_name, hard_drive_path))
+
+          # compress flacs
+          sd_wavs |>
+            purrr::walk(\(x) CAbioacoustics:::sequential_wav_to_flac(x, deployment_name, hard_drive_path))
+
         }
 
         if (input$processing == 'Parallel') {
@@ -145,15 +153,23 @@ cb_shiny_wav_to_flac <- function() {
         # set cores for parallel flac compression
         cb_set_future_cores()
 
+          # create date folders on external hard drive to store FLACs
+          wav_dates |>
+            furrr::future_walk(\(x) CAbioacoustics:::create_subfolders(x, deployment_name, hard_drive_path))
+
+          # compress flacs
+          sd_wavs |>
+            furrr::future_walk(\(x) CAbioacoustics:::wav_to_flac(x, deployment_name, desktop_path, hard_drive_path))
+
         }
 
-        # create date folders on external hard drive to store FLACs
-        wav_dates |>
-          furrr::future_walk(\(x) CAbioacoustics:::create_subfolders(x, deployment_name, hard_drive_path))
-
-        # compress flacs
-        sd_wavs |>
-          furrr::future_walk(\(x) CAbioacoustics:::wav_to_flac(x, deployment_name, desktop_path, hard_drive_path))
+        # # create date folders on external hard drive to store FLACs
+        # wav_dates |>
+        #   furrr::future_walk(\(x) CAbioacoustics:::create_subfolders(x, deployment_name, hard_drive_path))
+        #
+        # # compress flacs
+        # sd_wavs |>
+        #   furrr::future_walk(\(x) CAbioacoustics:::wav_to_flac(x, deployment_name, desktop_path, hard_drive_path))
 
         # count # of flacs compressed
         n_flacs <-
