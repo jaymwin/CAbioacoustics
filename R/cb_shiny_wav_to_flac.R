@@ -35,6 +35,11 @@ cb_shiny_wav_to_flac <- function() {
           choices = c("2021" = 2021, "2022" = 2022, "2023" = 2023, "2024" = 2024, "2025" = 2025),
           selected = "2025"
         ),
+        shiny::selectInput(
+          "processing", "Processing:",
+          choices = c("Sequential" = "Sequential", "Parallel" = "Parallel"),
+          selected = "Parallel"
+        ),
         shiny::actionButton("run_button", "Run FLAC compression", style = "background-color: #458B74; color: white;", icon = shiny::icon('play')),
         shiny::actionButton("reset_button", "Reset app", icon = shiny::icon('refresh'), style = "background-color: #FFA07A; color: white;")
       ),
@@ -129,8 +134,18 @@ cb_shiny_wav_to_flac <- function() {
         # calculate run time
         start_time <- Sys.time()
 
+        if (input$processing == 'Sequential') {
+
+          future::plan(future::sequential)
+
+        }
+
+        if (input$processing == 'Parallel') {
+
         # set cores for parallel flac compression
         cb_set_future_cores()
+
+        }
 
         # create date folders on external hard drive to store FLACs
         wav_dates |>
