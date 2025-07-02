@@ -8,7 +8,7 @@
 #'
 #' @examples
 
-cb_read_field_maps <- function(feature_layer) {
+cb_read_field_maps <- function(feature_layer, time_zone = "America/Los_Angeles") {
 
   # make sure there's arcgis pro on your computer and it connects
   print(arcgisbinding::arc.check_product())
@@ -45,7 +45,10 @@ cb_read_field_maps <- function(feature_layer) {
       did_you_take_a_deployment_photo,
       dplyr::matches('esri')
     ) |>
-    dplyr::mutate(dplyr::across(dplyr::where(is.character), ~dplyr::na_if(., " "))) |>
+    dplyr::mutate(
+      dplyr::across(dplyr::where(is.character), ~dplyr::na_if(., " ")),
+      dplyr::across(dplyr::where(lubridate::is.timepoint), ~lubridate::force_tz(., time_zone))
+    ) |>
     sf::st_transform(4326)
 
 }
