@@ -7,26 +7,26 @@ library(janitor)
 library(stringr)
 
 
-# california boundary -----------------------------------------------------
-
-ca_boundary <-
-  arcpullr::get_spatial_layer('https://services1.arcgis.com/qr14biwnHA6Vis6l/arcgis/rest/services/California_State_Boundary/FeatureServer/0') |>
-  select(NAME) |>
-  clean_names()
-
-
-# nps boundaries ----------------------------------------------------------
-
-nps_boundaries <-
-  arcpullr::get_spatial_layer(
-    url = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2',
-    where = "STATE = 'CA'"
-  ) |>
-  select(UNIT_CODE, UNIT_NAME, PARKNAME, UNIT_TYPE) |>
-  clean_names() |>
-  rename(park_name = parkname) |>
-  st_make_valid() |>
-  nngeo::st_remove_holes()
+# # california boundary -----------------------------------------------------
+#
+# ca_boundary <-
+#   arcpullr::get_spatial_layer('https://services1.arcgis.com/qr14biwnHA6Vis6l/arcgis/rest/services/California_State_Boundary/FeatureServer/0') |>
+#   select(NAME) |>
+#   clean_names()
+#
+#
+# # nps boundaries ----------------------------------------------------------
+#
+# nps_boundaries <-
+#   arcpullr::get_spatial_layer(
+#     url = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2',
+#     where = "STATE = 'CA'"
+#   ) |>
+#   select(UNIT_CODE, UNIT_NAME, PARKNAME, UNIT_TYPE) |>
+#   clean_names() |>
+#   rename(park_name = parkname) |>
+#   st_make_valid() |>
+#   nngeo::st_remove_holes()
 
 
 # usfs boundaries ---------------------------------------------------------
@@ -41,13 +41,13 @@ nps_boundaries <-
 #   rename(admin_forest_id = adminforestid, forest_number = forestnumber, forest_org_code = forestorgcode, forest_name = forestname) |>
 #   st_make_valid()
 
-usfs_boundaries <-
-  st_read(
-    here::here('data-raw/usfs_boundaries.shp'),
-    quiet = TRUE
-  ) |>
-  st_make_valid() |>
-  st_transform(4326)
+# usfs_boundaries <-
+#   st_read(
+#     here::here('data-raw/usfs_boundaries.shp'),
+#     quiet = TRUE
+#   ) |>
+#   st_make_valid() |>
+#   st_transform(4326)
 
 
 # epa ecoregions ----------------------------------------------------------
@@ -61,73 +61,73 @@ usfs_boundaries <-
 #   clean_names()
 
 
-# sierra hexes ------------------------------------------------------------
-
-sierra_hexes <-
-  st_read(
-    here::here('data-raw/sierra_nevada_hexes.shp'),
-    quiet = TRUE
-  ) |>
-  # make NAs into something
-  mutate(
-    ownership = case_when(
-      is.na(ownership) ~ 'other',
-      TRUE ~ ownership
-    )
-  ) |>
-  # add NP to parks
-  mutate(
-    ownership = case_when(
-      ownership == 'Sequoia' ~ 'Sequoia National Park',
-      ownership == 'Kings Canyong' ~ 'Kings Canyon National Park',
-      ownership == 'Yosemite' ~ 'Yosemite National Park',
-      ownership == 'Lassen Volcanic' ~ 'Lassen Volcanic National Park',
-      TRUE ~ ownership
-    )
-  ) |>
-  rename(unit_name = ownership) |>
-  # create admin column
-  mutate(
-    unit_admin = case_when(
-      str_detect(unit_name, 'Forest') ~ 'usfs',
-      str_detect(unit_name, 'Park') ~ 'nps',
-      TRUE ~ 'other'
-    )
-  ) |>
-  st_make_valid()
-
-
-# sierra study area (based off of hexes) ----------------------------------
-
-sierra_study_area <-
-  sierra_hexes |>
-  summarise() |>
-  nngeo::st_remove_holes()
+# # sierra hexes ------------------------------------------------------------
+#
+# sierra_hexes <-
+#   st_read(
+#     here::here('data-raw/sierra_nevada_hexes.shp'),
+#     quiet = TRUE
+#   ) |>
+#   # make NAs into something
+#   mutate(
+#     ownership = case_when(
+#       is.na(ownership) ~ 'other',
+#       TRUE ~ ownership
+#     )
+#   ) |>
+#   # add NP to parks
+#   mutate(
+#     ownership = case_when(
+#       ownership == 'Sequoia' ~ 'Sequoia National Park',
+#       ownership == 'Kings Canyong' ~ 'Kings Canyon National Park',
+#       ownership == 'Yosemite' ~ 'Yosemite National Park',
+#       ownership == 'Lassen Volcanic' ~ 'Lassen Volcanic National Park',
+#       TRUE ~ ownership
+#     )
+#   ) |>
+#   rename(unit_name = ownership) |>
+#   # create admin column
+#   mutate(
+#     unit_admin = case_when(
+#       str_detect(unit_name, 'Forest') ~ 'usfs',
+#       str_detect(unit_name, 'Park') ~ 'nps',
+#       TRUE ~ 'other'
+#     )
+#   ) |>
+#   st_make_valid()
 
 
-# coastal hexes -----------------------------------------------------------
+# # sierra study area (based off of hexes) ----------------------------------
+#
+# sierra_study_area <-
+#   sierra_hexes |>
+#   summarise() |>
+#   nngeo::st_remove_holes()
 
-mendocino_hexes <-
-  st_read(
-    here::here('data-raw/mendocino_hexes.shp'),
-    quiet = TRUE
-  ) |>
-  st_make_valid() |>
-  st_transform(4326)
 
-sonoma_hexes <-
-  st_read(
-    here::here('data-raw/sonoma_hexes.shp'),
-    quiet = TRUE
-  ) |>
-  st_make_valid() |>
-  st_transform(4326)
-
-# combine
-coastal_hexes <-
-  mendocino_hexes |>
-  bind_rows(sonoma_hexes) |>
-  select(cell_id = CELL_ID)
+# # coastal hexes -----------------------------------------------------------
+#
+# mendocino_hexes <-
+#   st_read(
+#     here::here('data-raw/mendocino_hexes.shp'),
+#     quiet = TRUE
+#   ) |>
+#   st_make_valid() |>
+#   st_transform(4326)
+#
+# sonoma_hexes <-
+#   st_read(
+#     here::here('data-raw/sonoma_hexes.shp'),
+#     quiet = TRUE
+#   ) |>
+#   st_make_valid() |>
+#   st_transform(4326)
+#
+# # combine
+# coastal_hexes <-
+#   mendocino_hexes |>
+#   bind_rows(sonoma_hexes) |>
+#   select(cell_id = CELL_ID)
 
 
 # fire perimeters ---------------------------------------------------------
@@ -183,30 +183,30 @@ coastal_hexes <-
 # demography_study_areas |>
 #   st_write(here::here('data-raw/demography_areas.shp'))
 
-demography_study_areas <-
-  st_read(
-    here::here('data-raw/demography_areas.shp'),
-    quiet = TRUE
-  )
+# demography_study_areas <-
+#   st_read(
+#     here::here('data-raw/demography_areas.shp'),
+#     quiet = TRUE
+#   )
 
 
-# save raw spatial data ---------------------------------------------------
-
-cb_boundary_layers <-
-  list(
-    sierra_hexes = sierra_hexes,
-    coastal_hexes = coastal_hexes,
-    # epa_ecoregions = epa_ecoregions,
-    usfs_boundaries = usfs_boundaries,
-    nps_boundaries = nps_boundaries,
-    ca_boundary = ca_boundary,
-    # fire_perimeters = fire_perimeters,
-    demography_study_areas = demography_study_areas,
-    sierra_study_area = sierra_study_area
-  )
-
-# this updates the /data folder
-usethis::use_data(cb_boundary_layers, overwrite = TRUE)
+# # save raw spatial data ---------------------------------------------------
+#
+# cb_boundary_layers <-
+#   list(
+#     sierra_hexes = sierra_hexes,
+#     coastal_hexes = coastal_hexes,
+#     # epa_ecoregions = epa_ecoregions,
+#     usfs_boundaries = usfs_boundaries,
+#     nps_boundaries = nps_boundaries,
+#     ca_boundary = ca_boundary,
+#     # fire_perimeters = fire_perimeters,
+#     demography_study_areas = demography_study_areas,
+#     sierra_study_area = sierra_study_area
+#   )
+#
+# # this updates the /data folder
+# usethis::use_data(cb_boundary_layers, overwrite = TRUE)
 
 
 # birdnet thresholds/codes ------------------------------------------------
@@ -214,8 +214,8 @@ usethis::use_data(cb_boundary_layers, overwrite = TRUE)
 # species_threshold_df <- read_csv(here::here('data-raw/species_thresholds.csv'))
 # usethis::use_data(species_threshold_df, overwrite = TRUE)
 
-birdnet_species_codes <- read_csv(here::here('data-raw/species_codes.csv'))
-usethis::use_data(birdnet_species_codes, overwrite = TRUE)
+# birdnet_species_codes <- read_csv(here::here('data-raw/species_codes.csv'))
+# usethis::use_data(birdnet_species_codes, overwrite = TRUE)
 
 
 # forest order (by latitude) ----------------------------------------------
