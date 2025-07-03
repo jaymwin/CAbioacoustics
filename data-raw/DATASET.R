@@ -1,10 +1,10 @@
 ## code to prepare `DATASET` dataset goes here
 
-library(arcpullr)
+# library(arcpullr)
 library(tidyverse)
-library(sf)
-library(janitor)
-library(stringr)
+# library(sf)
+# library(janitor)
+# library(stringr)
 
 
 # # california boundary -----------------------------------------------------
@@ -220,15 +220,15 @@ library(stringr)
 
 # forest order (by latitude) ----------------------------------------------
 
-forests_north_south <-
-  usfs_boundaries |>
-  st_centroid() %>%
-  mutate(lat = st_coordinates(.)[,2]) |>
-  arrange(desc(lat)) |>
-  pull(frst_nm)
-
-# save
-usethis::use_data(forests_north_south, overwrite = TRUE)
+# forests_north_south <-
+#   usfs_boundaries |>
+#   st_centroid() %>%
+#   mutate(lat = st_coordinates(.)[,2]) |>
+#   arrange(desc(lat)) |>
+#   pull(frst_nm)
+#
+# # save
+# usethis::use_data(forests_north_south, overwrite = TRUE)
 
 
 # owl_recording_times -----------------------------------------------------
